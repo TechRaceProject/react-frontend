@@ -1,6 +1,6 @@
 {
   "name": "@frontend/shared",
-  "packageManager": "yarn@3.6.4",
+  "packageManager": "yarn@1.2.22",
   "version": "1.0.0",
   "main": "dist/index.js",
   "scripts": {
