@@ -6,5 +6,9 @@
   "workspaces": [
     "packages/*"
   ],
-  "packageManager": "yarn@3.6.4"
+  "scripts": {
+    "android": "yarn workspace @frontend/mobile android",
+    "web": "yarn workspace @frontend/web dev"
+  },
+  "packageManager": "yarn@1.22.22"
 }
