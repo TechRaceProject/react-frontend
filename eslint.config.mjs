@@ -90,13 +90,7 @@ export default defineConfig([...fixupConfigRules(compat.extends(
             react: fixupPluginRules(react),
             "react-hooks": fixupPluginRules(reactHooks),
         },
-        env: {
-            browser: true,
-        },
-        parserOptions: {
-            project: ['./packages/react/tsconfig.json'],
-            tsconfigRootDir: './packages/react',
-        },
+
         rules: {
             'react/jsx-props-no-spreading': 'off',
             'react-refresh/only-export-components': 'off',
@@ -109,14 +103,14 @@ export default defineConfig([...fixupConfigRules(compat.extends(
         settings: {
             'import/resolver': {
                 node: {
-                    paths: ['./packages/react/src'],
+                    paths: ['./src'],
                     extensions: ['.js', '.jsx', '.ts', '.tsx', '.d.ts', '.css'],
                 },
                 typescript: {
-                    project: './packages/react/tsconfig.json',
+                    project: './tsconfig.json',
                 },
                 alias: {
-                    map: [['~', path.resolve(__dirname, '././packages/react/src')]],
+                    map: [['~', path.resolve(__dirname, './src')]],
                     extensions: ['.js', '.jsx', '.ts', '.tsx', '.d.ts'],
                 },
             },
