@@ -33,6 +33,8 @@ export default [...fixupConfigRules(compat.extends(
         "@typescript-eslint": fixupPluginRules(typescript),
     },
 
+    ignores: ['dist', 'node_modules'],
+
     languageOptions: {
         globals: {
             ...globals.browser,
@@ -53,11 +55,33 @@ export default [...fixupConfigRules(compat.extends(
         react: {
             version: "detect",
         },
+        'import/resolver': {
+            node: {
+                extensions: ['.js', '.jsx', '.ts', '.tsx'],
+            },
+        },
     },
 
     rules: {
+        'consistent-return': 'error',
+
+        'import/prefer-default-export': 'off',
+
+        'no-console': 'off',
+        'no-underscore-dangle': 'off',
+        'no-restricted-syntax': 'off',
+        'no-plusplus': 'off',
+        'no-unused-expressions': 'warn',
+        
+        'prettier/prettier': 'error',
+
         "react/react-in-jsx-scope": "off",
-        "prettier/prettier": "error",
+
+        '@typescript-eslint/explicit-function-return-type': 'off',
+        '@typescript-eslint/explicit-module-boundary-types': 'off',
+        '@typescript-eslint/no-explicit-any': 'warn',
+        '@typescript-eslint/no-unused-vars': 'warn',
+        '@typescript-eslint/ban-ts-comment': 'warn',
     },
 }, {
     files: ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
