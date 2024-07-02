@@ -6,7 +6,11 @@
   "scripts": {
     "build": "rimraf dist && tsc",
     "postinstall": "yarn build",
-    "watch": "tsc --watch"
+    "watch": "tsc --watch",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --check .",
+    "format:fix": "prettier --write ."
   },
   "dependencies": {
     "react": "18.2.0",
