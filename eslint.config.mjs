@@ -26,12 +26,12 @@ export default defineConfig([...fixupConfigRules(compat.extends(
         "plugin:react-hooks/recommended",
         "plugin:prettier/recommended",
         "plugin:@typescript-eslint/recommended",
-    )), {
+    )), 
+    {
         plugins: {
             react: fixupPluginRules(react),
             "react-hooks": fixupPluginRules(reactHooks),
             prettier: fixupPluginRules(prettier),
-            "react-native": reactNative,
             "@typescript-eslint": fixupPluginRules(typescript),
         },
 
@@ -57,13 +57,8 @@ export default defineConfig([...fixupConfigRules(compat.extends(
             react: {
                 version: "detect",
             },
-            'import/resolver': {
-                node: {
-                    extensions: ['.js', '.jsx', '.ts', '.tsx'],
-                },
-            },
         },
-    }, 
+    },
     {
         files: ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
         rules: {
@@ -90,10 +85,49 @@ export default defineConfig([...fixupConfigRules(compat.extends(
         },
     },
     {
-        files: ["packages/react_native/**/*.js", "packages/react_native/**/*.jsx", "packages/react_native/**/*.ts", "packages/react_native/**/*.tsx"],
+        files: ["packages/react/**/*.js", "packages/react/**/*.jsx", "packages/react/**/*.ts", "packages/react/**/*.tsx"],
+        plugins: {
+            react: fixupPluginRules(react),
+            "react-hooks": fixupPluginRules(reactHooks),
+        },
+        env: {
+            browser: true,
+        },
+        parserOptions: {
+            project: ['./packages/react/tsconfig.json'],
+            tsconfigRootDir: './packages/react',
+        },
         rules: {
-            // Ajouter ici des règles spécifiques à React Native
-            
+            'react/jsx-props-no-spreading': 'off',
+            'react-refresh/only-export-components': 'off',
+            'react-hooks/rules-of-hooks': 'error',
+            'react-hooks/exhaustive-deps': 'off',
+            'react/require-default-props': 'off',
+            'react/no-array-index-key': 'off',
+            'react/jsx-props-no-spreading': 'off',
+        },
+        settings: {
+            'import/resolver': {
+                node: {
+                    paths: ['./packages/react/src'],
+                    extensions: ['.js', '.jsx', '.ts', '.tsx', '.d.ts', '.css'],
+                },
+                typescript: {
+                    project: './packages/react/tsconfig.json',
+                },
+                alias: {
+                    map: [['~', path.resolve(__dirname, '././packages/react/src')]],
+                    extensions: ['.js', '.jsx', '.ts', '.tsx', '.d.ts'],
+                },
+            },
+        }
+    },
+    {
+        files: ["packages/react_native/**/*.js", "packages/react_native/**/*.jsx", "packages/react_native/**/*.ts", "packages/react_native/**/*.tsx"],
+        plugins: {
+            "react-native": reactNative,
+        },
+        rules: {
             "react-native/no-inline-styles": "off",
             "react-native/no-raw-text": "off",
         },
