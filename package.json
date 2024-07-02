@@ -9,8 +9,7 @@
   "scripts": {
     "android": "yarn workspace @frontend/mobile android",
     "web": "yarn workspace @frontend/web dev",
-    "lint": "yarn workspaces run lint:fix",
-    "format": "yarn workspaces run format:fix",
+    "lint": "yarn workspaces run format:fix && yarn workspaces run lint:fix",
     "refresh": "/bin/rm -rf node_modules && /bin/rm -rf packages/*/node_modules && yarn -i"
   },
   "packageManager": "yarn@1.22.22",
@@ -22,6 +21,7 @@
     "@typescript-eslint/parser": "^7.15.0",
     "eslint": "^9.6.0",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-define-config": "^2.1.0",
     "eslint-plugin-prettier": "^5.1.3",
     "eslint-plugin-react": "^7.34.3",
     "eslint-plugin-react-hooks": "^4.6.2",

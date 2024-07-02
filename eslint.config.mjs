@@ -9,6 +9,8 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import js from "@eslint/js";
 import { FlatCompat } from "@eslint/eslintrc";
+import { defineConfig } from "eslint-define-config";
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,72 +20,82 @@ const compat = new FlatCompat({
     allConfig: js.configs.all
 });
 
-export default [...fixupConfigRules(compat.extends(
-    "eslint:recommended",
-    "plugin:react/recommended",
-    "plugin:react-hooks/recommended",
-    "plugin:prettier/recommended",
-    "plugin:@typescript-eslint/recommended",
-)), {
-    plugins: {
-        react: fixupPluginRules(react),
-        "react-hooks": fixupPluginRules(reactHooks),
-        prettier: fixupPluginRules(prettier),
-        "react-native": reactNative,
-        "@typescript-eslint": fixupPluginRules(typescript),
-    },
-
-    ignores: ['dist', 'node_modules'],
-
-    languageOptions: {
-        globals: {
-            ...globals.browser,
-            ...globals.node,
+export default defineConfig([...fixupConfigRules(compat.extends(
+        "eslint:recommended",
+        "plugin:react/recommended",
+        "plugin:react-hooks/recommended",
+        "plugin:prettier/recommended",
+        "plugin:@typescript-eslint/recommended",
+    )), {
+        plugins: {
+            react: fixupPluginRules(react),
+            "react-hooks": fixupPluginRules(reactHooks),
+            prettier: fixupPluginRules(prettier),
+            "react-native": reactNative,
+            "@typescript-eslint": fixupPluginRules(typescript),
         },
 
-        ecmaVersion: 12,
-        sourceType: "module",
+        ignores: ['dist', 'node_modules'],
 
-        parserOptions: {
-            ecmaFeatures: {
-                jsx: true,
+        languageOptions: {
+            globals: {
+                ...globals.browser,
+                ...globals.node,
+            },
+
+            ecmaVersion: 12,
+            sourceType: "module",
+
+            parserOptions: {
+                ecmaFeatures: {
+                    jsx: true,
+                },
             },
         },
-    },
 
-    settings: {
-        react: {
-            version: "detect",
-        },
-        'import/resolver': {
-            node: {
-                extensions: ['.js', '.jsx', '.ts', '.tsx'],
+        settings: {
+            react: {
+                version: "detect",
+            },
+            'import/resolver': {
+                node: {
+                    extensions: ['.js', '.jsx', '.ts', '.tsx'],
+                },
             },
         },
+    }, 
+    {
+        files: ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
+        rules: {
+            // Ajouter ici les règles communes à tous les projets 
+            'consistent-return': 'error',
+
+            'import/prefer-default-export': 'off',
+
+            'no-console': 'off',
+            'no-underscore-dangle': 'off',
+            'no-restricted-syntax': 'off',
+            'no-plusplus': 'off',
+            'no-unused-expressions': 'warn',
+            
+            'prettier/prettier': 'error',
+
+            "react/react-in-jsx-scope": "off",
+
+            '@typescript-eslint/explicit-function-return-type': 'off',
+            '@typescript-eslint/explicit-module-boundary-types': 'off',
+            '@typescript-eslint/no-explicit-any': 'warn',
+            '@typescript-eslint/no-unused-vars': 'warn',
+            '@typescript-eslint/ban-ts-comment': 'warn',
+        },
     },
-
-    rules: {
-        'consistent-return': 'error',
-
-        'import/prefer-default-export': 'off',
-
-        'no-console': 'off',
-        'no-underscore-dangle': 'off',
-        'no-restricted-syntax': 'off',
-        'no-plusplus': 'off',
-        'no-unused-expressions': 'warn',
-        
-        'prettier/prettier': 'error',
-
-        "react/react-in-jsx-scope": "off",
-
-        '@typescript-eslint/explicit-function-return-type': 'off',
-        '@typescript-eslint/explicit-module-boundary-types': 'off',
-        '@typescript-eslint/no-explicit-any': 'warn',
-        '@typescript-eslint/no-unused-vars': 'warn',
-        '@typescript-eslint/ban-ts-comment': 'warn',
+    {
+        files: ["packages/react_native/**/*.js", "packages/react_native/**/*.jsx", "packages/react_native/**/*.ts", "packages/react_native/**/*.tsx"],
+        rules: {
+            // Ajouter ici des règles spécifiques à React Native
+            
+            "react-native/no-inline-styles": "off",
+            "react-native/no-raw-text": "off",
+        },
     },
-}, {
-    files: ["**/*.js", "**/*.jsx", "**/*.ts", "**/*.tsx"],
-    rules: {},
-}];
+]);
