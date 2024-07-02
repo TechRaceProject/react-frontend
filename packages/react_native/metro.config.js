@@ -1,4 +1,4 @@
-const { getDefaultConfig, mergeConfig } = require("@react-native/metro-config");
+import { getDefaultConfig, mergeConfig } from "@react-native/metro-config";
 
 /**
  * Metro configuration
@@ -7,6 +7,7 @@ const { getDefaultConfig, mergeConfig } = require("@react-native/metro-config");
  * @type {import('metro-config').MetroConfig}
  */
 
+/* eslint-disable @typescript-eslint/no-var-requires */
 const path = require("path");
 const config = {
   resolver: {
