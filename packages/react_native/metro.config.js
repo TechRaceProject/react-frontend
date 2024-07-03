@@ -1,4 +1,5 @@
-const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
+/* eslint-disable @typescript-eslint/no-var-requires */
+const { getDefaultConfig, mergeConfig } = require("@react-native/metro-config");
 
 /**
  * Metro configuration
@@ -7,15 +8,15 @@ const {getDefaultConfig, mergeConfig} = require('@react-native/metro-config');
  * @type {import('metro-config').MetroConfig}
  */
 
-const path = require('path');
+const path = require("path");
 const config = {
-    resolver: {
-        unstable_enableSymlinks: true // Turn on symlink support
-    },
+  resolver: {
+    unstable_enableSymlinks: true, // Turn on symlink support
+  },
 
   watchFolders: [
-    path.resolve(__dirname, '../../node_modules'),
-    path.resolve(__dirname, '../../node_modules/@frontend/shared'),
+    path.resolve(__dirname, "../../node_modules"),
+    path.resolve(__dirname, "../../node_modules/@frontend/shared"),
   ],
 };
 
