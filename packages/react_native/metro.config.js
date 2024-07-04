@@ -14,10 +14,7 @@ const config = {
         unstable_enableSymlinks: true, // Turn on symlink support
     },
 
-    watchFolders: [
-        path.resolve(__dirname, '../../node_modules'),
-        path.resolve(__dirname, '../../node_modules/@frontend/shared'),
-    ],
+    watchFolders: [path.resolve(__dirname, '../../node_modules')],
 };
 
 module.exports = mergeConfig(getDefaultConfig(__dirname), config);
