@@ -66,6 +66,7 @@ function App(): React.JSX.Element {
 
     return (
         <SafeAreaView style={backgroundStyle}>
+        <Text>testttt</Text>
             <StatusBar
                 barStyle={isDarkMode ? 'light-content' : 'dark-content'}
                 backgroundColor={backgroundStyle.backgroundColor}
