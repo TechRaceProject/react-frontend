@@ -9,7 +9,7 @@ import {
     TouchableOpacity,
     View,
 } from 'react-native';
-import JoystickComponent from './components/JoystickComponent'; // Assurez-vous que le chemin est correct
+import JoystickComponent from './components/JoystickComponent';
 
 const App = () => {
     const [roue1, setRoue1] = useState('');
