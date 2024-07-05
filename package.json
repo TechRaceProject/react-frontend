@@ -11,7 +11,8 @@
     "web": "yarn workspace @frontend/web dev",
     "lint": "yarn workspaces run lint:fix",
     "lint:format": "yarn workspaces run format:fix && yarn workspaces run lint:fix",
-    "refresh": "/bin/rm -rf node_modules && /bin/rm -rf packages/*/node_modules && yarn -i"
+    "unix:refresh": "/bin/rm -rf node_modules && /bin/rm -rf packages/*/node_modules && yarn -i",
+    "windows:refresh": "rmdir /s /q node_modules && rmdir /s /q packages/*/node_modules && yarn -i"
   },
   "packageManager": "yarn@1.22.22",
   "devDependencies": {
