@@ -12,7 +12,7 @@
     "lint": "yarn workspaces run lint:fix",
     "lint:format": "yarn workspaces run format:fix && yarn workspaces run lint:fix",
     "unix:refresh": "/bin/rm -rf node_modules && /bin/rm -rf packages/*/node_modules && yarn -i",
-    "windows:refresh": "if [ \"$(uname)\" = \"Linux\" ] || [ \"$(uname)\" = \"Darwin\" ]; then\n  rm -rf node_modules && rm -rf packages/*/node_modules && yarn -i\nelse\n  rmdir /s /q node_modules && rmdir /s /q packages/*/node_modules && yarn -i\nfi"
+    "windows:refresh": "powershell -Command \"Remove-Item -Recurse -Force node_modules, packages/*/node_modules; yarn install\""
   },
   "packageManager": "yarn@1.22.22",
   "devDependencies": {
