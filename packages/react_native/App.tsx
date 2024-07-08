@@ -40,28 +40,39 @@ function App(): React.JSX.Element {
 
     const backgroundStyle = {
         backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
+        flex: 1,
     };
 
     return (
-        <SafeAreaView style={backgroundStyle}>
+        <SafeAreaView style={[backgroundStyle, styles.safeArea]}>
             <StatusBar
                 barStyle={isDarkMode ? 'light-content' : 'dark-content'}
                 backgroundColor={backgroundStyle.backgroundColor}
             />
-            <Text>Toto</Text>
-            <Text>Toto</Text>
-            <JoyStick
-                dimension={{ width: 300, height: 300 }}
-                position={{ x: 150, y: 150 }}
-                size={100}
-                styles={{ ...styles }}
-                uri={'../assets/joystick.svg'}
-            />
+            <View style={styles.appContainer}>
+                <Text>Toto</Text>
+                <Text>Toto</Text>
+                <JoyStick
+                    dimension={{ width: 300, height: 300 }}
+                    position={{ x: 150, y: 150 }}
+                    size={100}
+                    styles={{ ...styles }}
+                    uri={'../assets/joystick.svg'}
+                />
+            </View>
         </SafeAreaView>
     );
 }
 
 const styles = StyleSheet.create({
+    safeArea: {
+        flex: 1,
+    },
+    appContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+    },
     sectionContainer: {
         marginTop: 32,
         paddingHorizontal: 24,
@@ -78,42 +89,33 @@ const styles = StyleSheet.create({
     highlight: {
         fontWeight: '700',
     },
-    dimension: { width: 100, height: 100 },
     container: {
-        width: 200,
-        height: 200,
+        width: 300,
+        height: 300,
         justifyContent: 'center',
-        // display: 'flex',
-        flex: 1,
-        flexDirection: 'column',
         alignItems: 'center',
         borderColor: 'red',
-        position: 'relative',
         borderWidth: 5,
     },
     containerJoystick: {
-        // position:'absolute',
-        // top: '50%',
-        // left: '50%',
-        // transform: [{ translateX: -80 }, { translateY: -80 }],
-        width: '50%',
-        height: '50%',
+        width: '100%',
+        height: '100%',
         borderColor: 'yellow',
         borderWidth: 5,
+        justifyContent: 'center',
+        alignItems: 'center',
     },
     joystick: {
         backgroundColor: 'blue',
         borderColor: 'white',
         borderWidth: 5,
-        // borderRadius: 50,
         position: 'absolute',
+        width: 100,
+        height: 100,
     },
     joystickArrow: {
         width: '100%',
         height: '100%',
-        // width: '100%',
-        // height: '100%',
-        // resizeMode: 'contain',
     },
 });
 
