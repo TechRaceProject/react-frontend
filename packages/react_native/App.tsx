@@ -24,6 +24,7 @@ import {
     LearnMoreLinks,
     ReloadInstructions,
 } from 'react-native/Libraries/NewAppScreen';
+import JoyStick from './src/components/Joystick.tsx';
 
 type SectionProps = PropsWithChildren<{
     title: string;
@@ -31,30 +32,7 @@ type SectionProps = PropsWithChildren<{
 
 function Section({ children, title }: SectionProps): React.JSX.Element {
     const isDarkMode = useColorScheme() === 'dark';
-    return (
-        <View style={styles.sectionContainer}>
-            <Text
-                style={[
-                    styles.sectionTitle,
-                    {
-                        color: isDarkMode ? Colors.white : Colors.black,
-                    },
-                ]}
-            >
-                {title}
-            </Text>
-            <Text
-                style={[
-                    styles.sectionDescription,
-                    {
-                        color: isDarkMode ? Colors.light : Colors.dark,
-                    },
-                ]}
-            >
-                {children}
-            </Text>
-        </View>
-    );
+    return <View style={styles.sectionContainer}></View>;
 }
 
 function App(): React.JSX.Element {
@@ -70,34 +48,15 @@ function App(): React.JSX.Element {
                 barStyle={isDarkMode ? 'light-content' : 'dark-content'}
                 backgroundColor={backgroundStyle.backgroundColor}
             />
-            <ScrollView
-                contentInsetAdjustmentBehavior="automatic"
-                style={backgroundStyle}
-            >
-                <Header />
-                <View
-                    style={{
-                        backgroundColor: isDarkMode
-                            ? Colors.black
-                            : Colors.white,
-                    }}
-                >
-                    <Section title="Step One">
-                        Edit <Text style={styles.highlight}>App.tsx</Text> to
-                        change this screen and then come back to see your edits.
-                    </Section>
-                    <Section title="See Your Changes">
-                        <ReloadInstructions />
-                    </Section>
-                    <Section title="Debug">
-                        <DebugInstructions />
-                    </Section>
-                    <Section title="Learn More">
-                        Read the docs to discover what to do next:
-                    </Section>
-                    <LearnMoreLinks />
-                </View>
-            </ScrollView>
+            <Text>Toto</Text>
+            <Text>Toto</Text>
+            <JoyStick
+                dimension={{ width: 300, height: 300 }}
+                position={{ x: 150, y: 150 }}
+                size={100}
+                styles={{ ...styles }}
+                uri={'../assets/joystick.svg'}
+            />
         </SafeAreaView>
     );
 }
@@ -118,6 +77,43 @@ const styles = StyleSheet.create({
     },
     highlight: {
         fontWeight: '700',
+    },
+    dimension: { width: 100, height: 100 },
+    container: {
+        width: 200,
+        height: 200,
+        justifyContent: 'center',
+        // display: 'flex',
+        flex: 1,
+        flexDirection: 'column',
+        alignItems: 'center',
+        borderColor: 'red',
+        position: 'relative',
+        borderWidth: 5,
+    },
+    containerJoystick: {
+        // position:'absolute',
+        // top: '50%',
+        // left: '50%',
+        // transform: [{ translateX: -80 }, { translateY: -80 }],
+        width: '50%',
+        height: '50%',
+        borderColor: 'yellow',
+        borderWidth: 5,
+    },
+    joystick: {
+        backgroundColor: 'blue',
+        borderColor: 'white',
+        borderWidth: 5,
+        // borderRadius: 50,
+        position: 'absolute',
+    },
+    joystickArrow: {
+        width: '100%',
+        height: '100%',
+        // width: '100%',
+        // height: '100%',
+        // resizeMode: 'contain',
     },
 });
 
