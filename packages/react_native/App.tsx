@@ -50,7 +50,7 @@ function App(): React.JSX.Element {
             </View>
         </SafeAreaView>
     );
-}
+};
 
 const styles = StyleSheet.create({
     safeArea: {
