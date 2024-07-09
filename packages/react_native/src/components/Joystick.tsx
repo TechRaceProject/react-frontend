@@ -40,13 +40,13 @@ function Joystick({
         gestureState: { dx: number; dy: number }
     ): void => {
         let newX = joystickPosition.x + gestureState.dx;
-        let newY = joystickPosition.y + gestureState.dy;
+        let newY = joystickPosition.y - gestureState.dy;
 
-        const maxMoveX = dimension.width - size / 2;
-        const maxMoveY = dimension.height - size / 2;
+        const maxMoveX = dimension.width / 2;
+        const maxMoveY = dimension.height / 2;
 
-        newX = Math.max(-size / 2, Math.min(newX, maxMoveX));
-        newY = Math.max(-size / 2, Math.min(newY, maxMoveY));
+        newX = Math.max(-maxMoveX, Math.min(newX, maxMoveX));
+        newY = Math.max(-maxMoveY, Math.min(newY, maxMoveY));
 
         setJoystickPosition({ x: newX, y: newY });
     };
@@ -56,10 +56,7 @@ function Joystick({
         onMoveShouldSetPanResponder: () => true,
         onPanResponderMove: handlePanResponderMove,
         onPanResponderRelease: () => {
-            setJoystickPosition({
-                x: (dimension.width - size) / 2,
-                y: (dimension.height - size) / 2,
-            });
+            setJoystickPosition({ x: 0, y: 0 });
         },
     });
 
@@ -86,8 +83,8 @@ function Joystick({
                         style={[
                             styles.joystick,
                             {
-                                left: joystickPosition.x,
-                                top: joystickPosition.y,
+                                left: joystickPosition.x + dimension.width / 2 - size / 2,
+                                top: dimension.height / 2 - joystickPosition.y - size / 2,
                                 height: size,
                                 width: size,
                             },

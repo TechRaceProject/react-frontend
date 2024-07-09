@@ -1,22 +1,15 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React, { useState } from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 
-import JoyStick from './src/components/Joystick.tsx';
+import Joystick from './src/components/Joystick';
 
 function App(): React.JSX.Element {
     const [joystickPosition, setJoystickPosition] = useState({ x: 0, y: 0 });
-
+    console.log('joystickPosition', joystickPosition)
     return (
         <SafeAreaView style={[styles.safeArea]}>
             <View style={styles.appContainer}>
-                <JoyStick
+                <Joystick
                     dimension={{ width: 300, height: 300 }}
                     size={100}
                     styles={{ ...styles }}
@@ -43,7 +36,6 @@ const styles = StyleSheet.create({
         paddingHorizontal: 24,
     },
     container: {
-        flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
     },
