@@ -1,3 +1,4 @@
+// App.tsx
 import React, { useEffect, useState } from 'react';
 import {
     SafeAreaView,
@@ -9,48 +10,50 @@ import {
     StyleSheet
 } from 'react-native';
 import socket from './socket.config';
+import { CommandCar, createCarCommand } from './src/enums/command';
 
 const App = () => {
     const [wheel1, setWheel1] = useState<string>('');
     const [wheel2, setWheel2] = useState<string>('');
     const [wheel3, setWheel3] = useState<string>('');
     const [wheel4, setWheel4] = useState<string>('');
+    const [ledAnimation, setLedAnimation] = useState<string>(''); // Ajout pour LedAnimation
     const [message, setMessage] = useState<string>('');
 
-    const sendMessage = () => {
-        const data = {
-            cmd: 1,
-            data: [
+    const sendWheelSpeedCommand = () => {
+        try {
+            const command = createCarCommand(CommandCar.WheelSpeed, [
                 parseInt(wheel1, 10) || 0,
                 parseInt(wheel2, 10) || 0,
                 parseInt(wheel3, 10) || 0,
                 parseInt(wheel4, 10) || 0
-            ],
-        };
+            ]);
 
-        console.log('Sending data:', data);
-        socket.send(JSON.stringify(data));
+            console.log('Sending WheelSpeed data:', command);
+            socket.send(JSON.stringify(command));
+        } catch (error) {
+            console.error(error.message);
+        }
+    };
+
+    const sendLedAnimationCommand = () => {
+        try {
+            const command = createCarCommand(CommandCar.LedAnimation, parseInt(ledAnimation, 10) || 0);
+
+            console.log('Sending LedAnimation data:', command);
+            socket.send(JSON.stringify(command));
+        } catch (error) {
+            console.error(error.message);
+        }
     };
 
     useEffect(() => {
         console.log('Connecting to WebSocket server...');
-
-        socket.onopen = () => {
-            console.log('Connected to WebSocket server');
-        };
-
+        
         socket.onmessage = (event) => {
             const response = JSON.parse(event.data);
             console.log('Received response from server:', response);
             setMessage(`Réponse du serveur: ${JSON.stringify(response)}`);
-        };
-
-        socket.onerror = (error) => {
-            console.log('Connection Error:', error);
-        };
-
-        socket.onclose = () => {
-            console.log('Disconnected from WebSocket server');
         };
 
         return () => {
@@ -89,12 +92,22 @@ const App = () => {
                     value={wheel4}
                     onChangeText={setWheel4}
                 />
-                <Button title="Submit" onPress={sendMessage} />
+                <Button title="Submit WheelSpeed" onPress={sendWheelSpeedCommand} />
+                
+                <Text>Led Animation:</Text>
+                <TextInput
+                    style={styles.input}
+                    keyboardType="numeric"
+                    value={ledAnimation}
+                    onChangeText={setLedAnimation}
+                />
+                <Button title="Submit LedAnimation" onPress={sendLedAnimationCommand} />
+
                 {message ? <Text>{message}</Text> : null}
             </ScrollView>
         </SafeAreaView>
     );
-}
+};
 
 const styles = StyleSheet.create({
     container: {
