@@ -1,12 +1,14 @@
 import { api } from '~/utils/api.utils';
 import { ApiProps, ApiReturn } from '~/interfaces/utils/api.interface';
 import store from '~/store/store';
-import { setLoginState } from '~/store/slice/auth.slice';
+import { setLoginState, logout } from '~/store/slice/auth.slice';
+import { setUser } from '~/store/slice/user.slice';
+import { authFormPropsApi } from '~/interfaces/other/auth.interface';
 
 class ApiAuth {
-    static async register(registerData: any): Promise<ApiReturn> {
+    static async register(registerData: authFormPropsApi): Promise<ApiReturn> {
         const apiProps: ApiProps = {
-            url: 'http://127.0.0.1:8090/api/users/register',
+            url: 'http://localhost:8000/api/signup',
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -17,15 +19,29 @@ class ApiAuth {
         const { data, error, isLoading } = await api(apiProps);
 
         if (data && !error) {
-            store.dispatch(setLoginState(true));
+            const loginResponse = await ApiAuth.login({
+                username: registerData.email,
+                password: registerData.password,
+            });
+
+            if (!loginResponse.error) {
+                store.dispatch(
+                    setLoginState({
+                        isLoggedIn: true,
+                        token: loginResponse.data.token,
+                        expire_at: loginResponse.data.expire_at,
+                    })
+                );
+                store.dispatch(setUser(loginResponse.data.user));
+            }
         }
 
         return { data, error, isLoading };
     }
 
-    static async login(loginData: any): Promise<ApiReturn> {
+    static async login(loginData: authFormPropsApi): Promise<ApiReturn> {
         const apiProps: ApiProps = {
-            url: 'http://127.0.0.1:8090/api/login_check',
+            url: 'http://localhost:8000/api/login',
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -36,10 +52,21 @@ class ApiAuth {
         const { data, error, isLoading } = await api(apiProps);
 
         if (data && !error) {
-            store.dispatch(setLoginState(true));
+            store.dispatch(
+                setLoginState({
+                    isLoggedIn: true,
+                    token: data.token,
+                    expire_at: data.expire_at,
+                })
+            );
+            store.dispatch(setUser(data.user));
         }
 
         return { data, error, isLoading };
+    }
+
+    static async logout(): Promise<void> {
+        store.dispatch(logout());
     }
 }
 
