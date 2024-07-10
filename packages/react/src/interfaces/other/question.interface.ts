@@ -16,5 +16,6 @@ export interface Question {
         | 'select';
     placeholder?: string;
     required?: boolean;
+    icon?: React.ComponentType<{ className?: string }>;
     options?: Array<{ label: string; value: string }>;
 }

@@ -1,4 +1,5 @@
 import { InputProps } from '~/interfaces/components/common/input.interface';
+import './style.css';
 
 function Input({
     id,
@@ -9,29 +10,28 @@ function Input({
     placeholder,
     error,
     icon: Icon = undefined,
-    variant,
     minLength,
     maxLength,
     onChange,
 }: InputProps) {
     return (
-        <div className="inputDiv">
-            <input
-                className={error ? 'input-error' : ''}
-                type={type}
-                id={id}
-                name={name}
-                value={value}
-                placeholder={placeholder}
-                minLength={minLength}
-                maxLength={maxLength}
-                onChange={onChange}
-                required
-            />
-            <span />
+        <div className="input-container">
             {label && <label htmlFor={id}>{label}</label>}
-            {variant === 'inputIcon' && Icon && <Icon className="input-icon" />}
-            {error && <p className="input-error-message">{error}</p>}
+            <div>
+                {Icon && <Icon />}
+                <input
+                    type={type}
+                    id={id}
+                    name={name}
+                    value={value}
+                    placeholder={placeholder}
+                    minLength={minLength}
+                    maxLength={maxLength}
+                    onChange={onChange}
+                    required
+                />
+            </div>
+            {error && <small className="input-error-message">{error}</small>}
         </div>
     );
 }

@@ -6,6 +6,7 @@ import {
     FaInfoCircle,
 } from 'react-icons/fa';
 import { AlertProps } from '~/interfaces/components/feedback/alert.interface';
+import './style.css';
 
 function Alert({
     type = 'info',

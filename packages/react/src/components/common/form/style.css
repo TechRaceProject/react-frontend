@@ -1,0 +1,13 @@
+.Form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+    width: 100%;
+}
+
+@media (max-width: 720px) {
+    .Form {
+        gap: 15px;
+    }
+}

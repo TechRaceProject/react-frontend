@@ -1,4 +1,5 @@
 import { ButtonProps } from '~/interfaces/components/common/button.interface';
+import './style.css';
 
 function Button({
     text,
