@@ -1,8 +1,8 @@
-import { Question } from '~/interfaces/question.interface';
+import { Question } from '~/interfaces/other/question.interface';
 
 export interface FormProps {
     dataQuestion: Question[];
-    handleSubmit: () => void;
+    handleSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
     dataArr: any;
     setDataArr: any;
     label: string;

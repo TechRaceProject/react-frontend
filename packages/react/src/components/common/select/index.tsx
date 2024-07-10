@@ -1,5 +1,6 @@
 import { useEffect, ChangeEvent } from 'react';
 import { SelectProps } from '~/interfaces/components/common/select.interface';
+import './style.css';
 
 function Select({
     id,
@@ -9,6 +10,8 @@ function Select({
     name,
     value,
     selectClasses = 'select',
+    icon: Icon = undefined,
+    error,
 }: SelectProps) {
     useEffect(() => {
         if (options.length > 0 && !value && onChange) {
@@ -24,21 +27,25 @@ function Select({
     }, [options, value, name, onChange]);
 
     return (
-        <div>
+        <div className="select-container">
             {label && <label htmlFor={id}>{label}</label>}
-            <select
-                id={id}
-                name={name}
-                onChange={onChange}
-                className={selectClasses}
-                value={value}
-            >
-                {options.map((option) => (
-                    <option key={option.value} value={option.value}>
-                        {option.label}
-                    </option>
-                ))}
-            </select>
+            <div className={error ? 'select-error' : ''}>
+                {Icon && <Icon />}
+                <select
+                    id={id}
+                    name={name}
+                    onChange={onChange}
+                    className={selectClasses}
+                    value={value}
+                >
+                    {options.map((option) => (
+                        <option key={option.value} value={option.value}>
+                            {option.label}
+                        </option>
+                    ))}
+                </select>
+            </div>
+            {error && <small className="select-error-message">{error}</small>}
         </div>
     );
 }

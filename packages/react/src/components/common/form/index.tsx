@@ -4,7 +4,8 @@ import Button from '../button';
 import Select from '../select';
 import Switch from '../switch';
 import { FormProps } from '~/interfaces/components/common/form.interface';
-import { Question } from '~/interfaces/question.interface';
+import { Question } from '~/interfaces/other/question.interface';
+import './style.css';
 
 function Form({
     dataQuestion,
@@ -21,7 +22,7 @@ function Form({
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form className="Form" onSubmit={handleSubmit}>
             {dataQuestion.map((question: Question) => (
                 <Fragment key={question.id}>
                     {[
@@ -47,6 +48,8 @@ function Form({
                             onChange={(
                                 e: React.ChangeEvent<HTMLInputElement>
                             ) => linkedInput(question.name, e.target.value)}
+                            icon={question.icon}
+                            placeholder={question.placeholder}
                         />
                     )}
                     {question.type === 'switch' && (
@@ -55,6 +58,7 @@ function Form({
                             onChange={(
                                 e: React.ChangeEvent<HTMLInputElement>
                             ) => linkedInput(question.name, e.target.checked)}
+                            label={question.label}
                         />
                     )}
                     {question.type === 'select' && (
@@ -69,6 +73,7 @@ function Form({
                             onChange={(
                                 e: React.ChangeEvent<HTMLSelectElement>
                             ) => linkedInput(question.name, e.target.value)}
+                            icon={question.icon}
                         />
                     )}
                 </Fragment>

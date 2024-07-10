@@ -8,4 +8,6 @@ export type SelectProps = {
     name: string;
     value: string | string[];
     selectClasses?: string;
+    icon?: React.ComponentType<{ className?: string }>;
+    error?: string;
 };

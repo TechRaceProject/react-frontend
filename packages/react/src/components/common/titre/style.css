@@ -1,0 +1,25 @@
+.titre {
+    width: 100%;
+    text-align: center;
+    color: transparent;
+    background: linear-gradient(
+        to left,
+        var(--color-bleu-light),
+        var(--color-bleu-dark)
+    );
+    background-clip: text;
+    -webkit-background-clip: text;
+    display: inline-block;
+}
+
+.gradient-border {
+    border-bottom: 2px solid;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-image: linear-gradient(
+            to left,
+            var(--color-bleu-light),
+            var(--color-bleu-dark)
+        )
+        1;
+}
