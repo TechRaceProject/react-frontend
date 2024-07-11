@@ -27,7 +27,8 @@ function MainRoutes() {
 function AppContent() {
     const { isLoggedIn } = useContext(AuthContext);
 
-    return <>{isLoggedIn ? <MainRoutes /> : <AuthRoutes />}</>;
+    //return <>{isLoggedIn ? <MainRoutes /> : <AuthRoutes />}</>;
+    return <MainRoutes />;
 }
 
 function App() {
