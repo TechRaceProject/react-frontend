@@ -10,6 +10,7 @@ import './style.css';
 function Form({
     dataQuestion,
     handleSubmit,
+    className,
     dataArr,
     setDataArr,
     label,
@@ -22,7 +23,7 @@ function Form({
     };
 
     return (
-        <form className="Form" onSubmit={handleSubmit}>
+        <form className={className} onSubmit={handleSubmit}>
             {dataQuestion.map((question: Question) => (
                 <Fragment key={question.id}>
                     {[
@@ -78,7 +79,7 @@ function Form({
                     )}
                 </Fragment>
             ))}
-            <Button text={label} variant="primary" submit />
+            <Button text={label} submit />
         </form>
     );
 }

@@ -2,7 +2,6 @@ import {
     loginFormQuestions,
     registrationFormQuestions,
 } from '~/data/auth.data';
-import useWindowSize from '~/hooks/useWindowSize';
 import Alert from '~/components/feedback/alert';
 import Form from '~/components/common/form';
 import Loader from '~/components/feedback/loader';
@@ -21,41 +20,6 @@ function Auth() {
         toggleAuthMode,
         handleSubmit,
     } = useAuth();
-    const { width } = useWindowSize();
-
-    const message = isLogin ? (
-        <div>
-            <p>If you already have an account, </p>
-            <p>
-                you can{' '}
-                <span
-                    className="swap-auth"
-                    role="button"
-                    tabIndex={0}
-                    onClick={toggleAuthMode}
-                >
-                    {' '}
-                    Login here!{' '}
-                </span>
-            </p>
-        </div>
-    ) : (
-        <div>
-            <p>If you don’t have an account,</p>
-            <p>
-                you can{' '}
-                <span
-                    className="swap-auth"
-                    role="button"
-                    tabIndex={0}
-                    onClick={toggleAuthMode}
-                >
-                    {' '}
-                    Register here!{' '}
-                </span>
-            </p>
-        </div>
-    );
 
     return (
         <>
@@ -69,11 +33,9 @@ function Auth() {
                 />
             )}
 
-            <div className="auth-container">
-                <div className="auth-container-form">
-                    <div className="sous-auth-container-form">
-                        <h4>Welcome to TechRace !</h4>
-                        {message}
+            <div className="flex flex-col-reverse md:flex-row items-center mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 gap-8">
+                <div className="w-full">
+                    <h4 className="text-2xl font-bold leading-9 tracking-tight text-gray-900 mb-4">Sign in to your account</h4>
                         <Form
                             dataQuestion={
                                 isLogin
@@ -84,16 +46,16 @@ function Auth() {
                             dataArr={formData}
                             setDataArr={setFormData}
                             label={isLogin ? 'Se connecter' : "S'inscrire"}
+                            className="space-y-6"
                         />
-
-                        <small>Mot de passe oublié ?</small>
-                    </div>
+                    <p className="mt-10 text-center text-sm text-gray-500">
+                    Not a member?
+                    <a href="/register" className="font-semibold leading-6 text-indigo-600 hover:text-indigo-500"> Registrer</a>
+                    </p>
                 </div>
-                <div className="auth-container-img">
-                    <img src={Logo} alt="Authentification" />
-                    {width >= 1024 && (
-                        <img src={AuthImg} alt="Authentification" />
-                    )}
+                <div className="w-full">
+                    <img src={Logo} alt="Logo tech race" className='mb-10 w-max-10' />
+                    <img src={AuthImg} alt="Illustration authentification" className='hidden md:block' />
                 </div>
             </div>
         </>

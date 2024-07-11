@@ -6,4 +6,5 @@ export interface FormProps {
     dataArr: any;
     setDataArr: any;
     label: string;
+    className?: string;
 }

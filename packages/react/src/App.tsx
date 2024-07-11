@@ -5,6 +5,7 @@ import Auth from '~/pages/auth';
 import Home from '~/pages/home';
 import Err from '~/pages/err';
 import './App.css';
+import './tailwind.css';
 
 function AuthRoutes() {
     return (

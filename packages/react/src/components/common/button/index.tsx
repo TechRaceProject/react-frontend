@@ -7,16 +7,11 @@ function Button({
     onClick,
     submit = false,
     disabled = false,
-    variant = 'primary',
-    outline = false,
 }: ButtonProps) {
-    const buttonClasses = `button ${
-        outline ? `outline outline-${variant}` : variant
-    }`;
 
     return (
         <button
-            className={buttonClasses}
+            className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             onClick={onClick}
             type={submit ? 'submit' : 'button'}
             disabled={disabled}
