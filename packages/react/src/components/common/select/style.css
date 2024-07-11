@@ -1,0 +1,39 @@
+.select-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.select-container label {
+    color: var(--color-gray);
+}
+
+.select-containerdiv {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid var(--color-gray);
+    padding: 5px 0;
+    min-width: 400px;
+    width: 100%;
+    transition: border-color 0.3s ease;
+}
+
+.select-container select::placeholder {
+    color: var(--color-gray-50);
+    transition: color 0.3s ease;
+}
+
+.select-container input:focus::placeholder {
+    color: transparent;
+}
+
+.select-container svg {
+    margin-right: 10px;
+    color: var(--color-bleu);
+}
+
+@media (max-width: 1024px) {
+    .select-container div {
+        min-width: 300px;
+    }
+}

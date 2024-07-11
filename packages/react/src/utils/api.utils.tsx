@@ -14,8 +14,10 @@ export async function api({
         });
 
         const data = await response.json();
-        return { data, error: null, isLoading: false };
+        console.log(data);
+        return { data, error: data.error || null, isLoading: false };
     } catch (err) {
+        console.error('API error:', err);
         return { data: null, error: (err as Error).message, isLoading: false };
     }
 }

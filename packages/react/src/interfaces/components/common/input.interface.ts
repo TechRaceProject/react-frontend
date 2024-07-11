@@ -7,7 +7,6 @@ export type InputProps = {
     placeholder?: string;
     error?: string;
     icon?: React.ComponentType<{ className?: string }>;
-    variant?: 'inputIcon' | null;
     minLength?: number;
     maxLength?: number;
     inputClasses?: string;

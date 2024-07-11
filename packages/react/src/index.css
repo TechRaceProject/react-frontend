@@ -11,7 +11,7 @@
     --font-input: 20px;
     --font-submit: 20px;
     --font-checkbox: 20px;
-    --font-label: 20px;
+    --font-label: 16px;
     --font-placeholder: 20px;
     --font-button: 20px;
     --font-i: 36px;
@@ -21,33 +21,34 @@
     --font-textarea-placeholder: 20px;
     --font-textarea: 20px;
     --font-select: 20px;
-    --font-small: 18px;
+    --font-small: 16px;
 
-    --color-black: rgba(31, 31, 31, 1);
-    --color-black-25: rgba(31, 31, 31, 0.25);
-    --color-black-50: rgba(31, 31, 31, 0.5);
-    --color-black-75: rgba(31, 31, 31, 0.75);
-    --color-white: rgba(235, 235, 235, 1);
-    --color-white-25: rgba(235, 235, 235, 0.25);
-    --color-white-50: rgba(235, 235, 235, 0.5);
-    --color-white-75: rgba(235, 235, 235, 0.75);
-    --color-gray: rgba(71, 71, 71, 1);
-    --color-violet: rgba(114, 41, 122, 1);
-    --color-violet-25: rgba(114, 41, 122, 0.25);
-    --color-violet-50: rgba(114, 41, 122, 0.5);
-    --color-violet-75: rgba(114, 41, 122, 0.75);
-    --color-violet-light: rgba(155, 114, 170, 1);
-    --color-violet-dark: rgba(86, 28, 89, 1);
-    --color-turquoise: rgba(65, 133, 150, 1);
-    --color-turquoise-25: rgba(65, 133, 150, 0.25);
-    --color-turquoise-50: rgba(65, 133, 150, 0.5);
-    --color-turquoise-75: rgba(65, 133, 150, 0.75);
-    --color-turquoise-light: rgba(107, 172, 191, 1);
-    --color-turquoise-dark: rgba(48, 104, 114, 1);
-    --color-warning: rgba(255, 231, 71, 1);
-    --color-success: rgba(76, 175, 80, 1);
-    --color-error: rgba(184, 0, 0, 1);
+    --color-bg-indigo: rgba(235, 239, 255, 1);
+    --color-black: rgba(17, 24, 39, 1);
+    --color-black-25: rgba(17, 24, 39, 0.25);
+    --color-black-50: rgba(17, 24, 39, 0.5);
+    --color-black-75: rgba(17, 24, 39, 0.75);
+    --color-white: rgba(255, 255, 255, 1);
+    --color-white-25: rgba(255, 255, 255, 0.25);
+    --color-white-50: rgba(255, 255, 255, 0.5);
+    --color-white-75: rgba(255, 255, 255, 0.75);
+    --color-gray: rgba(107, 114, 128, 1);
+    --color-gray-25: rgba(107, 114, 128, 0.25);
+    --color-gray-50: rgba(107, 114, 128, 0.5);
+    --color-gray-75: rgba(107, 114, 128, 0.75);
+    --color-bleu: rgba(55, 48, 163, 1);
+    --color-bleu-25: rgba(55, 48, 163, 0.25);
+    --color-bleu-50: rgba(55, 48, 163, 0.5);
+    --color-bleu-75: rgba(55, 48, 163, 0.75);
+    --color-bleu-light: rgba(89, 81, 205, 1);
+    --color-bleu-dark: rgba(43, 37, 126, 1);
+    --color-success: rgba(21, 128, 61, 1);
+    --color-warning: rgba(161, 98, 7, 1);
+    --color-error: rgba(185, 28, 28, 1);
     --color-info: rgba(107, 172, 191, 1);
+
+    --BoxShadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.25),
+        0px 1px 3px 0px rgba(0, 0, 0, 0.15);
 }
 
 @media (max-width: 1440px) {
@@ -62,7 +63,7 @@
         --font-input: 18px;
         --font-submit: 18px;
         --font-checkbox: 18px;
-        --font-label: 18px;
+        --font-label: 14px;
         --font-placeholder: 18px;
         --font-button: 18px;
         --font-i: 34px;
@@ -72,7 +73,7 @@
         --font-textarea-placeholder: 18px;
         --font-textarea: 18px;
         --font-select: 18px;
-        --font-small: 16px;
+        --font-small: 14px;
     }
 }
 
@@ -88,7 +89,7 @@
         --font-input: 16px;
         --font-submit: 16px;
         --font-checkbox: 16px;
-        --font-label: 16px;
+        --font-label: 12px;
         --font-placeholder: 16px;
         --font-button: 16px;
         --font-i: 32px;
@@ -98,7 +99,7 @@
         --font-textarea-placeholder: 16px;
         --font-textarea: 16px;
         --font-select: 16px;
-        --font-small: 14px;
+        --font-small: 12px;
     }
 }
 
@@ -114,7 +115,7 @@
         --font-input: 14px;
         --font-submit: 14px;
         --font-checkbox: 14px;
-        --font-label: 14px;
+        --font-label: 10px;
         --font-placeholder: 14px;
         --font-button: 14px;
         --font-i: 30px;
@@ -124,7 +125,7 @@
         --font-textarea-placeholder: 14px;
         --font-textarea: 14px;
         --font-select: 14px;
-        --font-small: 12px;
+        --font-small: 10px;
     }
 }
 
@@ -157,8 +158,8 @@ html {
 }
 
 body {
-    background: var(--color-violet-25);
-    color: #ebebeb;
+    background: var(--color-bg-indigo);
+    color: var(--color-black);
     font-family: 'lato', sans-serif;
     height: 100vh;
     margin: 0;
@@ -188,7 +189,7 @@ p {
 
 a {
     font-size: var(--font-a);
-    color: white;
+    color: var(--color-bleu);
     text-decoration: none;
 }
 
@@ -198,9 +199,13 @@ li {
 
 input {
     font-size: var(--font-input);
+    padding: 5px 0;
     border: none;
     background: none;
     color: var(--color-black);
+    width: 100%;
+    transition: all 0.3s ease;
+    outline: none;
 }
 
 input::focus {

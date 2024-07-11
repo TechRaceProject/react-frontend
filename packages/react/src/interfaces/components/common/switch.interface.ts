@@ -1,4 +1,5 @@
 export interface SwitchProps {
+    label: string;
     isChecked: boolean;
-    onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
