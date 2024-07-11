@@ -1,7 +1,8 @@
 import { useContext } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { AuthProvider, AuthContext } from './context/auth.context';
-import Auth from '~/pages/auth';
+import LoginPage from '~/pages/auth/login';
+import RegisterPage from '~/pages/auth/register';
 import Home from '~/pages/home';
 import Err from '~/pages/err';
 import './App.css';
@@ -9,7 +10,8 @@ import './App.css';
 function AuthRoutes() {
     return (
         <Routes>
-            <Route path="*" element={<Auth />} />
+            <Route path="login" element={<LoginPage />} />
+            <Route path="register" element={<RegisterPage />} />
         </Routes>
     );
 }
