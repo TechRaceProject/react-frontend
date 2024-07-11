@@ -5,6 +5,7 @@ import Auth from '~/pages/auth';
 import Home from '~/pages/home';
 import Err from '~/pages/err';
 import './App.css';
+import './tailwind.css';
 
 function AuthRoutes() {
     return (
@@ -26,7 +27,8 @@ function MainRoutes() {
 function AppContent() {
     const { isLoggedIn } = useContext(AuthContext);
 
-    return <>{isLoggedIn ? <MainRoutes /> : <AuthRoutes />}</>;
+    //return <>{isLoggedIn ? <MainRoutes /> : <AuthRoutes />}</>;
+    return <MainRoutes />;
 }
 
 function App() {
