@@ -11,9 +11,13 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import authReducer from './slice/auth.slice';
+import userReducer from './slice/user.slice';
+import navReducer from './slice/nav.slice';
 
 const rootReducer = combineReducers({
     auth: authReducer,
+    user: userReducer,
+    nav: navReducer,
 });
 
 const persistConfig = {

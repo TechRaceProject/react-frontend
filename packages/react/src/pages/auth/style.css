@@ -20,8 +20,7 @@
 }
 
 .auth-container-img img {
-    width: 100%;
-    max-width: 750px;
+    max-width: 600px;
 }
 
 .auth-container-img img:first-child {
@@ -64,7 +63,21 @@
     color: var(--color-gray);
 }
 
+@media (max-width: 1440px) {
+    .auth-container-img img {
+        max-width: 450px;
+    }
+
+    .sous-auth-container-form {
+        padding: 30px;
+    }
+}
+
 @media (max-width: 1024px) {
+    .auth-container-img img {
+        max-width: 325px;
+    }
+
     .auth-container {
         display: flex;
         flex-direction: column-reverse;

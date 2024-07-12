@@ -33,6 +33,12 @@
     transition: color 0.3s ease;
 }
 
+@media (max-width: 1440px) {
+    .input-container div {
+        min-width: 350px;
+    }
+}
+
 @media (max-width: 1024px) {
     .input-container div {
         min-width: 300px;
