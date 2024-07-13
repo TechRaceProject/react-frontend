@@ -1,0 +1,24 @@
+.NavItem {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    gap: 10px;
+}
+
+.NavItem:hover {
+    background-color: var(--color-bg-indigo);
+    color: var(--color-bleu) !important;
+}
+
+.Selected {
+    background-color: var(--color-bleu);
+    color: var(--color-white) !important;
+}
+
+.nav-link {
+    width: 100%;
+}

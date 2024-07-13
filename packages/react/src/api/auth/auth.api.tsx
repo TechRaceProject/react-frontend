@@ -1,8 +1,8 @@
 import { api } from '~/utils/api.utils';
 import { ApiProps, ApiReturn } from '~/interfaces/utils/api.interface';
 import store from '~/store/store';
-import { setLoginState, logout } from '~/store/slice/auth.slice';
-import { setUser } from '~/store/slice/user.slice';
+import { setAuthState, logout } from '~/store/slice/auth.slice';
+import { setUserState } from '~/store/slice/user.slice';
 import { authFormPropsApi } from '~/interfaces/other/auth.interface';
 
 class ApiAuth {
@@ -26,13 +26,13 @@ class ApiAuth {
 
             if (!loginResponse.error) {
                 store.dispatch(
-                    setLoginState({
+                    setAuthState({
                         isLoggedIn: true,
                         token: loginResponse.data.token,
                         expire_at: loginResponse.data.expire_at,
                     })
                 );
-                store.dispatch(setUser(loginResponse.data.user));
+                store.dispatch(setUserState(loginResponse.data.user));
             }
         }
 
@@ -53,13 +53,13 @@ class ApiAuth {
 
         if (data && !error) {
             store.dispatch(
-                setLoginState({
+                setAuthState({
                     isLoggedIn: true,
                     token: data.token,
                     expire_at: data.expire_at,
                 })
             );
-            store.dispatch(setUser(data.user));
+            store.dispatch(setUserState(data.user));
         }
 
         return { data, error, isLoading };

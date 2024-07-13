@@ -1,0 +1,19 @@
+.TopBar {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: var(--color-white);
+    box-shadow: var(--BoxShadow);
+    gap: 20px;
+    height: 75px;
+}
+
+.TopBar button {
+    height: 100%;
+}
+
+.TopBar button svg {
+    height: 100%;
+}

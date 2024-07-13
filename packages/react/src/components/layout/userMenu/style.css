@@ -1,0 +1,18 @@
+.ImgProfile {
+    border-radius: 50%;
+    height: 50px;
+}
+
+.UserMenu {
+    position: absolute;
+    top: 90px;
+    right: 15px;
+    background: var(--color-white);
+    box-shadow: var(--BoxShadow);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    z-index: 100;
+}

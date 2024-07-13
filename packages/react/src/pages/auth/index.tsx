@@ -84,6 +84,7 @@ function Auth() {
                             dataArr={formData}
                             setDataArr={setFormData}
                             label={isLogin ? 'Se connecter' : "S'inscrire"}
+                            className="Form-Auth"
                         />
 
                         <small>Mot de passe oublié ?</small>
