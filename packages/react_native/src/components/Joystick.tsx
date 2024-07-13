@@ -83,8 +83,14 @@ function Joystick({
                         style={[
                             styles.joystick,
                             {
-                                left: joystickPosition.x + dimension.width / 2 - size / 2,
-                                top: dimension.height / 2 - joystickPosition.y - size / 2,
+                                left:
+                                    joystickPosition.x +
+                                    dimension.width / 2 -
+                                    size / 2,
+                                top:
+                                    dimension.height / 2 -
+                                    joystickPosition.y -
+                                    size / 2,
                                 height: size,
                                 width: size,
                             },

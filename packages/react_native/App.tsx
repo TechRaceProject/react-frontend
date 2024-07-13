@@ -5,7 +5,7 @@ import Joystick from './src/components/Joystick';
 
 function App(): React.JSX.Element {
     const [joystickPosition, setJoystickPosition] = useState({ x: 0, y: 0 });
-    console.log('joystickPosition', joystickPosition)
+    console.log('joystickPosition', joystickPosition);
     return (
         <SafeAreaView style={[styles.safeArea]}>
             <View style={styles.appContainer}>
