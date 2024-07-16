@@ -11,12 +11,12 @@ function Navbar() {
 
     const navbarClass = isOpen ? 'NavBar' : 'NavBar-Close';
 
+    const NavBarOverlay = isOpen ? 'NavBar-Overlay' : 'NavBar-Overlay-Close';
+
     return (
-        <div className="NavBar-Overlay">
+        <div className={NavBarOverlay}>
             <div className={navbarClass}>
-                <div className="NavLogo">
-                    <img src={Logo} alt="Logo" />
-                </div>
+                <img className="NavLogo" src={Logo} alt="Logo" />
                 <div className="NavMenu">
                     {navData.map((item) => (
                         <NavItem
