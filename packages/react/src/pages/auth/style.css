@@ -74,10 +74,6 @@
 }
 
 @media (max-width: 1024px) {
-    .auth-container-img img {
-        max-width: 325px;
-    }
-
     .auth-container {
         display: flex;
         flex-direction: column-reverse;
@@ -85,8 +81,16 @@
         gap: 30px;
     }
 
+    .auth-container-img img {
+        max-width: 325px;
+    }
+
     .auth-container-form {
         height: initial;
+    }
+
+    .AuthImg {
+        display: none;
     }
 }
 
