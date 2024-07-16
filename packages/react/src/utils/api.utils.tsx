@@ -42,3 +42,15 @@ export async function fetchLocalData({ url }: ApiProps): Promise<ApiReturn> {
         return { data: null, error: (err as Error).message, isLoading: false };
     }
 }
+
+export async function fetchLocalData({ url }: ApiProps): Promise<ApiReturn> {
+    try {
+        const response = await fetch(url);
+        const data = await response.json();
+        console.log(data);
+        return { data, error: data.error || null, isLoading: false };
+    } catch (err) {
+        console.error('Error loading local JSON data:', err);
+        return { data: null, error: (err as Error).message, isLoading: false };
+    }
+}
