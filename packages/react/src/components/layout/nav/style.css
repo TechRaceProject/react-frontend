@@ -34,19 +34,6 @@
     transition: all 0.3s ease;
 }
 
-.NavBar-Mobile {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 250px;
-    height: 100vh;
-    background-color: var(--color-white);
-    backdrop-filter: blur(5px);
-    box-shadow: var(--BoxShadow);
-    gap: 20px;
-    transition: all 0.3s ease;
-}
-
 .NavBar-Close {
     overflow: hidden;
     height: 100vh;
@@ -72,20 +59,52 @@
 }
 
 .NavButton {
-    position: absolute;
-    top: 0;
-    right: 0;
-    background: var(--color-white);
-    height: 50px;
-    width: 50px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    margin: 12.5px;
+    display: none;
 }
 
-.NavButton svg {
-    color: var(--color-bleu);
-    width: 25px;
-    height: 25px;
+@media screen and (max-width: 720px) {
+    .NavBar-Overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 99;
+        width: 100%;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(5px);
+        transition: all 0.3s ease;
+    }
+
+    .NavBar {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 250px;
+        height: 100vh;
+        background-color: var(--color-white);
+        backdrop-filter: blur(5px);
+        box-shadow: var(--BoxShadow);
+        gap: 20px;
+        transition: all 0.3s ease;
+    }
+
+    .NavButton {
+        display: block;
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: var(--color-white);
+        height: 50px;
+        width: 50px;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        margin: 12.5px;
+    }
+
+    .NavButton svg {
+        color: var(--color-bleu);
+        width: 25px;
+        height: 25px;
+    }
 }
