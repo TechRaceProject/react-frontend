@@ -3,15 +3,16 @@
     align-items: center;
     flex-direction: row;
     justify-content: space-between;
-    padding: 20px;
     background-color: var(--color-white);
     box-shadow: var(--BoxShadow);
     gap: 20px;
-    height: 75px;
+    height: 60px;
 }
 
 .TopBar button {
     height: 100%;
+    cursor: pointer;
+    padding: 20px;
 }
 
 .TopBar button svg {

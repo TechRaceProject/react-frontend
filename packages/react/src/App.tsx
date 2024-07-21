@@ -4,6 +4,7 @@ import { AuthProvider, AuthContext } from './context/auth.context';
 import { NavProvider, NavContext } from './context/nav.context';
 import TopBar from '~/components/layout/topBar';
 import Nav from '~/components/layout/nav';
+import Footer from '~/components/layout/footer';
 import Auth from '~/pages/auth';
 import Home from '~/pages/home';
 import Temp from '~/pages/temp';
@@ -37,8 +38,9 @@ function AppContent() {
     return (
         <div className={isOpen ? 'root-menu-open' : 'root-menu-closed'}>
             {isLoggedIn && <TopBar />}
-            {isLoggedIn && <Nav />}
             {isLoggedIn ? <MainRoutes /> : <AuthRoutes />}
+            {isLoggedIn && <Footer />}
+            {isLoggedIn && <Nav />}
         </div>
     );
 }

@@ -20,7 +20,7 @@ class ApiAuth {
 
         if (data && !error) {
             const loginResponse = await ApiAuth.login({
-                username: registerData.email,
+                email: registerData.email,
                 password: registerData.password,
             });
 
@@ -32,7 +32,18 @@ class ApiAuth {
                         expire_at: loginResponse.data.expire_at,
                     })
                 );
-                store.dispatch(setUserState(loginResponse.data.user));
+                store.dispatch(
+                    setUserState({
+                        id: loginResponse.data.user.id,
+                        username: loginResponse.data.user.username,
+                        email: loginResponse.data.user.email,
+                        pp:
+                            loginResponse.data.pp ||
+                            'https://static1.squarespace.com/static/656f4e4dababbd7c042c4946/657236350931ee4538eea52c/65baf15103d8ad2826032a8a/1707422532886/how-to-stop-being-a-people-pleaser-1_1.jpg?format=1500w',
+                        created_at: loginResponse.data.user.created_at,
+                        updated_at: loginResponse.data.user.updated_at,
+                    })
+                );
             }
         }
 
@@ -59,7 +70,18 @@ class ApiAuth {
                     expire_at: data.expire_at,
                 })
             );
-            store.dispatch(setUserState(data.user));
+            store.dispatch(
+                setUserState({
+                    id: data.user.id,
+                    username: data.user.username,
+                    email: data.user.email,
+                    pp:
+                        data.pp ||
+                        'https://static1.squarespace.com/static/656f4e4dababbd7c042c4946/657236350931ee4538eea52c/65baf15103d8ad2826032a8a/1707422532886/how-to-stop-being-a-people-pleaser-1_1.jpg?format=1500w',
+                    created_at: data.user.created_at,
+                    updated_at: data.user.updated_at,
+                })
+            );
         }
 
         return { data, error, isLoading };

@@ -1,10 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap');
 
 :root {
-    --font-h1: 40px;
-    --font-h2: 36px;
-    --font-h3: 32px;
-    --font-h4: 28px;
+    --font-h1: 36px;
+    --font-h2: 32px;
+    --font-h3: 28px;
+    --font-h4: 24px;
     --font-p: 20px;
     --font-a: 20px;
     --font-li: 20px;
@@ -53,10 +53,10 @@
 
 @media (max-width: 1440px) {
     :root {
-        --font-h1: 38px;
-        --font-h2: 34px;
-        --font-h3: 30px;
-        --font-h4: 26px;
+        --font-h1: 34px;
+        --font-h2: 30px;
+        --font-h3: 26px;
+        --font-h4: 22px;
         --font-p: 18px;
         --font-a: 18px;
         --font-li: 18px;
@@ -79,10 +79,10 @@
 
 @media (max-width: 1024px) {
     :root {
-        --font-h1: 36px;
-        --font-h2: 32px;
-        --font-h3: 28px;
-        --font-h4: 24px;
+        --font-h1: 32px;
+        --font-h2: 28px;
+        --font-h3: 24px;
+        --font-h4: 20px;
         --font-p: 16px;
         --font-a: 16px;
         --font-li: 16px;
@@ -105,10 +105,10 @@
 
 @media (max-width: 720px) {
     :root {
-        --font-h1: 34px;
-        --font-h2: 30px;
-        --font-h3: 26px;
-        --font-h4: 22px;
+        --font-h1: 30px;
+        --font-h2: 26px;
+        --font-h3: 22px;
+        --font-h4: 18px;
         --font-p: 14px;
         --font-a: 14px;
         --font-li: 14px;
