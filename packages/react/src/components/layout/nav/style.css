@@ -1,24 +1,5 @@
 .NavBar-Overlay {
-    grid-row: 1/3;
-}
-
-.NavBar-Overlay-Close {
-    overflow: hidden;
-    height: 100vh;
-    width: 0;
-    max-width: 0;
-    transition: all 0.3s ease;
-}
-
-.NavBar-Overlay-Mobile {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 99;
-    width: 100%;
-    height: 100vh;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(5px);
+    grid-row: 1/4;
     transition: all 0.3s ease;
 }
 
@@ -27,10 +8,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    gap: 10px;
     width: 250px;
     height: 100vh;
     box-shadow: var(--BoxShadow);
-    gap: 20px;
+    padding: 0 10px;
     transition: all 0.3s ease;
 }
 
@@ -38,15 +20,20 @@
     overflow: hidden;
     height: 100vh;
     width: 0;
-    max-width: 0;
     transition: all 0.3s ease;
 }
 
 .NavLogo {
-    width: 250px;
-    height: 75px;
-    padding: 20px;
-    box-shadow: var(--BoxShadow);
+    display: flex;
+    height: 60px;
+    padding: 15px;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px dashed var(--color-gray);
+}
+
+.NavLogo img {
+    width: 100%;
 }
 
 .NavMenu {
@@ -54,7 +41,7 @@
     flex-direction: column;
     align-items: stretch;
     width: 100%;
-    padding: 20px;
+    padding: 10px;
     gap: 10px;
 }
 
@@ -84,7 +71,6 @@
         background-color: var(--color-white);
         backdrop-filter: blur(5px);
         box-shadow: var(--BoxShadow);
-        gap: 20px;
         transition: all 0.3s ease;
     }
 
