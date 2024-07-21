@@ -1,17 +1,23 @@
 import { ApiProps, ApiReturn } from '~/interfaces/utils/api.interface';
+import ApiAuth from '~/api/auth/auth.api';
 
 export async function api({
     url,
-    method,
-    headers,
-    body,
+    method = 'GET',
+    headers = {},
+    body = null,
 }: ApiProps): Promise<ApiReturn> {
     try {
         const response = await fetch(url, {
             method,
             headers,
-            body: JSON.stringify(body),
+            body: body ? JSON.stringify(body) : null,
         });
+
+        if (response.status === 401) {
+            ApiAuth.logout();
+            return { data: null, error: 'Unauthorized', isLoading: false };
+        }
 
         const data = await response.json();
 
