@@ -46,6 +46,7 @@ export function useAuth() {
         apiMethod: (data: authFormPropsApi) => Promise<ApiReturn>
     ) => {
         setIsLoading(true);
+
         try {
             const response = await apiMethod(data);
 
@@ -67,6 +68,7 @@ export function useAuth() {
 
     const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
+
         const authData = isLogin
             ? { email: formData.email, password: formData.password }
             : {

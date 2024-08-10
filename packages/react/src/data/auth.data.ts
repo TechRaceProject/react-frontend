@@ -6,7 +6,7 @@ export const loginFormQuestions: Question[] = [
         id: 'email',
         label: 'Adresse e-mail',
         name: 'email',
-        type: 'text',
+        type: 'email',
         placeholder: 'Entrez votre adresse e-mail',
         required: true,
         icon: FaEnvelope,
@@ -19,13 +19,6 @@ export const loginFormQuestions: Question[] = [
         placeholder: 'Entrez votre mot de passe',
         required: true,
         icon: FaLock,
-    },
-    {
-        id: 'switch',
-        label: 'Restez connecté',
-        name: 'switch',
-        type: 'switch',
-        required: true,
     },
 ];
 
@@ -43,7 +36,7 @@ export const registrationFormQuestions: Question[] = [
         id: 'email',
         label: 'Adresse e-mail',
         name: 'email',
-        type: 'text',
+        type: 'email',
         placeholder: 'Entrez votre adresse e-mail',
         required: true,
         icon: FaEnvelope,

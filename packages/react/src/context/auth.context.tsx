@@ -29,7 +29,6 @@ export function AuthProvider({ children }: AuthProviderProps) {
                     setAuthState({
                         isLoggedIn,
                         token: '',
-                        expire_at: '',
                     })
                 ),
         }),

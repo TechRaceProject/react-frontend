@@ -2,7 +2,7 @@ import { api } from '~/utils/api.utils';
 import { ApiProps, ApiReturn } from '~/interfaces/utils/api.interface';
 import store from '~/store/store';
 import { setAuthState, logout } from '~/store/slice/auth.slice';
-import { setUserState } from '~/store/slice/user.slice';
+import { setUserState, resetUserState } from '~/store/slice/user.slice';
 import { authFormPropsApi } from '~/interfaces/other/auth.interface';
 
 class ApiAuth {
@@ -18,22 +18,19 @@ class ApiAuth {
 
         const { data, error, isLoading } = await api(apiProps);
 
-        if (data && !error) {
-            const loginResponse = await ApiAuth.login({
-                username: registerData.email,
-                password: registerData.password,
-            });
-
-            if (!loginResponse.error) {
-                store.dispatch(
-                    setAuthState({
-                        isLoggedIn: true,
-                        token: loginResponse.data.token,
-                        expire_at: loginResponse.data.expire_at,
-                    })
-                );
-                store.dispatch(setUserState(loginResponse.data.user));
+        if (data && ! error) {
+            if (! data.errors) {
+                return await ApiAuth.login({
+                    email: registerData.email,
+                    password: registerData.password,
+                });
             }
+
+            const mapErrors = data.errors.map(
+                (error: { message: string }) => error.message
+            );
+
+            return { data, error: mapErrors.join(', '), isLoading };
         }
 
         return { data, error, isLoading };
@@ -52,13 +49,21 @@ class ApiAuth {
         const { data, error, isLoading } = await api(apiProps);
 
         if (data && !error) {
+            if (data.errors) {
+                const mapErrors = data.errors.map(
+                    (error: { message: string }) => error.message
+                );
+
+                return { data, error: mapErrors.join(', '), isLoading };
+            }
+
             store.dispatch(
                 setAuthState({
                     isLoggedIn: true,
                     token: data.token,
-                    expire_at: data.expire_at,
                 })
             );
+
             store.dispatch(setUserState(data.user));
         }
 
@@ -67,6 +72,7 @@ class ApiAuth {
 
     static async logout(): Promise<void> {
         store.dispatch(logout());
+        store.dispatch(resetUserState());
     }
 }
 
