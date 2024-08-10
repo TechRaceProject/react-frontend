@@ -26,14 +26,17 @@ function Auth() {
     const message = isLogin ? (
         <div>
             <p>Si vous n&apos;avez pas de compte,</p>
-            <p> vous devez vous {' '}
+            <p>
+                {' '}
+                vous devez vous{' '}
                 <span
                     className="swap-auth"
                     role="button"
                     tabIndex={0}
                     onClick={toggleAuthMode}
                 >
-                    {' '}inscrire.{' '}
+                    {' '}
+                    inscrire.{' '}
                 </span>
             </p>
         </div>

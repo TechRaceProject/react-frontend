@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import ApiAuth from '~/api/auth/auth.api';
 import './style.css';
+import { AuthContext } from '~/context/auth.context';
 
 function UserMenu() {
+    const { user } = useContext(AuthContext);
     const [isOpen, setIsOpen] = useState(false);
 
     const handleToggle = () => {
@@ -20,11 +22,11 @@ function UserMenu() {
             {isOpen && (
                 <div className="UserMenu">
                     <div>
-                        <p>Neil Sims</p>
-                        <p>neil.sims@flowbite.com</p>
+                        <p>{user.username}</p>
+                        <p>{user.email}</p>
                     </div>
                     <div>
-                        <p onClick={ApiAuth.logout}>Sign out</p>
+                        <p onClick={ApiAuth.logout}>Quitter</p>
                     </div>
                 </div>
             )}

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface AuthState {
+export interface UserState {
     id: number;
     email: string;
     username: string | undefined;
@@ -8,7 +8,7 @@ interface AuthState {
     updated_at: string;
 }
 
-const initialState: AuthState = {
+export const initialState: UserState = {
     id: 0,
     email: '',
     username: '',
@@ -16,11 +16,11 @@ const initialState: AuthState = {
     updated_at: '',
 };
 
-const authSlice = createSlice({
+const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        setUserState: (state, action: PayloadAction<AuthState>) => {
+        setUserState: (state, action: PayloadAction<UserState>) => {
             state.id = action.payload.id;
             state.email = action.payload.email;
             state.username = action.payload.username || '';
@@ -37,5 +37,5 @@ const authSlice = createSlice({
     },
 });
 
-export const { setUserState, resetUserState } = authSlice.actions;
-export default authSlice.reducer;
+export const { setUserState, resetUserState } = userSlice.actions;
+export default userSlice.reducer;

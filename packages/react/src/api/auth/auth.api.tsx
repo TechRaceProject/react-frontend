@@ -18,8 +18,8 @@ class ApiAuth {
 
         const { data, error, isLoading } = await api(apiProps);
 
-        if (data && ! error) {
-            if (! data.errors) {
+        if (data && !error) {
+            if (!data.errors) {
                 return await ApiAuth.login({
                     email: registerData.email,
                     password: registerData.password,
