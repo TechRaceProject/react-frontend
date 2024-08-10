@@ -14,10 +14,13 @@ export async function api({
         });
 
         const data = await response.json();
-        console.log(data);
+
+        console.log('[api.utils.tsx] data : ', data);
+
         return { data, error: data.error || null, isLoading: false };
     } catch (err) {
-        console.error('API error:', err);
+        console.error('[api.utils.tsx] API error:', err);
+
         return { data: null, error: (err as Error).message, isLoading: false };
     }
 }
