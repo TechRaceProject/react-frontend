@@ -2,6 +2,7 @@ import { useContext, useState } from 'react';
 import ApiAuth from '~/api/auth/auth.api';
 import './style.css';
 import { AuthContext } from '~/context/auth.context';
+import ProfileDefault from '~/assets/images/profile-default.svg';
 
 function UserMenu() {
     const { user } = useContext(AuthContext);
@@ -18,21 +19,21 @@ function UserMenu() {
     return (
         <>
             <img
-                src={user.pp}
+                src={ProfileDefault}
                 className="ImgProfile"
                 alt="user photo"
                 onClick={handleToggle}
             />
             {isOpen && (
-            <div className={menuClass}>
-                <div className="UserMenu-top">
-                    <h4>{user.username}</h4>
-                    <p>{user.email}</p>
+                <div className={menuClass}>
+                    <div className="UserMenu-top">
+                        <h4>{user.username}</h4>
+                        <p>{user.email}</p>
+                    </div>
+                    <div className="UserMenu-bottom" onClick={ApiAuth.logout}>
+                        <p>Quitter</p>
+                    </div>
                 </div>
-                <div className="UserMenu-bottom" onClick={ApiAuth.logout}>
-                    <p>Quitter</p>
-                </div>
-            </div>
             )}
         </>
     );
