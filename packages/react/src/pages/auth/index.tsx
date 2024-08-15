@@ -25,9 +25,10 @@ function Auth() {
 
     const message = isLogin ? (
         <div>
-            <p>If you already have an account, </p>
+            <p>Si vous n&apos;avez pas de compte,</p>
             <p>
-                you can{' '}
+                {' '}
+                vous devez vous{' '}
                 <span
                     className="swap-auth"
                     role="button"
@@ -35,15 +36,15 @@ function Auth() {
                     onClick={toggleAuthMode}
                 >
                     {' '}
-                    Login here!{' '}
+                    inscrire.{' '}
                 </span>
             </p>
         </div>
     ) : (
         <div>
-            <p>If you don’t have an account,</p>
+            <p>Si vous avez déjà un compte,</p>
             <p>
-                you can{' '}
+                vous pouvez vous{' '}
                 <span
                     className="swap-auth"
                     role="button"
@@ -51,7 +52,7 @@ function Auth() {
                     onClick={toggleAuthMode}
                 >
                     {' '}
-                    Register here!{' '}
+                    connecter.{' '}
                 </span>
             </p>
         </div>
@@ -72,7 +73,7 @@ function Auth() {
             <div className="auth-container">
                 <div className="auth-container-form">
                     <div className="sous-auth-container-form">
-                        <h4>Welcome to TechRace !</h4>
+                        <h4>Bienvenue sur Techrace !</h4>
                         {message}
                         <Form
                             dataQuestion={
@@ -86,10 +87,9 @@ function Auth() {
                             label={isLogin ? 'Se connecter' : "S'inscrire"}
                             className="Form-Auth"
                         />
-
-                        <small>Mot de passe oublié ?</small>
                     </div>
                 </div>
+
                 <div className="auth-container-img">
                     <img src={Logo} alt="Authentification" />
                     {width >= 1024 && (
