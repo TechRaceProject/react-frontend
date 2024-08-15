@@ -18,12 +18,14 @@ class ApiAuth {
 
         const { data, error, isLoading } = await api(apiProps);
 
-        if (!data.errors && !error) {
-            await ApiAuth.login({
-                email: registerData.email,
-                password: registerData.password,
-            });
-        } else {
+        if (data && !error) {
+            if (!data.errors) {
+                return await ApiAuth.login({
+                    email: registerData.email,
+                    password: registerData.password,
+                });
+            }
+
             const mapErrors = data.errors.map(
                 (error: { message: string }) => error.message
             );
@@ -46,31 +48,23 @@ class ApiAuth {
 
         const { data, error, isLoading } = await api(apiProps);
 
-        if (!data.errors && !error) {
+        if (data && !error) {
+            if (data.errors) {
+                const mapErrors = data.errors.map(
+                    (error: { message: string }) => error.message
+                );
+
+                return { data, error: mapErrors.join(', '), isLoading };
+            }
+
             store.dispatch(
                 setAuthState({
                     isLoggedIn: true,
                     token: data.token,
                 })
             );
-            store.dispatch(
-                setUserState({
-                    id: data.user.id,
-                    username: data.user.username,
-                    email: data.user.email,
-                    pp:
-                        data.pp ||
-                        'https://static1.squarespace.com/static/656f4e4dababbd7c042c4946/657236350931ee4538eea52c/65baf15103d8ad2826032a8a/1707422532886/how-to-stop-being-a-people-pleaser-1_1.jpg?format=1500w',
-                    created_at: data.user.created_at,
-                    updated_at: data.user.updated_at,
-                })
-            );
-        } else {
-            const mapErrors = data.errors.map(
-                (error: { message: string }) => error.message
-            );
 
-            return { data, error: mapErrors.join(', '), isLoading };
+            store.dispatch(setUserState(data.user));
         }
 
         return { data, error, isLoading };

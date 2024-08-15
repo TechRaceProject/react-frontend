@@ -41,10 +41,13 @@ export async function fetchLocalData({
     try {
         const response = await fetch(url);
         const data = await response.json();
-        console.log(data);
+
+        console.log('[api.utils.tsx] data : ', data);
+
         return { data, error: data.error || null, isLoading: false };
     } catch (err) {
-        console.error('Error loading local JSON data:', err);
+        console.error('[api.utils.tsx] API error:', err);
+
         return { data: null, error: (err as Error).message, isLoading: false };
     }
 }
