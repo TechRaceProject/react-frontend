@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 import { RootState } from '~/store/store';
 import ApiAuth from '~/api/auth/auth.api';
 import './style.css';
+import ProfileDefault from '~/assets/images/profile-default.svg';
 
 function UserMenu() {
     const [isOpen, setIsOpen] = useState(false);
@@ -19,7 +20,7 @@ function UserMenu() {
     return (
         <>
             <img
-                src={user.pp}
+                src={ProfileDefault}
                 className="ImgProfile"
                 alt="user photo"
                 onClick={handleToggle}
