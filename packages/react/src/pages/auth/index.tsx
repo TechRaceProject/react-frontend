@@ -2,7 +2,6 @@ import {
     loginFormQuestions,
     registrationFormQuestions,
 } from '~/data/auth.data';
-import useWindowSize from '~/hooks/useWindowSize';
 import Alert from '~/components/feedback/alert';
 import Form from '~/components/common/form';
 import Loader from '~/components/feedback/loader';
@@ -21,7 +20,6 @@ function Auth() {
         toggleAuthMode,
         handleSubmit,
     } = useAuth();
-    const { width } = useWindowSize();
 
     const message = isLogin ? (
         <div>
@@ -91,10 +89,8 @@ function Auth() {
                 </div>
 
                 <div className="auth-container-img">
-                    <img src={Logo} alt="Authentification" />
-                    {width >= 1024 && (
-                        <img src={AuthImg} alt="Authentification" />
-                    )}
+                    <img src={Logo} alt="Logo" />
+                    <img src={AuthImg} className="AuthImg" alt="AuthImg" />
                 </div>
             </div>
         </>
