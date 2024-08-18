@@ -1,19 +1,17 @@
-import { api } from '~/utils/api.utils';
-import { ApiProps, ApiReturn } from '~/interfaces/utils/api.interface';
-import store from '~/store/store';
+import { ApiProps, ApiReturn } from "../../interfaces/utils/api.interface";
+import { api } from "../../utils/api.utils";
+import BaseApi from "../base.api";
 
-class ApiUser {
-    static getToken(): string | null {
-        return store.getState().auth.token;
-    }
 
+// extends Api
+class UserApi extends BaseApi {
     static async getUsers(): Promise<ApiReturn> {
         const apiProps: ApiProps = {
             url: 'http://127.0.0.1:8090/api/users',
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${ApiUser.getToken}`,
+                Authorization: `Bearer ${UserApi.getToken}`,
             },
         };
 
@@ -26,7 +24,7 @@ class ApiUser {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${ApiUser.getToken}`,
+                Authorization: `Bearer ${UserApi.getToken}`,
             },
         };
 
@@ -39,7 +37,7 @@ class ApiUser {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${ApiUser.getToken}`,
+                Authorization: `Bearer ${UserApi.getToken}`,
             },
         };
 
@@ -52,7 +50,7 @@ class ApiUser {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${ApiUser.getToken}`,
+                Authorization: `Bearer ${UserApi.getToken}`,
             },
             body: userData,
         };
@@ -66,7 +64,7 @@ class ApiUser {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${ApiUser.getToken}`,
+                Authorization: `Bearer ${UserApi.getToken}`,
             },
         };
 
@@ -74,4 +72,4 @@ class ApiUser {
     }
 }
 
-export default ApiUser;
+export default UserApi;

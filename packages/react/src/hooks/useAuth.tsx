@@ -1,10 +1,10 @@
 import { useState } from 'react';
-import { ApiReturn } from '~/interfaces/utils/api.interface';
+import { ApiReturn } from '@shared/interfaces/utils/api.interface';
 import {
     authFormProps,
     authFormPropsApi,
-} from '~/interfaces/other/auth.interface';
-import ApiAuth from '~/api/auth/auth.api';
+} from '@shared/interfaces/other/auth.interface';
+import ApiAuthHandler from '~/api/auth/api.auth.handler';
 import { ExtendedAlertProps } from '~/interfaces/components/feedback/alert.interface';
 
 export function useAuth() {
@@ -84,7 +84,7 @@ export function useAuth() {
 
         await authenticate(
             authData,
-            isLogin ? ApiAuth.login : ApiAuth.register
+            isLogin ? ApiAuthHandler.login : ApiAuthHandler.register
         );
     };
 

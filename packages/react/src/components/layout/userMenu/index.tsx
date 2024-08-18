@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import ApiAuth from '~/api/auth/auth.api';
+import ApiAuthHandler from '~/api/auth/api.auth.handler';
 import './style.css';
 import { AuthContext } from '~/context/auth.context';
 import ProfileDefault from '~/assets/images/profile-default.svg';
@@ -30,7 +30,10 @@ function UserMenu() {
                         <h4>{user.username}</h4>
                         <p>{user.email}</p>
                     </div>
-                    <div className="UserMenu-bottom" onClick={ApiAuth.logout}>
+                    <div
+                        className="UserMenu-bottom"
+                        onClick={ApiAuthHandler.logout}
+                    >
                         <p>Quitter</p>
                     </div>
                 </div>

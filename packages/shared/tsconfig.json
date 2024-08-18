@@ -1,19 +1,18 @@
 {
     "compilerOptions": {
-        "target": "es6",
-        "lib": ["dom", "dom.iterable", "esnext"],
-        "skipLibCheck": true,
-        "esModuleInterop": true,
-        "allowSyntheticDefaultImports": true,
-        "strict": true,
-        "forceConsistentCasingInFileNames": true,
-        "module": "commonjs",
-        "outDir": "dist", // <- Directory of generated output
-        "moduleResolution": "node",
-        "resolveJsonModule": true,
-        "experimentalDecorators": true,
-        "strictPropertyInitialization": false,
-        "declaration": true,
-        "jsx": "react"
+      "target": "es6",                          // Version ECMAScript cible
+      "lib": ["dom", "dom.iterable", "esnext"], // Bibliothèques incluses
+      "module": "commonjs",                     // Module système
+      "outDir": "./dist",                       // Répertoire de sortie des fichiers compilés
+      "rootDir": "./",                       // Répertoire racine des fichiers sources
+      "strict": true,                           // Activer toutes les vérifications strictes
+      "esModuleInterop": true,                  // Support des modules ES
+      "skipLibCheck": true,                     // Ignorer la vérification des types dans les fichiers de déclaration
+      "forceConsistentCasingInFileNames": true, // Sensibilité à la casse dans les noms de fichiers
+      "moduleResolution": "node",               // Type de résolution des modules
+      "resolveJsonModule": true,                // Permet l'import de modules JSON
+      "experimentalDecorators": true,           // Support des décorateurs
+      "jsx": "react",                           // Support de JSX (pour React)
     }
-}
+  }
+  
