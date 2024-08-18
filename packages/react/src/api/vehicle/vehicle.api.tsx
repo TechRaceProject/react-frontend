@@ -64,6 +64,7 @@ class ApiVehicle {
             return {
                 data: null,
                 error: 'Failed to fetch all vehicle data',
+
                 isLoading: false,
             };
         }

@@ -46,8 +46,7 @@ export async function fetchLocalData({
 
         return { data, error: data.error || null, isLoading: false };
     } catch (err) {
-        console.error('[api.utils.tsx] API error:', err);
-
+        console.error('Error loading local JSON data:', err);
         return { data: null, error: (err as Error).message, isLoading: false };
     }
 }
