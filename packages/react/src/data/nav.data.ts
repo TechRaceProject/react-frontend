@@ -16,6 +16,13 @@ const navData: NavItemProps[] = [
         label: 'Top',
     },
     { path: '/Profil', icon: FaUser, name: 'Profil', label: 'Profil' },
+
+    {
+        path: '/Graph',
+        icon: FaTrophy,
+        name: 'Graph',
+        label: 'Graph',
+    },
 ];
 
 export default navData;
