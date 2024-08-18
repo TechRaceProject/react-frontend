@@ -29,7 +29,7 @@
 
 .select-container svg {
     margin-right: 10px;
-    color: var(--color-bleu);
+    color: var(--color-blue);
 }
 
 @media (max-width: 1024px) {
