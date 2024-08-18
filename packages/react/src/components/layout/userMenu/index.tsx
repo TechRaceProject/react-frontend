@@ -7,7 +7,6 @@ import './style.css';
 import ProfileDefault from '~/assets/images/profile-default.svg';
 
 function UserMenu() {
-    const { user } = useContext(AuthContext);
     const [isOpen, setIsOpen] = useState(false);
     const user = useSelector((state: RootState) => state.user);
 
