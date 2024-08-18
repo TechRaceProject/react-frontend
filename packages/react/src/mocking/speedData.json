@@ -1,0 +1,24 @@
+{
+    "monthly": [
+      { "month": "Feb", "average": 100, "maximum": 150 },
+      { "month": "Mar", "average": 110, "maximum": 160 },
+      { "month": "Apr", "average": 120, "maximum": 170 },
+      { "month": "May", "average": 130, "maximum": 180 },
+      { "month": "Jun", "average": 140, "maximum": 190 },
+      { "month": "Jul", "average": 150, "maximum": 200 },
+      { "month": "Aug", "average": 160, "maximum": 210 },
+      { "month": "Sep", "average": 170, "maximum": 220 },
+      { "month": "Oct", "average": 180, "maximum": 230 }
+    ],
+    "hours": [
+      { "hour": "07h", "average": 120, "maximum": 150 },
+      { "hour": "14h", "average": 130, "maximum": 165 },
+      { "hour": "21h", "average": 145, "maximum": 170 }
+    ],
+    "days": [
+      { "day": "Monday", "average": 110, "maximum": 140 },
+      { "day": "Tuesday", "average": 115, "maximum": 145 },
+      { "day": "Wednesday", "average": 125, "maximum": 155 }
+    ]
+  }
+  

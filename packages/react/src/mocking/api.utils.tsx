@@ -1,8 +1,4 @@
-import {
-    ApiProps,
-    ApiReturn,
-    MockingProps,
-} from '~/interfaces/utils/api.interface';
+import { ApiProps, ApiReturn } from '~/interfaces/utils/api.interface';
 import ApiAuth from '~/api/auth/auth.api';
 
 export async function api({
@@ -35,9 +31,7 @@ export async function api({
     }
 }
 
-export async function fetchLocalData({
-    url,
-}: MockingProps): Promise<ApiReturn> {
+export async function fetchLocalData({ url }: ApiProps): Promise<ApiReturn> {
     try {
         const response = await fetch(url);
         const data = await response.json();
