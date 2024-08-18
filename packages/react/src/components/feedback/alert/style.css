@@ -37,6 +37,6 @@
 }
 
 .Alert.default {
-    background-color: var(--color-bleu-light);
-    border: 2px solid var(--color-bleu-light);
+    background-color: var(--color-blue-light);
+    border: 2px solid var(--color-blue-light);
 }
