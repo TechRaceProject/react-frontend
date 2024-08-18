@@ -1,9 +1,4 @@
-.Notif .notif-message {
-    font-size: 14px; /* ou la taille souhaitée */
-    margin: 0; /* pour ajuster l'espacement si nécessaire */
-}
-
-.Notif {
+.Alert {
     display: flex;
     gap: 15px;
     position: fixed;
@@ -21,27 +16,27 @@
     overflow: hidden;
 }
 
-.Notif.success {
+.Alert.success {
     background-color: var(--color-success);
     border: 2px solid var(--color-success);
 }
 
-.Notif.error {
+.Alert.error {
     background-color: var(--color-error);
     border: 2px solid var(--color-error);
 }
 
-.Notif.warning {
+.Alert.warning {
     background-color: var(--color-warning);
     border: 2px solid var(--color-warning);
 }
 
-.Notif.info {
+.Alert.info {
     background-color: var(--color-info);
     border: 2px solid var(--color-info);
 }
 
-.Notif.default {
+.Alert.default {
     background-color: var(--color-bleu-light);
     border: 2px solid var(--color-bleu-light);
 }

@@ -11,8 +11,12 @@ function Navbar() {
 
     const navbarClass = isOpen ? 'NavBar' : 'NavBar-Close';
 
+    const navbarOverlayClass = isOpen
+        ? 'NavBar-Overlay'
+        : 'NavBar-Overlay-Close';
+
     return (
-        <div className="NavBar-Overlay">
+        <div className={navbarOverlayClass}>
             <div className={navbarClass}>
                 <div className="NavLogo">
                     <img src={Logo} alt="Logo" />

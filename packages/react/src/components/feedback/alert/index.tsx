@@ -52,7 +52,7 @@ function Alert({
 
     return isVisible ? (
         <div
-            className={`Notif ${type}`}
+            className={`Alert ${type}`}
             onClick={() => setIsVisible(false)}
             role="button"
             tabIndex={0}
@@ -63,7 +63,7 @@ function Alert({
             }}
         >
             {getIcon()}
-            <p className="notif-message">{message}</p>
+            <p className="Alert-message">{message}</p>
         </div>
     ) : null;
 }
