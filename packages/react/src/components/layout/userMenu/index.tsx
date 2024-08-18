@@ -3,7 +3,6 @@ import ApiAuthHandler from '~/api/auth/api.auth.handler';
 import { FaUser, FaSignOutAlt, FaEnvelope } from 'react-icons/fa';
 import './style.css';
 import { AuthContext } from '~/context/auth.context';
-import ProfileDefault from '~/assets/images/profile-default.svg';
 
 function UserMenu() {
     const { user } = useContext(AuthContext);
@@ -20,7 +19,7 @@ function UserMenu() {
     return (
         <>
             <img
-                src={ProfileDefault}
+                src={user.photo}
                 className="ImgProfile"
                 alt="user photo"
                 onClick={handleToggle}
