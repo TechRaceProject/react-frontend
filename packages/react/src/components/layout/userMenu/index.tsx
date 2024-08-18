@@ -4,7 +4,6 @@ import { RootState } from '~/store/store';
 import ApiAuth from '~/api/auth/auth.api';
 import { FaUser, FaSignOutAlt, FaEnvelope } from 'react-icons/fa';
 import './style.css';
-import ProfileDefault from '~/assets/images/profile-default.svg';
 
 function UserMenu() {
     const [isOpen, setIsOpen] = useState(false);
@@ -21,7 +20,7 @@ function UserMenu() {
     return (
         <>
             <img
-                src={ProfileDefault}
+                src={user.photo}
                 className="ImgProfile"
                 alt="user photo"
                 onClick={handleToggle}
@@ -41,7 +40,6 @@ function UserMenu() {
                         <FaSignOutAlt />
                         Déconnection
                     </p>
-
                 </div>
             </div>
         </>
