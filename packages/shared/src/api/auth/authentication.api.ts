@@ -1,8 +1,9 @@
 import { api } from '../../utils/api.utils';
 import { ApiProps, ApiReturn } from '../../interfaces/utils/api.interface';
 import { authFormPropsApi } from '../../interfaces/other/auth.interface';
+import BaseApi from '../base.api';
 
-class ApiAuth {
+class ApiAuth extends BaseApi {
     static async register(registerData: authFormPropsApi): Promise<ApiReturn> {
         const apiProps: ApiProps = {
             url: 'http://localhost:8000/api/signup',
