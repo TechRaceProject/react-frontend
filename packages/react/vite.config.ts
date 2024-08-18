@@ -10,6 +10,10 @@ export default defineConfig({
                 find: '~',
                 replacement: fileURLToPath(new URL('./src', import.meta.url)),
             },
+            {
+                find: '@shared',
+                replacement: fileURLToPath(new URL('../shared/src', import.meta.url)),
+            }
         ],
     },
 });

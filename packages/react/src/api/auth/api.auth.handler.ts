@@ -1,26 +1,17 @@
-import { api } from '~/utils/api.utils';
-import { ApiProps, ApiReturn } from '~/interfaces/utils/api.interface';
+import { ApiReturn } from '@shared/interfaces/utils/api.interface';
 import store from '~/store/store';
 import { setAuthState, logout } from '~/store/slice/auth.slice';
 import { setUserState, resetUserState } from '~/store/slice/user.slice';
-import { authFormPropsApi } from '~/interfaces/other/auth.interface';
+import { authFormPropsApi } from '@shared/interfaces/other/auth.interface';
+import ApiAuth from '@shared/api/auth/authentication.api';
 
-class ApiAuth {
+class ApiAuthHandler {
     static async register(registerData: authFormPropsApi): Promise<ApiReturn> {
-        const apiProps: ApiProps = {
-            url: 'http://localhost:8000/api/signup',
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: registerData,
-        };
-
-        const { data, error, isLoading } = await api(apiProps);
+        const { data, error, isLoading } = await ApiAuth.register(registerData);
 
         if (data && !error) {
-            if (!data.errors) {
-                return await ApiAuth.login({
+            if (! data.errors) {
+                return await ApiAuthHandler.login({
                     email: registerData.email,
                     password: registerData.password,
                 });
@@ -37,16 +28,7 @@ class ApiAuth {
     }
 
     static async login(loginData: authFormPropsApi): Promise<ApiReturn> {
-        const apiProps: ApiProps = {
-            url: 'http://localhost:8000/api/login',
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: loginData,
-        };
-
-        const { data, error, isLoading } = await api(apiProps);
+        const { data, error, isLoading } = await ApiAuth.login(loginData);
 
         if (data && !error) {
             if (data.errors) {
@@ -76,4 +58,4 @@ class ApiAuth {
     }
 }
 
-export default ApiAuth;
+export default ApiAuthHandler;
