@@ -2,20 +2,20 @@ import { FaHome, FaClipboardList, FaUser, FaTrophy } from 'react-icons/fa';
 import { NavItemProps } from '~/interfaces/components/layout/nav.interface';
 
 const navData: NavItemProps[] = [
-    { path: '/', icon: FaHome, name: 'Home', label: 'Home' },
+    { path: '/', icon: FaHome, name: 'Home', label: 'Accueil' },
     {
         path: '/History',
         icon: FaClipboardList,
         name: 'History',
-        label: 'History',
+        label: 'Historique',
     },
     {
         path: '/Top',
         icon: FaTrophy,
         name: 'Top',
-        label: 'Top',
+        label: 'Meilleurs scores',
     },
-    { path: '/Profil', icon: FaUser, name: 'Profil', label: 'Profil' },
+    { path: '/Profil', icon: FaUser, name: 'Profil', label: 'Profile' },
 ];
 
 export default navData;
