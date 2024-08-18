@@ -63,7 +63,7 @@ function Alert({
             }}
         >
             {getIcon()}
-            <h4>{message}</h4>
+            <p className="notif-message">{message}</p>
         </div>
     ) : null;
 }
