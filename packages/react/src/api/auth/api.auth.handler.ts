@@ -10,7 +10,7 @@ class ApiAuthHandler {
         const { data, error, isLoading } = await ApiAuth.register(registerData);
 
         if (data && !error) {
-            if (! data.errors) {
+            if (!data.errors) {
                 return await ApiAuthHandler.login({
                     email: registerData.email,
                     password: registerData.password,

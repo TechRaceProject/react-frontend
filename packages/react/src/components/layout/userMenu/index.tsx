@@ -30,7 +30,10 @@ function UserMenu() {
                         <h4>{user.username}</h4>
                         <p>{user.email}</p>
                     </div>
-                    <div className="UserMenu-bottom" onClick={ApiAuthHandler.logout}>
+                    <div
+                        className="UserMenu-bottom"
+                        onClick={ApiAuthHandler.logout}
+                    >
                         <p>Quitter</p>
                     </div>
                 </div>
