@@ -11,11 +11,11 @@
 
 .NavItem:hover {
     background-color: var(--color-bg-indigo);
-    color: var(--color-bleu) !important;
+    color: var(--color-blue) !important;
 }
 
 .Selected {
-    background-color: var(--color-bleu);
+    background-color: var(--color-blue);
     color: var(--color-white) !important;
 }
 

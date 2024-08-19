@@ -25,7 +25,7 @@
 
 .auth-container-img img:first-child {
     padding-bottom: 30px;
-    border-bottom: 2px solid var(--color-bleu);
+    border-bottom: 2px solid var(--color-blue);
 }
 
 .auth-container-form {
@@ -49,11 +49,11 @@
 }
 
 .sous-auth-container-form h4 {
-    color: var(--color-bleu-dark);
+    color: var(--color-blue-dark);
 }
 
 .sous-auth-container-form .swap-auth {
-    color: var(--color-bleu-light);
+    color: var(--color-blue-light);
     cursor: pointer;
 }
 

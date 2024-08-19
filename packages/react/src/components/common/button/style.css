@@ -17,7 +17,7 @@
 }
 
 .primary {
-    background-color: var(--color-bleu);
+    background-color: var(--color-blue);
     color: var(--color-white);
 }
 
@@ -42,12 +42,12 @@
 }
 
 .light {
-    background-color: var(--color-bleu-light);
+    background-color: var(--color-blue-light);
     color: var(--color-black);
 }
 
 .dark {
-    background-color: var(--color-bleu-dark);
+    background-color: var(--color-blue-dark);
     color: var(--color-white);
 }
 
@@ -57,8 +57,8 @@
 }
 
 .outline-primary {
-    border-color: var(--color-bleu);
-    color: var(--color-bleu);
+    border-color: var(--color-blue);
+    color: var(--color-blue);
 }
 
 .outline-warning {
@@ -82,11 +82,11 @@
 }
 
 .outline-light {
-    border-color: var(--color-bleu-light);
-    color: var(--color-bleu-light);
+    border-color: var(--color-blue-light);
+    color: var(--color-blue-light);
 }
 
 .outline-dark {
-    border-color: var(--color-bleu-dark);
-    color: var(--color-bleu-dark);
+    border-color: var(--color-blue-dark);
+    color: var(--color-blue-dark);
 }

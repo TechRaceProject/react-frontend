@@ -41,7 +41,7 @@
     border: 2px solid var(--color-info);
 }
 
-.Notif.default {
-    background-color: var(--color-bleu-light);
-    border: 2px solid var(--color-bleu-light);
+.Alert.default {
+    background-color: var(--color-blue-light);
+    border: 2px solid var(--color-blue-light);
 }

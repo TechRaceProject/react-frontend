@@ -1,0 +1,34 @@
+{
+    "events": [
+        {
+            "timeCode": "00:59",
+            "title": "Sortie de ligne du véhicule",
+            "icon": "FaRegTimesCircle",
+            "color": "red"
+        },
+        {
+            "timeCode": "01:55",
+            "title": "In Progress",
+            "icon": "FaSyncAlt",
+            "color": "blue"
+        },
+        {
+            "timeCode": "02:50",
+            "title": "Collision du véhicule",
+            "icon": "FaExclamationTriangle",
+            "color": "orange"
+        },
+        {
+            "timeCode": "03:49",
+            "title": "Recule du véhicule",
+            "icon": "FaArrowLeft",
+            "color": "green"
+        },
+        {
+            "timeCode": "04:49",
+            "title": "Avance du véhicule",
+            "icon": "FaArrowRight",
+            "color": "purple"
+        }
+    ]
+}

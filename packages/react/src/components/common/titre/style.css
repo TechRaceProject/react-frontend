@@ -4,8 +4,8 @@
     color: transparent;
     background: linear-gradient(
         to left,
-        var(--color-bleu-light),
-        var(--color-bleu-dark)
+        var(--color-blue-light),
+        var(--color-blue-dark)
     );
     background-clip: text;
     -webkit-background-clip: text;
@@ -18,8 +18,8 @@
     margin-bottom: 10px;
     border-image: linear-gradient(
             to left,
-            var(--color-bleu-light),
-            var(--color-bleu-dark)
+            var(--color-blue-light),
+            var(--color-blue-dark)
         )
         1;
 }

@@ -1,6 +1,6 @@
 import './style.css';
 
-// @ts-ignore
+// @ts-expect-error this library does not have typescript support
 import CanvasJSReact from '@canvasjs/react-charts';
 
 export type SimpleColumnChartProps = {

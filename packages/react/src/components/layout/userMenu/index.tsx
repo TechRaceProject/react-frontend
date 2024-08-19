@@ -1,8 +1,8 @@
 import { useContext, useState } from 'react';
 import ApiAuthHandler from '~/api/auth/api.auth.handler';
+import { FaUser, FaSignOutAlt, FaEnvelope } from 'react-icons/fa';
 import './style.css';
 import { AuthContext } from '~/context/auth.context';
-import ProfileDefault from '~/assets/images/profile-default.svg';
 
 function UserMenu() {
     const { user } = useContext(AuthContext);
@@ -19,25 +19,31 @@ function UserMenu() {
     return (
         <>
             <img
-                src={ProfileDefault}
+                src={user.photo}
                 className="ImgProfile"
                 alt="user photo"
                 onClick={handleToggle}
             />
-            {isOpen && (
-                <div className={menuClass}>
-                    <div className="UserMenu-top">
-                        <h4>{user.username}</h4>
-                        <p>{user.email}</p>
-                    </div>
-                    <div
-                        className="UserMenu-bottom"
-                        onClick={ApiAuthHandler.logout}
-                    >
-                        <p>Quitter</p>
-                    </div>
+            <div className={menuClass}>
+                <div className="UserMenu-top">
+                    <p>
+                        <FaUser /> {user.username}
+                    </p>
+                    <p>
+                        <FaEnvelope />
+                        {user.email}
+                    </p>
                 </div>
-            )}
+                <div
+                    className="UserMenu-bottom"
+                    onClick={ApiAuthHandler.logout}
+                >
+                    <p>
+                        <FaSignOutAlt />
+                        Quitter
+                    </p>
+                </div>
+            </div>
         </>
     );
 }

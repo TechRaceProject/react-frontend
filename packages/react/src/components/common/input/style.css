@@ -29,7 +29,7 @@
 
 .input-container svg {
     margin-right: 10px;
-    color: var(--color-bleu);
+    color: var(--color-blue);
     transition: color 0.3s ease;
 }
 
