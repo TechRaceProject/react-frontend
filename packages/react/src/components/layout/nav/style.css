@@ -3,6 +3,11 @@
     transition: all 0.3s ease;
 }
 
+.NavBar-Overlay-Close {
+    grid-row: 1/4;
+    transition: all 0.3s ease;
+}
+
 .NavBar {
     background: var(--color-white);
     display: flex;
@@ -62,6 +67,18 @@
         transition: all 0.3s ease;
     }
 
+    .NavBar-Overlay-Close {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 99;
+        width: 0;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.5);
+        backdrop-filter: blur(5px);
+        transition: all 0.3s ease;
+    }
+
     .NavBar {
         display: flex;
         flex-direction: column;
@@ -75,7 +92,9 @@
     }
 
     .NavButton {
-        display: block;
+        display: flex;
+        align-items: center;
+        justify-content: center;
         position: absolute;
         top: 0;
         right: 0;
