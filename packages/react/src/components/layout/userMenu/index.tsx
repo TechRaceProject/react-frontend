@@ -34,7 +34,10 @@ function UserMenu() {
                         {user.email}
                     </p>
                 </div>
-                <div className="UserMenu-bottom" onClick={ApiAuthHandler.logout}>
+                <div
+                    className="UserMenu-bottom"
+                    onClick={ApiAuthHandler.logout}
+                >
                     <p>
                         <FaSignOutAlt />
                         Quitter
