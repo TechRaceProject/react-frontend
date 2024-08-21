@@ -16,3 +16,9 @@ export interface ApiReturn {
     error: string | null;
     isLoading: boolean;
 }
+
+export interface MockingReturn {
+    data: any | null;
+    error: string | null;
+    isLoading: boolean;
+}

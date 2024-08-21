@@ -2,6 +2,7 @@
     "historyRace": [
         {
             "raceId": 1,
+            "name": "Tour de France 2020",
             "date": "2024-08-10",
             "duration": "1h32m",
             "distance": "120km",
@@ -9,6 +10,7 @@
         },
         {
             "raceId": 2,
+            "name": "Tour de France 2021",
             "date": "2024-08-11",
             "duration": "1h45m",
             "distance": "135km",
@@ -16,6 +18,7 @@
         },
         {
             "raceId": 3,
+            "name": "Tour de France 2022",
             "date": "2024-08-12",
             "duration": "2h15m",
             "distance": "160km",
@@ -23,6 +26,7 @@
         },
         {
             "raceId": 4,
+            "name": "Tour de France 2023",
             "date": "2024-08-13",
             "duration": "1h20m",
             "distance": "110km",
@@ -30,6 +34,7 @@
         },
         {
             "raceId": 5,
+            "name": "Tour de France 2024",
             "date": "2024-08-14",
             "duration": "2h10m",
             "distance": "150km",

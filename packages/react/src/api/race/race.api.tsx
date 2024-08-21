@@ -1,7 +1,4 @@
-import {
-    MockingProps,
-    ApiReturn,
-} from '@shared/interfaces/utils/api.interface';
+import { MockingReturn } from '@shared/interfaces/utils/api.interface';
 import { fetchLocalData } from '@shared/utils/api.utils';
 import store from '~/store/store';
 
@@ -10,20 +7,34 @@ class ApiVehicle {
         return store.getState().auth.token;
     }
 
-    static async getHistoryRace(): Promise<ApiReturn> {
-        const apiProps: MockingProps = {
-            url: '../../mocking/race/historyRace.json',
-        };
-
-        return fetchLocalData(apiProps);
+    static async getHistoryRace(): Promise<MockingReturn> {
+        try {
+            return await fetchLocalData<MockingReturn>(
+                '../../mocking/race/historyRace.json'
+            );
+        } catch (error) {
+            console.error('Failed to fetch race history:', error);
+            return {
+                data: null,
+                error: error instanceof Error ? error.message : 'Unknown error',
+                isLoading: false,
+            };
+        }
     }
 
-    static async getLeaderboardRace(): Promise<ApiReturn> {
-        const apiProps: MockingProps = {
-            url: '../../mocking/race/leaderboardRace.json',
-        };
-
-        return fetchLocalData(apiProps);
+    static async getLeaderboardRace(): Promise<MockingReturn> {
+        try {
+            return await fetchLocalData(
+                '../../mocking/race/leaderboardRace.json'
+            );
+        } catch (error) {
+            console.error('Failed to fetch leaderboard race:', error);
+            return {
+                data: null,
+                error: error instanceof Error ? error.message : 'Unknown error',
+                isLoading: false,
+            };
+        }
     }
 }
 
