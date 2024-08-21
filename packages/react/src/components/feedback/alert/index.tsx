@@ -52,7 +52,7 @@ function Alert({
 
     return isVisible ? (
         <div
-            className={`Notif ${type}`}
+            className={`Alert ${type}`}
             onClick={() => setIsVisible(false)}
             role="button"
             tabIndex={0}
