@@ -8,6 +8,7 @@ import Footer from '~/components/layout/footer';
 import Auth from '~/pages/auth';
 import Home from '~/pages/home';
 import Temp from '~/pages/temp';
+import History from '~/pages/history';
 import Err from '~/pages/err';
 import './App.css';
 import Graph from './pages/graph';
@@ -24,7 +25,7 @@ function MainRoutes() {
     return (
         <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/History" element={<Temp />} />
+            <Route path="/History" element={<History />} />
             <Route path="/Top" element={<Temp />} />
             <Route path="/Profil" element={<Temp />} />
 
