@@ -15,33 +15,19 @@ const useSSE = (
         eventSourceRef.current = eventSource;
 
         if (onOpen) {
-            console.log(
-                "['useServerSentEvent.tsx'] setting up onOpen event listener"
-            );
-
             eventSource.addEventListener('open', onOpen);
         }
 
         if (onMessage) {
-            console.log(
-                "['useServerSentEvent.tsx'] setting up onMessage event listener"
-            );
-
             eventSource.addEventListener('message', onMessage);
         }
 
         if (onError) {
-            console.log(
-                "['useServerSentEvent.tsx'] setting up onError event listener"
-            );
-
             eventSource.addEventListener('error', onError);
         }
 
         return () => {
             if (eventSourceRef.current) {
-                console.log("['useServerSentEvent.tsx'] closing event source");
-
                 eventSourceRef.current.close();
             }
         };

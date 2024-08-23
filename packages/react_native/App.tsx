@@ -10,6 +10,7 @@ import {
     TimeoutEvent,
 } from 'react-native-sse';
 import useSSE from './src/hooks/useServerSentEvent';
+import { handleSSEMessage } from './src/utils/handleSSEMessage';
 
 function App(): React.JSX.Element {
     /**
@@ -26,7 +27,7 @@ function App(): React.JSX.Element {
             console.log('Connexion SSE ouverte:', event);
         },
         (event: MessageEvent) => {
-            console.log('Message reçu :', event.data);
+            handleSSEMessage(event);
         },
         (event: ErrorEvent | TimeoutEvent | ExceptionEvent) => {
             console.error('Erreur SSE:', event);
