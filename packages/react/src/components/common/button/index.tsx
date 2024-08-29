@@ -9,9 +9,12 @@ function Button({
     disabled = false,
     variant = 'primary',
     outline = false,
+    className = '',
 }: ButtonProps) {
     const buttonClasses = `button ${
-        outline ? `outline outline-${variant}` : variant
+        outline
+            ? `outline outline-${variant} ${className}`
+            : `${variant} ${className}`
     }`;
 
     return (
