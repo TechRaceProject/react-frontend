@@ -24,7 +24,7 @@
 
 .UserMenu-close {
     z-index: 100;
-    transform: translateX(calc(100% + 15px));
+    transform: translateX(calc(100% + 25px));
     transition: all 0.3s ease;
 }
 
