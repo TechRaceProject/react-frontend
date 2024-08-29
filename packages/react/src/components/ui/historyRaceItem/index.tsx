@@ -1,43 +1,84 @@
 import './style.css';
+import { FaTrash } from 'react-icons/fa';
+import Button from '~/components/common/button';
+import { calculateDuration } from '~/utils/calculateDuration.utils';
 
 export interface RaceItemProps {
-    raceId: number;
-    name: string;
-    date: string;
-    duration: string;
-    distance: string;
+    ID: number;
+    start_time: string;
+    end_time: string | null;
+    distance_covered: number;
     status: string;
+    out_of_parcours: number;
+    name: string;
+    onDelete: (id: number) => void;
 }
 
 function HistoryRaceItem({
-    raceId,
-    name,
-    date,
-    duration,
-    distance,
+    ID,
+    start_time,
+    end_time,
+    distance_covered,
     status,
+    out_of_parcours,
+    name,
+    onDelete,
 }: RaceItemProps) {
-    const getStatusClass = () => {
+    const getStatusInfo = () => {
         switch (status.toLowerCase()) {
-            case 'en cours':
-                return 'status-in-progress';
-            case 'effectué':
-                return 'status-success';
-            case 'refusé':
-                return 'status-failed';
+            case 'not_started':
+                return {
+                    className: 'status-default',
+                    text: 'Pas lancer',
+                };
+            case 'in_progress':
+                return {
+                    className: 'status-in-progress',
+                    text: 'En Cours',
+                };
+            case 'completed':
+                return {
+                    className: 'status-success',
+                    text: 'Fini',
+                };
             default:
-                return 'status-default';
+                return {
+                    className: 'status-default',
+                    text: 'Pas lancer',
+                };
         }
     };
 
+    const { className, text } = getStatusInfo();
+
     return (
-        <tr className="race-item" key={raceId}>
-            <td className="race-name">{name}</td>
-            <td className="race-distance">{distance}</td>
-            <td className="race-duration">{duration}</td>
-            <td className="race-date">{new Date(date).toLocaleDateString()}</td>
-            <td className={`race-status ${getStatusClass()}`}>{status}</td>
-        </tr>
+        <div className="race-item" key={ID}>
+            {name && <p className="race-item-name">{name}</p>}
+            {start_time && (
+                <p className="race-date">
+                    {new Date(start_time).toLocaleDateString()}
+                </p>
+            )}
+            {!distance_covered && (
+                <p className="race-distance">{distance_covered} km</p>
+            )}
+            {!calculateDuration(start_time, end_time) && (
+                <p className="race-duration">
+                    {calculateDuration(start_time, end_time)}
+                </p>
+            )}
+            {!out_of_parcours && (
+                <p className="race-collisions">{out_of_parcours}</p>
+            )}
+            {status && (
+                <p>
+                    <span className={`race-status ${className}`}>{text}</span>
+                </p>
+            )}
+            <p>
+                <Button icon={FaTrash} onClick={() => onDelete(ID)} outline />
+            </p>
+        </div>
     );
 }
 
