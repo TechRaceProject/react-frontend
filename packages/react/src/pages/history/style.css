@@ -1,14 +1,20 @@
-.history-filtre {
+.history-filter {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr 1fr 50px;
     justify-content: space-between;
     margin-bottom: 20px;
     gap: 20px;
     align-items: flex-end;
 }
 
+.no-data-message {
+    color: var(--color-error);
+    text-align: center;
+    margin-top: 20px;
+}
+
 @media screen and (max-width: 720px) {
-    .history-filtre {
+    .history-filter {
         display: flex;
         flex-direction: column;
         justify-content: space-between;
