@@ -1,12 +1,6 @@
 import { FaSearch } from 'react-icons/fa';
 import './style.css';
-
-interface SearchBarProps {
-    searchTerm: string;
-    onSearchChange: (term: string) => void;
-    placeholder?: string;
-    error?: string;
-}
+import { SearchBarProps } from '~/interfaces/components/common/searchBar.interface';
 
 function SearchBar({
     searchTerm,

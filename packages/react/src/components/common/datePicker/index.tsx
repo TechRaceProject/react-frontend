@@ -1,12 +1,6 @@
 import './style.css';
 import { useEffect, useState } from 'react';
-
-interface DatePickerProps {
-    startDate: string;
-    endDate: string;
-    onStartDateChange: (date: string) => void;
-    onEndDateChange: (date: string) => void;
-}
+import { DatePickerProps } from '~/interfaces/components/common/datePicker.interface';
 
 function DatePicker({
     startDate,
