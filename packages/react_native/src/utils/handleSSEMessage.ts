@@ -31,20 +31,14 @@ interface VehicleStateFromSSE {
             activated: number;
             frequency: number;
             id: number;
-            VehicleStateID: number;
-            created_at: string;
-            updated_at: string;
-            deleted_at: string | null;
+            vehicle_state_id: number;
         };
         face: number;
         head_angle: {
             horizontal_angle: number;
             id: number;
-            VehicleStateID: number;
+            vehicle_state_id: number;
             vertical_angle: number;
-            created_at: string;
-            updated_at: string;
-            deleted_at: string | null;
         };
         led_animation: number;
         primary_led_colors: {
@@ -54,9 +48,6 @@ interface VehicleStateFromSSE {
             red: number;
             green: number;
             blue: number;
-            created_at: string;
-            updated_at: string;
-            deleted_at: string | null;
         }[];
         video_activated: number;
         created_at: string;
