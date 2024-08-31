@@ -14,7 +14,6 @@ interface InfoCardProps {
 }
 
 export default function index({ icon, title, value }: InfoCardProps) {
-
     const getIcon = (icon: IconType) => {
         switch (icon) {
             case 'document':
@@ -25,8 +24,10 @@ export default function index({ icon, title, value }: InfoCardProps) {
                 return Star;
             case 'warning':
                 return Warning;
+            default:
+                return '';
         }
-    }
+    };
 
     return (
         <div className="card">

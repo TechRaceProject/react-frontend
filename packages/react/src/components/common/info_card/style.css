@@ -10,7 +10,6 @@
     flex: 1;
 }
 
-
 .card-icon {
     display: flex;
     align-items: center;
@@ -44,6 +43,5 @@
 .card-value {
     font-size: 18px;
     color: #333;
-    font-weight: bold;
     margin-top: 5px;
 }

@@ -19,27 +19,27 @@ export default function Home() {
                         </div>
                     </div>
                 </div>
-                
+
                 <div className="info-cards">
-                    <InfoCard 
-                        icon="document" 
-                        title="Autonomie du véhicule" 
-                        value="85%" 
+                    <InfoCard
+                        icon="document"
+                        title="Autonomie du véhicule"
+                        value="85%"
                     />
-                    <InfoCard 
-                        icon="social" 
-                        title="Temps passé en moyenne sur une course" 
-                        value="1m32" 
+                    <InfoCard
+                        icon="social"
+                        title="Temps passé en moyenne sur une course"
+                        value="1m32"
                     />
-                    <InfoCard 
-                        icon="star" 
-                        title="Temps total effectué sur toutes les courses" 
-                        value="5m41" 
+                    <InfoCard
+                        icon="star"
+                        title="Temps total effectué sur toutes les courses"
+                        value="5m41"
                     />
-                    <InfoCard 
-                        icon="warning" 
-                        title="Nombre de collisions effectuées" 
-                        value={14} 
+                    <InfoCard
+                        icon="warning"
+                        title="Nombre de collisions effectuées"
+                        value={14}
                     />
                 </div>
 
