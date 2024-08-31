@@ -12,7 +12,6 @@ export const handleSSEMessage = (event: MessageEvent) => {
             return;
         }
 
-
         if (data.type === "vehicle_state") {
             handleVehicleStateMessage(data);
 
@@ -48,28 +47,14 @@ interface VehicleStateFromSSE {
             vertical_angle: number;
         };
         led_animation: number;
-        primary_led_color: {
-            blue: number;
-            CreatedAt: string;
-            DeletedAt: string | null;
-            green: number;
+        primary_led_colors: {
             ID: number;
+            vehicle_state_id: number;
             led_identifier: number;
             red: number;
-            UpdatedAt: string;
-            VehicleStateID: number;
-        };
-        secondary_led_color: {
-            binary_representation: number;
-            blue: number;
-            CreatedAt: string;
-            DeletedAt: string | null;
             green: number;
-            ID: number;
-            red: number;
-            UpdatedAt: string;
-            VehicleStateID: number;
-        };
+            blue: number;
+        }[];
         video_activated: number;
     };
     id: number;
@@ -82,6 +67,41 @@ const handleVehicleStateMessage = (data: VehicleStateFromSSE) => {
      * envoyer un requête à la voiture pour set l'élèment correspondant avec la valeur qui est
      * dans la réponse (même si elle n'a pas changé avant/après)
      */
+    if (!data.attributes) {
+        console.log("['handleVehicleStateMessage'] Aucune donnée à traiter");
 
-    console.log("['handleVehicleStateMessage'] doit gérer : ", data);
+        return;
+    }
+
+    const { attributes } = data;
+
+    if (attributes.buzzer_alarm !== undefined) {
+        console.log("['handleVehicleStateMessage'] buzzer_alarm : ", attributes.buzzer_alarm);
+    }
+
+    if (attributes.face !== undefined) {
+        console.log("['handleVehicleStateMessage'] face : ", attributes.face);
+    }
+    
+    if (attributes.video_activated !== undefined) {
+        console.log("['handleVehicleStateMessage'] video_activated : ", attributes.video_activated);
+    }
+
+    if (attributes.led_animation !== undefined) {
+        console.log("['handleVehicleStateMessage'] led_animation : ", attributes.led_animation);
+    }
+
+    if (attributes.head_angle !== undefined) {
+        console.log("['handleVehicleStateMessage'] head_angle : ", attributes.head_angle);
+    }
+
+    if (attributes.buzzer_variable !== undefined) {
+        console.log("['handleVehicleStateMessage'] buzzer_variable : ", attributes.buzzer_variable);
+    }
+
+    if (attributes.primary_led_colors !== undefined) {
+        for (const primaryLedColor of attributes.primary_led_colors) {
+            console.log("['handleVehicleStateMessage'] primary_led_colors : ", primaryLedColor);
+        }
+    }
 };
