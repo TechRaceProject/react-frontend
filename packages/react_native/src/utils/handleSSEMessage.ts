@@ -29,33 +29,39 @@ interface VehicleStateFromSSE {
         buzzer_alarm: number;
         buzzer_variable: {
             activated: number;
-            CreatedAt: string;
-            DeletedAt: string | null;
             frequency: number;
-            ID: number;
-            UpdatedAt: string;
+            id: number;
             VehicleStateID: number;
+            created_at: string;
+            updated_at: string;
+            deleted_at: string | null;
         };
         face: number;
         head_angle: {
-            CreatedAt: string;
-            DeletedAt: string | null;
             horizontal_angle: number;
-            ID: number;
-            UpdatedAt: string;
+            id: number;
             VehicleStateID: number;
             vertical_angle: number;
+            created_at: string;
+            updated_at: string;
+            deleted_at: string | null;
         };
         led_animation: number;
         primary_led_colors: {
-            ID: number;
+            id: number;
             vehicle_state_id: number;
             led_identifier: number;
             red: number;
             green: number;
             blue: number;
+            created_at: string;
+            updated_at: string;
+            deleted_at: string | null;
         }[];
         video_activated: number;
+        created_at: string;
+        updated_at: string;
+        deleted_at: string | null;
     };
     id: number;
     type: 'vehicle_state';
