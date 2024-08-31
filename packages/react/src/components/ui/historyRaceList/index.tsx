@@ -1,67 +1,72 @@
-import { useEffect, useState } from 'react';
-import HistoryRaceItem from '~/components/ui/historyRaceItem';
-import { RaceItemProps } from '~/components/ui/historyRaceItem';
-import ApiVehicleHandler from '~/api/race/api.race.handler';
 import './style.css';
+import { FaTrash } from 'react-icons/fa';
+import Button from '~/components/common/button';
+import { calculateDuration } from '~/utils/calculateDuration.utils';
+import {
+    HistoryRaceListProps,
+    StatusType,
+} from '~/interfaces/other/race.interface';
+import HistoryRaceField from '~/components/ui/historyRaceField';
 
-interface HistoryRaceListProps {
-    races: RaceItemProps[];
-    onRaceDeleted: () => void;
-}
+const statusMap: Record<StatusType, { className: string; text: string }> = {
+    not_started: { className: 'status-default', text: 'Pas lancer' },
+    in_progress: { className: 'status-in-progress', text: 'En Cours' },
+    completed: { className: 'status-success', text: 'Fini' },
+};
 
-function HistoryRaceList({ races, onRaceDeleted }: HistoryRaceListProps) {
-    const [availableFields, setAvailableFields] = useState<string[]>([]);
+function HistoryRaceItem({
+    ID,
+    start_time,
+    end_time,
+    distance_covered,
+    average_speed,
+    collision_duration,
+    status = 'not_started',
+    out_of_parcours,
+    name,
+    onDelete,
+}: HistoryRaceListProps) {
+    const currentStatus =
+        statusMap[status as StatusType] || statusMap['not_started'];
 
-    const handleDeleteRace = async (raceId: number) => {
-        await ApiVehicleHandler.deleteRace(raceId);
-        onRaceDeleted();
-    };
-
-    useEffect(() => {
-        const fields = new Set<string>();
-
-        races.forEach((race) => {
-            if (race.start_time) fields.add('date');
-            if (race.name) fields.add('name');
-            if (race.distance_covered !== undefined) fields.add('distance');
-            if (race.start_time && race.end_time) fields.add('duration');
-            if (race.status) fields.add('status');
-            if (race.out_of_parcours !== undefined) fields.add('collisions');
-        });
-
-        setAvailableFields(Array.from(fields));
-    }, [races]);
+    const fields = [
+        { value: name || 'Not available' },
+        {
+            value: start_time
+                ? new Date(start_time).toLocaleDateString()
+                : 'Not available',
+        },
+        { value: distance_covered, unit: 'km' },
+        {
+            value:
+                start_time && end_time
+                    ? calculateDuration(start_time, end_time)
+                    : 'Not available',
+        },
+        { value: out_of_parcours, unit: 's' },
+        { value: collision_duration, unit: 's' },
+        { value: average_speed, unit: 'm/h' },
+    ];
 
     return (
-        <div className="race-list">
-            <div className="race-header">
-                {availableFields.includes('name') && (
-                    <p className="race-head-name">Name</p>
-                )}
-                {availableFields.includes('date') && <p>Date</p>}
-                {availableFields.includes('distance') && <p>Distance (km)</p>}
-                {availableFields.includes('duration') && <p>Durée (h:m:s)</p>}
-                {availableFields.includes('collisions') && <p>Erreur</p>}
-                {availableFields.includes('status') && <p>Statut</p>}
-                <p>Action</p>
+        <div className="race-item">
+            {fields.map((field, index) => (
+                <HistoryRaceField
+                    key={index}
+                    value={field.value}
+                    unit={field.unit}
+                />
+            ))}
+            <div className="race-item-field">
+                <p className={`race-status ${currentStatus.className}`}>
+                    {currentStatus.text}
+                </p>
             </div>
-            <div className="race-body">
-                {races.map((race) => (
-                    <HistoryRaceItem
-                        key={race.ID}
-                        ID={race.ID}
-                        start_time={race.start_time}
-                        end_time={race.end_time}
-                        distance_covered={race.distance_covered}
-                        status={race.status}
-                        out_of_parcours={race.out_of_parcours}
-                        name={race.name || `Course ${race.ID}`}
-                        onDelete={handleDeleteRace}
-                    />
-                ))}
+            <div className="race-item-field">
+                <Button icon={FaTrash} onClick={() => onDelete(ID)} outline />
             </div>
         </div>
     );
 }
 
-export default HistoryRaceList;
+export default HistoryRaceItem;

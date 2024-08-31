@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '~/store/store';
-import { RaceItemProps } from '~/components/ui/historyRaceItem';
+import { HistoryRaceListProps } from '~/interfaces/other/race.interface';
 import ApiVehicleHandler from '~/api/race/api.race.handler';
-import HistoryRaceList from '~/components/ui/historyRaceList';
+import HistoryRaceTable from '~/components/ui/historyRaceTable';
 import SearchBar from '~/components/common/searchBar';
 import DatePicker from '~/components/common/datePicker';
 import Alert from '~/components/feedback/alert';
@@ -13,7 +13,7 @@ import { FaSync } from 'react-icons/fa';
 import './style.css';
 
 function History() {
-    const [races, setRaces] = useState<RaceItemProps[]>([]);
+    const [races, setRaces] = useState<HistoryRaceListProps[]>([]);
     const [status, setStatus] = useState<
         'idle' | 'loading' | 'succeeded' | 'failed'
     >('idle');
@@ -96,7 +96,7 @@ function History() {
                     Aucune donnée disponible pour la période sélectionnée.
                 </p>
             ) : (
-                <HistoryRaceList
+                <HistoryRaceTable
                     races={filteredRaces}
                     onRaceDeleted={handleRaceDeleted}
                 />
