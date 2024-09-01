@@ -22,7 +22,7 @@ const userSlice = createSlice({
     name: 'user',
     initialState,
     reducers: {
-        setUserState: (state, action: PayloadAction<UserState>) => {
+        setUserState: (state: UserState, action: PayloadAction<UserState>) => {
             state.id = action.payload.id;
             state.email = action.payload.email;
             state.username = action.payload.username || '';
@@ -30,7 +30,7 @@ const userSlice = createSlice({
             state.created_at = action.payload.created_at;
             state.updated_at = action.payload.updated_at;
         },
-        resetUserState: (state) => {
+        resetUserState: (state: UserState) => {
             state.id = 0;
             state.email = '';
             state.username = '';

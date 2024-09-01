@@ -1,4 +1,4 @@
-import { ApiReturn } from '~/interfaces/utils/api.interface';
+import { ApiReturn } from '@shared/interfaces/utils/api.interface';
 
 class ApiVehicle {
     static async fetchData(): Promise<ApiReturn> {

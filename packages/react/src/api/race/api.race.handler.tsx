@@ -1,7 +1,6 @@
 import { ApiReturn } from '@shared/interfaces/utils/api.interface';
 import ApiVehicle from '@shared/api/race/race.api';
 import store from '~/store/store';
-import { handleApiResponse } from '~/utils/api.utils';
 
 class ApiVehicleHandler {
     static async getHistoryRace(): Promise<ApiReturn> {
@@ -17,8 +16,9 @@ class ApiVehicleHandler {
             };
         }
 
-        const response = await ApiVehicle.getHistoryRace(userId, token);
-        return await handleApiResponse(response);
+        const {data, error, isLoading } = await ApiVehicle.getHistoryRace(userId, token);
+
+        return { data, error, isLoading };
     }
 
     static async getLeaderboardRace(): Promise<ApiReturn> {
@@ -33,8 +33,9 @@ class ApiVehicleHandler {
             };
         }
 
-        const response = await ApiVehicle.getLeaderboardRace(token);
-        return await handleApiResponse(response);
+        const { data, error, isLoading } = await ApiVehicle.getLeaderboardRace(token);
+
+        return { data, error, isLoading };
     }
 
     static async deleteRace(raceId: number): Promise<ApiReturn> {
@@ -49,8 +50,9 @@ class ApiVehicleHandler {
             };
         }
 
-        const response = await ApiVehicle.deleteRace(raceId, token);
-        return await handleApiResponse(response);
+        const { data, error, isLoading } = await ApiVehicle.deleteRace(raceId, token);
+        
+        return { data, error, isLoading }
     }
 }
 

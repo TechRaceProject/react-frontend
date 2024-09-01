@@ -12,7 +12,7 @@ const navSlice = createSlice({
     name: 'nav',
     initialState,
     reducers: {
-        toggleNavState: (state) => {
+        toggleNavState: (state: NavState) => {
             state.isOpen = !state.isOpen;
         },
     },
