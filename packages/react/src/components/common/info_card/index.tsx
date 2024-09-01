@@ -1,22 +1,26 @@
 import './style.css';
 
 import { FaCarBattery } from 'react-icons/fa6';
+import { GiPathDistance } from 'react-icons/gi';
 import { IoTime } from 'react-icons/io5';
 import { TiWarning } from 'react-icons/ti';
 
-type IconType = 'battery' | 'time' | 'warning';
+type IconType = 'battery' | 'distance' | 'time' | 'warning';
 
 interface InfoCardProps {
     icon: IconType;
     title: string;
+    style?: React.CSSProperties;
     value: string | number;
 }
 
-export default function InfoCard({ icon, title, value }: InfoCardProps) {
+export default function InfoCard({ icon, title, style, value }: InfoCardProps) {
     const getIcon = (icon: IconType) => {
         switch (icon) {
             case 'battery':
                 return <FaCarBattery size={30} color="#5aa9e6" />; // soft blue
+            case 'distance':
+                return <GiPathDistance size={30} color="#9c27b0" />; // soft gray
             case 'time':
                 return <IoTime size={30} color="#81c784" />; // soft green
             case 'warning':
@@ -30,6 +34,8 @@ export default function InfoCard({ icon, title, value }: InfoCardProps) {
         switch (icon) {
             case 'battery':
                 return '#e0f4fc'; // lighter soft blue
+            case 'distance':
+                return '#f3e5f5'; // lighter soft gray
             case 'time':
                 return '#dff7ec'; // lighter soft green
             case 'warning':
@@ -40,7 +46,7 @@ export default function InfoCard({ icon, title, value }: InfoCardProps) {
     };
 
     return (
-        <div className="card">
+        <div className="card" style={style}>
             <div
                 className="card-icon"
                 style={{ backgroundColor: getBackgroundColor(icon) }}

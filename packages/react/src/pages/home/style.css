@@ -36,22 +36,22 @@
         }
     }
 
-    .movement-history {
+    .control-pannel-and-covered-distance {
         flex: 1;
         display: flex;
         flex-direction: column;
         gap: 10px;
         height: 400px;
 
-        .history-header {
-            flex: 4;
+        .control-pannel,
+        .covered-distance {
+            width: 100%;
             padding: 10px;
             background-color: white;
         }
 
-        .progress-bar {
-            flex: 1;
-            background-color: #f0f0f0;
+        .control-pannel {
+            flex: 4;
             padding: 10px;
             background-color: white;
         }
@@ -89,8 +89,8 @@
 }
 
 .video-feed,
-.history-header,
-.progress-bar,
+.control-pannel,
+.covered-distance,
 .chart,
 .vehicle-image {
     border-radius: 5px;
@@ -110,7 +110,7 @@
     }
 
     .video-feed,
-    .movement-history,
+    .control-pannel-and-covered-distance,
     .chart,
     .vehicle-image {
         flex: none;

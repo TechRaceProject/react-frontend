@@ -10,12 +10,18 @@ export default function Home() {
                     <div className="video-feed">
                         <img src={VideoFeed} alt="video feed placeholder" />
                     </div>
-                    <div className="movement-history">
-                        <div className="history-header">
+                    <div className="control-pannel-and-covered-distance">
+                        <div className="control-pannel">
                             <span>Historique des mouvements</span>
                         </div>
-                        <div className="progress-bar">
-                            <span>Distance parcourue</span>
+
+                        <div className="covered-distance">
+                            <InfoCard
+                                icon="distance"
+                                title="Distance parcourue"
+                                value="4520 mètres"
+                                style={{ border: 'none', boxShadow: 'none' }}
+                            />
                         </div>
                     </div>
                 </div>
