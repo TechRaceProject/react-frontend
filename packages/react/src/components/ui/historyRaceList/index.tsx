@@ -45,7 +45,7 @@ function HistoryRaceItem({
         },
         { value: out_of_parcours, unit: 's' },
         { value: collision_duration, unit: 's' },
-        { value: average_speed, unit: 'm/h' },
+        { value: average_speed, unit: 'm/s' },
     ];
 
     return (
