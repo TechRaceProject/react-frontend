@@ -1,26 +1,27 @@
-import { MessageEvent } from "react-native-sse";
+import { MessageEvent } from 'react-native-sse';
 
 export const handleSSEMessage = (event: MessageEvent) => {
     try {
-        const data = (event.data) 
-            ? JSON.parse(event.data) 
-            : {"error": "Aucune donnée reçue"};
+        const data = event.data
+            ? JSON.parse(event.data)
+            : { error: 'Aucune donnée reçue' };
 
         if (data.error) {
             console.log("['handleSSEMessage'] ", data.error);
-            
+
             return;
         }
 
-        if (data.type === "vehicle_state") {
+        if (data.type === 'vehicle_state') {
             handleVehicleStateMessage(data);
 
             return;
         }
-        
-
     } catch (error) {
-        console.error("['handleSSEMessage'] Erreur lors du parsing du message SSE : ", error);
+        console.error(
+            "['handleSSEMessage'] Erreur lors du parsing du message SSE : ",
+            error
+        );
     }
 };
 
@@ -73,32 +74,50 @@ const handleVehicleStateMessage = (data: VehicleStateFromSSE) => {
     const { attributes } = data;
 
     if (attributes.buzzer_alarm !== undefined) {
-        console.log("['handleVehicleStateMessage'] buzzer_alarm : ", attributes.buzzer_alarm);
+        console.log(
+            "['handleVehicleStateMessage'] buzzer_alarm : ",
+            attributes.buzzer_alarm
+        );
     }
 
     if (attributes.face !== undefined) {
         console.log("['handleVehicleStateMessage'] face : ", attributes.face);
     }
-    
+
     if (attributes.video_activated !== undefined) {
-        console.log("['handleVehicleStateMessage'] video_activated : ", attributes.video_activated);
+        console.log(
+            "['handleVehicleStateMessage'] video_activated : ",
+            attributes.video_activated
+        );
     }
 
     if (attributes.led_animation !== undefined) {
-        console.log("['handleVehicleStateMessage'] led_animation : ", attributes.led_animation);
+        console.log(
+            "['handleVehicleStateMessage'] led_animation : ",
+            attributes.led_animation
+        );
     }
 
     if (attributes.head_angle !== undefined) {
-        console.log("['handleVehicleStateMessage'] head_angle : ", attributes.head_angle);
+        console.log(
+            "['handleVehicleStateMessage'] head_angle : ",
+            attributes.head_angle
+        );
     }
 
     if (attributes.buzzer_variable !== undefined) {
-        console.log("['handleVehicleStateMessage'] buzzer_variable : ", attributes.buzzer_variable);
+        console.log(
+            "['handleVehicleStateMessage'] buzzer_variable : ",
+            attributes.buzzer_variable
+        );
     }
 
     if (attributes.primary_led_colors !== undefined) {
         for (const primaryLedColor of attributes.primary_led_colors) {
-            console.log("['handleVehicleStateMessage'] primary_led_colors : ", primaryLedColor);
+            console.log(
+                "['handleVehicleStateMessage'] primary_led_colors : ",
+                primaryLedColor
+            );
         }
     }
 };
