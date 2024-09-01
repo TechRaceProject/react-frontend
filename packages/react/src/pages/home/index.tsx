@@ -22,17 +22,17 @@ export default function Home() {
 
                 <div className="info-cards">
                     <InfoCard
-                        icon="document"
+                        icon="battery"
                         title="Autonomie du véhicule"
                         value="85%"
                     />
                     <InfoCard
-                        icon="social"
+                        icon="time"
                         title="Temps passé en moyenne sur une course"
                         value="1m32"
                     />
                     <InfoCard
-                        icon="star"
+                        icon="time"
                         title="Temps total effectué sur toutes les courses"
                         value="5m41"
                     />

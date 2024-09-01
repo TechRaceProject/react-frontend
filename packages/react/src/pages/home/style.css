@@ -11,7 +11,7 @@
     flex-direction: column;
     gap: 20px;
     padding: 20px;
-    max-width: 1200px;
+    max-width: 1400px;
     width: 100%;
 }
 
@@ -60,7 +60,8 @@
 
 .info-cards {
     display: flex;
-    gap: 20px;
+    justify-content: space-between;
+    gap: 10px;
     flex-wrap: wrap;
 }
 

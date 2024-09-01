@@ -14,9 +14,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+    min-width: 50px;
+    min-height: 50px;
+    border-radius: 10%; 
 }
 
 .card-icon img {
