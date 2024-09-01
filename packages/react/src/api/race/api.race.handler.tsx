@@ -16,7 +16,10 @@ class ApiVehicleHandler {
             };
         }
 
-        const {data, error, isLoading } = await ApiVehicle.getHistoryRace(userId, token);
+        const { data, error, isLoading } = await ApiVehicle.getHistoryRace(
+            userId,
+            token
+        );
 
         return { data, error, isLoading };
     }
@@ -33,7 +36,8 @@ class ApiVehicleHandler {
             };
         }
 
-        const { data, error, isLoading } = await ApiVehicle.getLeaderboardRace(token);
+        const { data, error, isLoading } =
+            await ApiVehicle.getLeaderboardRace(token);
 
         return { data, error, isLoading };
     }
@@ -50,9 +54,12 @@ class ApiVehicleHandler {
             };
         }
 
-        const { data, error, isLoading } = await ApiVehicle.deleteRace(raceId, token);
-        
-        return { data, error, isLoading }
+        const { data, error, isLoading } = await ApiVehicle.deleteRace(
+            raceId,
+            token
+        );
+
+        return { data, error, isLoading };
     }
 }
 

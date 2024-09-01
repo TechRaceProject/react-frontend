@@ -28,17 +28,17 @@ export default function Home() {
                     />
                     <InfoCard
                         icon="time"
-                        title="Temps passé en moyenne sur une course"
+                        title="Durée moyenne de vos courses"
                         value="1m32"
                     />
                     <InfoCard
                         icon="time"
-                        title="Temps total effectué sur toutes les courses"
+                        title="Durée cumulée de vos courses"
                         value="5m41"
                     />
                     <InfoCard
                         icon="warning"
-                        title="Nombre de collisions effectuées"
+                        title="Temps passé en collision"
                         value={14}
                     />
                 </div>

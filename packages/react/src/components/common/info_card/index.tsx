@@ -1,8 +1,8 @@
 import './style.css';
 
-import { FaCarBattery } from "react-icons/fa6";
-import { IoTime } from "react-icons/io5";
-import { TiWarning } from "react-icons/ti";
+import { FaCarBattery } from 'react-icons/fa6';
+import { IoTime } from 'react-icons/io5';
+import { TiWarning } from 'react-icons/ti';
 
 type IconType = 'battery' | 'time' | 'warning';
 
@@ -41,10 +41,13 @@ export default function InfoCard({ icon, title, value }: InfoCardProps) {
 
     return (
         <div className="card">
-            <div className="card-icon" style={{ backgroundColor: getBackgroundColor(icon) }}>
+            <div
+                className="card-icon"
+                style={{ backgroundColor: getBackgroundColor(icon) }}
+            >
                 {getIcon(icon)}
             </div>
-            
+
             <div className="card-content">
                 <span className="card-title">{title}</span>
                 <span className="card-value">{value}</span>
