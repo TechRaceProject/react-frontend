@@ -4,13 +4,13 @@ import ApiVehicleHandler from '~/api/race/api.race.handler';
 import './style.css';
 
 const headersList = [
-    { field: 'name', label: 'Name' },
+    { field: 'name', label: 'Nom' },
     { field: 'date', label: 'Date' },
     { field: 'distance', label: 'Distance' },
     { field: 'duration', label: 'Durée' },
-    { field: 'error', label: 'Erreur' },
+    { field: 'error', label: 'Hors parcours' },
     { field: 'collision_duration', label: 'Collision' },
-    { field: 'average_speed', label: 'Vitesse moyenne' },
+    { field: 'average_speed', label: 'V. moyenne' },
     { field: 'status', label: 'Statut' },
 ];
 

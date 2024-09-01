@@ -5,7 +5,7 @@ import { SearchBarProps } from '~/interfaces/components/common/searchBar.interfa
 function SearchBar({
     searchTerm,
     onSearchChange,
-    placeholder = 'Search by race name',
+    placeholder = 'Recherche par nom',
     error,
 }: SearchBarProps) {
     return (
