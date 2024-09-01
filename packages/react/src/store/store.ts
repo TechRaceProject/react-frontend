@@ -1,4 +1,4 @@
-import { configureStore, combineReducers } from '@reduxjs/toolkit';
+import { configureStore, combineReducers, Middleware } from '@reduxjs/toolkit';
 import {
     persistStore,
     persistReducer,
@@ -10,9 +10,9 @@ import {
     REGISTER,
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
-import authReducer from './slice/auth.slice';
-import userReducer from './slice/user.slice';
-import navReducer from './slice/nav.slice';
+import authReducer from './slices/auth.slice';
+import userReducer from './slices/user.slice';
+import navReducer from './slices/nav.slice';
 
 const rootReducer = combineReducers({
     auth: authReducer,
@@ -29,7 +29,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 
 const store = configureStore({
     reducer: persistedReducer,
-    middleware: (getDefaultMiddleware) =>
+    middleware: (getDefaultMiddleware: Middleware) =>
         getDefaultMiddleware({
             serializableCheck: {
                 ignoredActions: [

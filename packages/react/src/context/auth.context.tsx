@@ -1,9 +1,9 @@
 import { createContext, ReactNode, useMemo } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '~/store/store';
-import { setAuthState } from '~/store/slice/auth.slice';
-import { UserState } from '~/store/slice/user.slice';
-import { initialState } from '~/store/slice/user.slice';
+import { setAuthState } from '~/store/slices/auth.slice';
+import { UserState } from '~/store/slices/user.slice';
+import { initialState } from '~/store/slices/user.slice';
 
 interface AuthContextType {
     isLoggedIn: boolean;

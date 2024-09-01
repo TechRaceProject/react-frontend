@@ -1,0 +1,27 @@
+.race-header {
+    display: grid;
+    grid-template-columns: 1.5fr repeat(8, minmax(125px, 1fr));
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.race-list {
+    display: flex;
+    flex-direction: column;
+    box-shadow: var(--BoxShadow);
+    background-color: var(--color-white);
+    border-radius: 5px;
+    min-width: 100%;
+    width: 100%;
+    overflow-x: auto;
+}
+
+.race-header p {
+    background-color: var(--color-gray-light-25);
+    overflow: hidden;
+    padding: 15px 10px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 125px;
+    font-size: 16px;
+}

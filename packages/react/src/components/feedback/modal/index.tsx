@@ -1,7 +1,5 @@
 import './style.css';
-interface ModalProps {
-    children: React.ReactNode;
-}
+import { ModalProps } from '~/interfaces/components/feedback/modal.interface';
 
 function Modal({ children }: ModalProps) {
     return (

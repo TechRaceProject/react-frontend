@@ -32,20 +32,78 @@
     --color-white-25: rgba(255, 255, 255, 0.25);
     --color-white-50: rgba(255, 255, 255, 0.5);
     --color-white-75: rgba(255, 255, 255, 0.75);
-    --color-gray: rgba(107, 114, 128, 1);
-    --color-gray-25: rgba(107, 114, 128, 0.25);
-    --color-gray-50: rgba(107, 114, 128, 0.5);
-    --color-gray-75: rgba(107, 114, 128, 0.75);
+    --color-gray-dark: rgba(107, 114, 128, 1);
+    --color-gray-dark-25: rgba(107, 114, 128, 0.25);
+    --color-gray-dark-50: rgba(107, 114, 128, 0.5);
+    --color-gray-dark-75: rgba(107, 114, 128, 0.75);
+    --color-gray: rgba(155, 160, 171, 1);
+    --color-gray-25: rgba(155, 160, 171, 0.25);
+    --color-gray-50: rgba(155, 160, 171, 0.5);
+    --color-gray-75: rgba(155, 160, 171, 0.75);
+    --color-gray-light: rgb(199, 202, 209);
+    --color-gray-light-25: rgba(199, 202, 209, 0.25);
+    --color-gray-light-50: rgba(199, 202, 209, 0.5);
+    --color-gray-light-75: rgba(199, 202, 209, 0.75);
     --color-blue: rgba(55, 48, 163, 1);
     --color-blue-25: rgba(55, 48, 163, 0.25);
     --color-blue-50: rgba(55, 48, 163, 0.5);
     --color-blue-75: rgba(55, 48, 163, 0.75);
     --color-blue-light: rgba(89, 81, 205, 1);
+    --color-blue-light-25: rgba(89, 81, 205, 0.25);
+    --color-blue-light-50: rgba(89, 81, 205, 0.5);
+    --color-blue-light-75: rgba(89, 81, 205, 0.75);
     --color-blue-dark: rgba(43, 37, 126, 1);
+    --color-blue-dark-25: rgba(43, 37, 126, 0.25);
+    --color-blue-dark-50: rgba(43, 37, 126, 0.5);
+    --color-blue-dark-75: rgba(43, 37, 126, 0.75);
     --color-success: rgba(21, 128, 61, 1);
+    --color-success-25: rgba(21, 128, 61, 0.25);
+    --color-success-50: rgba(21, 128, 61, 0.5);
+    --color-success-75: rgba(21, 128, 61, 0.75);
+    --color-success-light: rgba(34, 211, 99, 1);
+    --color-success-light-25: rgba(34, 211, 99, 0.25);
+    --color-success-light-50: rgba(34, 211, 99, 0.5);
+    --color-success-light-75: rgba(34, 211, 99, 0.75);
+    --color-success-dark: rgba(11, 70, 33, 1);
+    --color-success-dark-25: rgba(11, 70, 33, 0.25);
+    --color-success-dark-50: rgba(11, 70, 33, 0.5);
+    --color-success-dark-75: rgba(11, 70, 33, 0.75);
     --color-warning: rgba(161, 98, 7, 1);
+    --color-warning-25: rgba(161, 98, 7, 0.25);
+    --color-warning-50: rgba(161, 98, 7, 0.5);
+    --color-warning-75: rgba(161, 98, 7, 0.75);
+    --color-warning-light: rgba(245, 151, 20, 1);
+    --color-warning-light-25: rgba(245, 151, 20, 0.25);
+    --color-warning-light-50: rgba(245, 151, 20, 0.5);
+    --color-warning-light-75: rgba(245, 151, 20, 0.75);
+    --color-warning-dark: rgba(98, 59, 4, 1);
+    --color-warning-dark-25: rgba(98, 59, 4, 0.25);
+    --color-warning-dark-50: rgba(98, 59, 4, 0.5);
+    --color-warning-dark-75: rgba(98, 59, 4, 0.75);
     --color-error: rgba(185, 28, 28, 1);
+    --color-error-25: rgba(185, 28, 28, 0.25);
+    --color-error-50: rgba(185, 28, 28, 0.5);
+    --color-error-75: rgba(185, 28, 28, 0.75);
+    --color-error-light: rgba(228, 78, 78, 1);
+    --color-error-light-25: rgba(228, 78, 78, 0.25);
+    --color-error-light-50: rgba(228, 78, 78, 0.5);
+    --color-error-light-75: rgba(228, 78, 78, 0.75);
+    --color-error-dark: rgba(124, 19, 19, 1);
+    --color-error-dark-25: rgba(124, 19, 19, 0.25);
+    --color-error-dark-50: rgba(124, 19, 19, 0.5);
+    --color-error-dark-75: rgba(124, 19, 19, 0.75);
     --color-info: rgba(107, 172, 191, 1);
+    --color-info-25: rgba(107, 172, 191, 0.25);
+    --color-info-50: rgba(107, 172, 191, 0.5);
+    --color-info-75: rgba(107, 172, 191, 0.75);
+    --color-info-light: rgba(169, 207, 218, 1);
+    --color-info-light-25: rgba(169, 207, 218, 0.25);
+    --color-info-light-50: rgba(169, 207, 218, 0.5);
+    --color-info-light-75: rgba(169, 207, 218, 0.75);
+    --color-info-dark: rgba(67, 136, 157, 1);
+    --color-info-dark-25: rgba(67, 136, 157, 0.25);
+    --color-info-dark-50: rgba(67, 136, 157, 0.5);
+    --color-info-dark-75: rgba(67, 136, 157, 0.75);
 
     --BoxShadow: 0px 1px 2px -1px rgba(0, 0, 0, 0.25),
         0px 1px 3px 0px rgba(0, 0, 0, 0.15);
@@ -135,14 +193,15 @@ html {
 
 *::-webkit-scrollbar {
     width: 10px;
+    height: 10px;
 }
 
 *::-webkit-scrollbar-track {
-    background-color: var(--color-black);
+    background-color: var(--color-white);
 }
 
 *::-webkit-scrollbar-thumb {
-    background-color: var(--color-gray);
+    background-color: var(--color-blue);
     border-radius: 10px;
 }
 

@@ -1,7 +1,7 @@
 import { ApiReturn } from '@shared/interfaces/utils/api.interface';
 import store from '~/store/store';
-import { setAuthState, logout } from '~/store/slice/auth.slice';
-import { setUserState, resetUserState } from '~/store/slice/user.slice';
+import { setAuthState, logout } from '~/store/slices/auth.slice';
+import { setUserState, resetUserState } from '~/store/slices/user.slice';
 import { authFormPropsApi } from '@shared/interfaces/other/auth.interface';
 import ApiAuth from '@shared/api/auth/authentication.api';
 import ProfileDefault from '~/assets/images/profile-default.svg';
@@ -25,6 +25,7 @@ class ApiAuthHandler {
         }
         return { data, error, isLoading };
     }
+
     static async login(loginData: authFormPropsApi): Promise<ApiReturn> {
         const { data, error, isLoading } = await ApiAuth.login(loginData);
 
@@ -58,6 +59,7 @@ class ApiAuthHandler {
 
         return { data, error, isLoading };
     }
+
     static async logout(): Promise<void> {
         store.dispatch(logout());
         store.dispatch(resetUserState());

@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useEffect, useMemo, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '~/store/store';
-import { toggleNavState } from '~/store/slice/nav.slice';
+import { toggleNavState } from '~/store/slices/nav.slice';
 
 interface NavContextType {
     isOpen: boolean;
