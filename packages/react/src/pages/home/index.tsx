@@ -1,21 +1,23 @@
 import './style.css';
 import VideoFeed from '~/assets/images/placeholders/video_feed.png';
+import ControlPannel from '~/components/common/control_pannel';
 import InfoCard from '~/components/common/info_card';
 
 export default function Home() {
     return (
         <div className="dashboard-container">
             <div className="dashboard">
-                <div className="top-section">
-                    <div className="video-feed">
+                <div className="dashboard-top-section">
+                    <div className="dashboard-video-feed">
                         <img src={VideoFeed} alt="video feed placeholder" />
                     </div>
-                    <div className="control-pannel-and-covered-distance">
-                        <div className="control-pannel">
-                            <span>Historique des mouvements</span>
+
+                    <div className="dashboard-control-pannel-and-covered-distance">
+                        <div className="dashboard-control-pannel">
+                            <ControlPannel />
                         </div>
 
-                        <div className="covered-distance">
+                        <div className="dashboard-covered-distance">
                             <InfoCard
                                 icon="distance"
                                 title="Distance parcourue"
@@ -26,7 +28,7 @@ export default function Home() {
                     </div>
                 </div>
 
-                <div className="info-cards">
+                <div className="dashboard-info-cards">
                     <InfoCard
                         icon="battery"
                         title="Autonomie du véhicule"
@@ -49,14 +51,14 @@ export default function Home() {
                     />
                 </div>
 
-                <div className="charts-section">
-                    <div className="chart">
+                <div className="dashboard-charts-section">
+                    <div className="dashboard-chart">
                         <span>Suivie de la ligne</span>
                     </div>
-                    <div className="chart">
+                    <div className="dashboard-chart">
                         <span>Vitesse maximale et moyenne</span>
                     </div>
-                    <div className="vehicle-image">
+                    <div className="dashboard-vehicle-image">
                         <span>Image du véhicule</span>
                     </div>
                 </div>

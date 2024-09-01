@@ -15,12 +15,12 @@
     width: 100%;
 }
 
-.top-section {
+.dashboard-top-section {
     display: flex;
     gap: 20px;
     align-items: flex-start;
 
-    .video-feed {
+    .dashboard-video-feed {
         flex: 3;
         height: 400px;
         background-color: #d9e4ff;
@@ -36,21 +36,21 @@
         }
     }
 
-    .control-pannel-and-covered-distance {
+    .dashboard-control-pannel-and-covered-distance {
         flex: 1;
         display: flex;
         flex-direction: column;
         gap: 10px;
         height: 400px;
 
-        .control-pannel,
-        .covered-distance {
+        .dashboard-control-pannel,
+        .dashboard-covered-distance {
             width: 100%;
             padding: 10px;
             background-color: white;
         }
 
-        .control-pannel {
+        .dashboard-control-pannel {
             flex: 4;
             padding: 10px;
             background-color: white;
@@ -58,19 +58,19 @@
     }
 }
 
-.info-cards {
+.dashboard-info-cards {
     display: flex;
     justify-content: space-between;
     gap: 10px;
     flex-wrap: wrap;
 }
 
-.charts-section {
+.dashboard-charts-section {
     display: flex;
     gap: 20px;
 }
 
-.chart {
+.dashboard-chart {
     flex: 1;
     height: 200px;
     background-color: #c3e0ff;
@@ -79,7 +79,7 @@
     justify-content: center;
 }
 
-.vehicle-image {
+.dashboard-vehicle-image {
     flex: 1;
     height: 200px;
     background-color: #a0cfff;
@@ -88,11 +88,11 @@
     justify-content: center;
 }
 
-.video-feed,
-.control-pannel,
-.covered-distance,
-.chart,
-.vehicle-image {
+.dashboard-video-feed,
+.dashboard-control-pannel,
+.dashboard-covered-distance,
+.dashboard-chart,
+.dashboard-vehicle-image {
     border-radius: 5px;
 }
 
@@ -104,15 +104,15 @@
         padding: 20px;
     }
 
-    .top-section,
-    .charts-section {
+    .dashboard-top-section,
+    .dashboard-charts-section {
         flex-direction: column;
     }
 
-    .video-feed,
-    .control-pannel-and-covered-distance,
-    .chart,
-    .vehicle-image {
+    .dashboard-video-feed,
+    .dashboard-control-pannel-and-covered-distance,
+    .dashboard-chart,
+    .dashboard-vehicle-image {
         flex: none;
         width: 100%;
         min-width: 400px;
