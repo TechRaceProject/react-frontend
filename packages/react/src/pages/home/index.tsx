@@ -1,7 +1,7 @@
 import './style.css';
 import VideoFeed from '~/assets/images/placeholders/video_feed.png';
-import ControlPannel from '~/components/common/control_pannel';
 import InfoCard from '~/components/common/info_card';
+import MovementHistory from '~/components/common/movement_history';
 
 export default function Home() {
     return (
@@ -12,12 +12,15 @@ export default function Home() {
                         <img src={VideoFeed} alt="video feed placeholder" />
                     </div>
 
-                    <div className="dashboard-control-pannel-and-covered-distance">
-                        <div className="dashboard-control-pannel">
-                            <ControlPannel />
+                    <div className="dashboard-movement-history-and-covered-distance">
+                        <div className="dashboard-movement-history">
+                            <MovementHistory />
                         </div>
 
-                        <div className="dashboard-covered-distance">
+                        <div
+                            className="dashboard-covered-distance"
+                            style={{ marginTop: '1rem' }}
+                        >
                             <InfoCard
                                 icon="distance"
                                 title="Distance parcourue"
