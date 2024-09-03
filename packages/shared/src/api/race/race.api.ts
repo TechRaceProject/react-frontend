@@ -2,8 +2,8 @@ import { api } from '../../utils/api.utils';
 import { ApiProps, ApiReturn } from '../../interfaces/utils/api.interface';
 import BaseApi from '../base.api';
 
-class ApiVehicle extends BaseApi {
-    static async getHistoryRace(
+class ApiRace extends BaseApi {
+    static async getAllUserRaces(
         userId: number,
         token: string
     ): Promise<ApiReturn> {
@@ -53,4 +53,4 @@ class ApiVehicle extends BaseApi {
     }
 }
 
-export default ApiVehicle;
+export default ApiRace;

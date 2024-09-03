@@ -1,7 +1,7 @@
 import HistoryRaceItem from '~/components/ui/historyRaceList';
-import { HistoryRaceTableProps } from '~/interfaces/other/race.interface';
-import ApiVehicleHandler from '~/api/race/api.race.handler';
+import ApiRaceHandler from '~/api/race/api.race.handler';
 import './style.css';
+import { HistoryRaceTableProps } from '~/interfaces/other/race.interface';
 
 const headersList = [
     { field: 'name', label: 'Nom' },
@@ -16,7 +16,7 @@ const headersList = [
 
 function HistoryRaceTable({ races, onRaceDeleted }: HistoryRaceTableProps) {
     const handleDeleteRace = async (raceId: number) => {
-        await ApiVehicleHandler.deleteRace(raceId);
+        await ApiRaceHandler.deleteRace(raceId);
         onRaceDeleted();
     };
 
