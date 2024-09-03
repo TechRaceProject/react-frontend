@@ -1,9 +1,152 @@
+import { useContext, useEffect, useState } from 'react';
 import './style.css';
 import VideoFeed from '~/assets/images/placeholders/video_feed.png';
-import ControlPannel from '~/components/common/control_pannel';
 import InfoCard from '~/components/common/info_card';
+import MovementHistory from '~/components/common/movement_history';
+import { useSelector } from 'react-redux';
+import { RootState } from '~/store/store';
+import { RaceInterface } from '@shared/interfaces/other/race.interface';
+import ApiRace from '@shared/api/race/race.api';
+import { AuthContext } from '~/context/auth.context';
 
 export default function Home() {
+    const [races, setRaces] = useState<RaceInterface[]>([]);
+    const token = useSelector((state: RootState) => state.auth.token);
+    const userId = useContext(AuthContext).user.id;
+
+    const fetchRaces = async () => {
+        if (!token || !userId) {
+            return;
+        }
+
+        const { data } = await ApiRace.getAllUserRaces(userId, token);
+
+        if (data) {
+            setRaces(data.data);
+        }
+    };
+
+    useEffect(() => {
+        fetchRaces();
+    }, [token]);
+
+    const getAverageRaceDuration = (): string => {
+        const getDurationInMilliseconds = (
+            startTime: string,
+            endTime: string
+        ): number => {
+            const start = new Date(startTime).getTime();
+            const end = new Date(endTime).getTime();
+            return end - start;
+        };
+
+        const totalDuration = races
+            .filter((race) => race.end_time !== null)
+            .reduce((accumulator: number, race: RaceInterface) => {
+                return (
+                    accumulator +
+                    getDurationInMilliseconds(
+                        race.start_time,
+                        race.end_time as string
+                    )
+                );
+            }, 0);
+
+        const averageDuration =
+            races.length > 0 ? totalDuration / races.length : 0;
+
+        const result = averageDuration / 60000;
+
+        const hours = Math.floor(result / 60);
+        const minutes = Math.floor(result % 60);
+        const seconds = Math.round(((result % 60) - minutes) * 60);
+
+        if (hours >= 1) {
+            return `${hours} heure${hours > 1 ? 's' : ''}, ${minutes} min${minutes > 1 ? 's' : ''} et ${seconds} sec${seconds > 1 ? 's' : ''}`;
+        }
+
+        if (minutes > 0) {
+            return `${minutes} min${minutes > 1 ? 's' : ''} et ${seconds} sec${seconds > 1 ? 's' : ''}`;
+        }
+
+        return `${seconds} sec${seconds > 1 ? 's' : ''}`;
+    };
+
+    const getTotalRacesDuration = (): string => {
+        const getDurationInMilliseconds = (
+            startTime: string,
+            endTime: string
+        ): number => {
+            const start = new Date(startTime).getTime();
+            const end = new Date(endTime).getTime();
+            return end - start;
+        };
+
+        const totalDuration = races.reduce(
+            (accumulator: number, race: RaceInterface) => {
+                return (
+                    accumulator +
+                    getDurationInMilliseconds(
+                        race.start_time,
+                        race.end_time as string
+                    )
+                );
+            },
+            0
+        );
+
+        const totalMinutes = totalDuration / 60000;
+
+        const hours = Math.floor(totalMinutes / 60);
+        const minutes = Math.floor(totalMinutes % 60);
+        const seconds = Math.round(((totalMinutes % 60) - minutes) * 60);
+
+        if (hours >= 1) {
+            return `${hours} heure${hours > 1 ? 's' : ''}, ${minutes} min${minutes > 1 ? 's' : ''} et ${seconds} sec${seconds > 1 ? 's' : ''}`;
+        }
+
+        if (minutes > 0) {
+            return `${minutes} min${minutes > 1 ? 's' : ''} et ${seconds} sec${seconds > 1 ? 's' : ''}`;
+        }
+
+        return `${seconds} sec${seconds > 1 ? 's' : ''}`;
+    };
+
+    const getTotalCoveredDistance = () => {
+        const totalDistance = races.reduce((sum, race) => {
+            return sum + race.distance_covered;
+        }, 0);
+
+        if (totalDistance <= 1) {
+            return `${totalDistance} mètre`;
+        }
+
+        return `${totalDistance} mètres`;
+    };
+
+    const getTotalCollisionDuration = (): string => {
+        const totalCollisionDuration = races.reduce(
+            (sum: number, race: RaceInterface) => {
+                return sum + race.collision_duration;
+            },
+            0
+        );
+
+        const hours = Math.floor(totalCollisionDuration / 3600);
+        const minutes = Math.floor((totalCollisionDuration % 3600) / 60);
+        const seconds = totalCollisionDuration % 60;
+
+        if (hours > 0) {
+            return `${hours} heure${hours > 1 ? 's' : ''}, ${minutes} min${minutes > 1 ? 's' : ''} et ${seconds} sec${seconds > 1 ? 's' : ''}`;
+        }
+
+        if (minutes > 0) {
+            return `${minutes} min${minutes > 1 ? 's' : ''} et ${seconds} sec${seconds > 1 ? 's' : ''}`;
+        }
+
+        return `${seconds} sec${seconds > 1 ? 's' : ''}`;
+    };
+
     return (
         <div className="dashboard-container">
             <div className="dashboard">
@@ -12,16 +155,19 @@ export default function Home() {
                         <img src={VideoFeed} alt="video feed placeholder" />
                     </div>
 
-                    <div className="dashboard-control-pannel-and-covered-distance">
-                        <div className="dashboard-control-pannel">
-                            <ControlPannel />
+                    <div className="dashboard-movement-history-and-covered-distance">
+                        <div className="dashboard-movement-history">
+                            <MovementHistory />
                         </div>
 
-                        <div className="dashboard-covered-distance">
+                        <div
+                            className="dashboard-covered-distance"
+                            style={{ marginTop: '1rem' }}
+                        >
                             <InfoCard
                                 icon="distance"
                                 title="Distance parcourue"
-                                value="4520 mètres"
+                                value={getTotalCoveredDistance()}
                                 style={{ border: 'none', boxShadow: 'none' }}
                             />
                         </div>
@@ -37,17 +183,17 @@ export default function Home() {
                     <InfoCard
                         icon="time"
                         title="Durée moyenne de vos courses"
-                        value="1m32"
+                        value={getAverageRaceDuration()}
                     />
                     <InfoCard
                         icon="time"
                         title="Durée cumulée de vos courses"
-                        value="5m41"
+                        value={getTotalRacesDuration()}
                     />
                     <InfoCard
                         icon="warning"
                         title="Temps passé en collision"
-                        value={14}
+                        value={getTotalCollisionDuration()}
                     />
                 </div>
 

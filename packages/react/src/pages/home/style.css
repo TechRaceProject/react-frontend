@@ -36,21 +36,20 @@
         }
     }
 
-    .dashboard-control-pannel-and-covered-distance {
+    .dashboard-movement-history-and-covered-distance {
         flex: 1;
         display: flex;
         flex-direction: column;
-        gap: 10px;
         height: 400px;
 
-        .dashboard-control-pannel,
+        .dashboard-movement-history,
         .dashboard-covered-distance {
             width: 100%;
             padding: 10px;
             background-color: white;
         }
 
-        .dashboard-control-pannel {
+        .dashboard-movement-history {
             flex: 4;
             padding: 10px;
             background-color: white;
@@ -89,7 +88,7 @@
 }
 
 .dashboard-video-feed,
-.dashboard-control-pannel,
+.dashboard-movement-history,
 .dashboard-covered-distance,
 .dashboard-chart,
 .dashboard-vehicle-image {
@@ -110,7 +109,7 @@
     }
 
     .dashboard-video-feed,
-    .dashboard-control-pannel-and-covered-distance,
+    .dashboard-movement-history-and-covered-distance,
     .dashboard-chart,
     .dashboard-vehicle-image {
         flex: none;
