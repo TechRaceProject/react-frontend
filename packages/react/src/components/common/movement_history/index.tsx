@@ -31,9 +31,7 @@ export default function MovementHistory() {
 
     return (
         <div className="movement-history-container">
-            <span className="movement-history-title">
-                Historique des commandes
-            </span>
+            <span className="movement-history-title">Événements récents</span>
 
             <ul className="scrollable-list">
                 {vehicleHistory.map((history, index) => (

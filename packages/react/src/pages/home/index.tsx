@@ -9,6 +9,7 @@ import { RootState } from '~/store/store';
 import { RaceInterface } from '@shared/interfaces/other/race.interface';
 import ApiRace from '@shared/api/race/race.api';
 import { AuthContext } from '~/context/auth.context';
+import Chart, { PieChartProps } from '~/components/charts';
 
 export default function Home() {
     const [races, setRaces] = useState<RaceInterface[]>([]);
@@ -139,6 +140,46 @@ export default function Home() {
         return `${seconds} sec${seconds > 1 ? 's' : ''}`;
     };
 
+    const getRaceTypePieChartOptions = (): PieChartProps => {
+        const autoModeRaceY =
+            (races.filter((race: RaceInterface) => race.type === 'auto')
+                .length /
+                races.length) *
+            100;
+        const manualModeRaceY =
+            (races.filter((race: RaceInterface) => race.type === 'manual')
+                .length /
+                races.length) *
+            100;
+
+        const raceTypePieChartOptions: PieChartProps = {
+            options: {
+                animationEnabled: true,
+                exportEnabled: false,
+                theme: 'light1',
+                data: [
+                    {
+                        type: 'pie',
+                        indexLabel: '{label}: {y}%',
+                        startAngle: -90,
+                        dataPoints: [
+                            {
+                                y: Number(autoModeRaceY.toFixed(2)),
+                                label: 'Automatique',
+                            },
+                            {
+                                y: Number(manualModeRaceY.toFixed(2)),
+                                label: 'Manuel',
+                            },
+                        ],
+                    },
+                ],
+            },
+        };
+
+        return raceTypePieChartOptions;
+    };
+
     return (
         <div className="dashboard-container">
             <div className="dashboard">
@@ -191,11 +232,18 @@ export default function Home() {
 
                 <div className="dashboard-charts-section">
                     <div className="dashboard-chart">
-                        <span>Suivie de la ligne</span>
+                        <span>Répartition des types de courses</span>
+                        <Chart
+                            options={getRaceTypePieChartOptions()}
+                            width="80%"
+                            height="80%"
+                        />
                     </div>
+
                     <div className="dashboard-chart">
                         <span>Vitesse maximale et moyenne</span>
                     </div>
+
                     <div className="dashboard-vehicle-image">
                         <img
                             src={FreenoveVehicle}

@@ -45,9 +45,7 @@ export type PieChartProps = {
         animationEnabled: boolean;
         exportEnabled: boolean;
         theme: 'light1' | 'light2' | 'dark1' | 'dark2';
-        title: {
-            text: string;
-        };
+        title?: { text: string } | undefined;
         data: {
             type: 'pie';
             indexLabel: '{label}: {y}%';
@@ -60,13 +58,25 @@ export type PieChartProps = {
     };
 };
 
-type ChartProps =
-    | SimpleColumnChartProps
-    | SimpleLinearChartProps
-    | PieChartProps;
+type ChartProps = {
+    options: SimpleColumnChartProps | SimpleLinearChartProps | PieChartProps;
+    width?: string;
+    height?: string;
+};
 
-export default function Chart({ options }: ChartProps) {
+export default function Chart({ options, width, height }: ChartProps) {
     const CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
-    return <CanvasJSChart options={options} />;
+    if (width && height) {
+        return (
+            <CanvasJSChart
+                options={options.options}
+                containerProps={{
+                    width: width,
+                    height: height,
+                }}
+            />
+        );
+    }
+    return <CanvasJSChart options={options.options} />;
 }

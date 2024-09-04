@@ -83,15 +83,15 @@ export default function Graph() {
     return (
         <div className="container">
             <div className="chart-container">
-                <Chart {...simpleColumnOption} />
+                <Chart options={simpleColumnOption} />
             </div>
 
             <div className="chart-container">
-                <Chart {...simpleLinearOption} />
+                <Chart options={simpleLinearOption} />
             </div>
 
             <div className="chart-container">
-                <Chart {...pieOptions} />
+                <Chart options={pieOptions} />
             </div>
         </div>
     );
