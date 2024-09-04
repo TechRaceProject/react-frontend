@@ -1,0 +1,50 @@
+.input-range-container {
+    position: relative;
+    width: 100%;
+    margin: 5px 0;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+.input-range {
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    height: 10px;
+    background: var(--color-blue-light-25);
+    border-radius: 5px;
+    outline: none;
+    transition: background 0.3s ease-in-out;
+}
+
+.input-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: var(--color-blue-dark);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.input-range::-moz-range-thumb {
+    width: 20px;
+    height: 20px;
+    background: var(--color-blue-dark);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out;
+}
+
+.value-indicator {
+    padding: 5px 10px;
+    background: var(--color-blue-dark);
+    color: white;
+    border-radius: 10px;
+    font-size: var(--font-small);
+    pointer-events: none;
+    transition: left 0.1s ease-in-out;
+}
