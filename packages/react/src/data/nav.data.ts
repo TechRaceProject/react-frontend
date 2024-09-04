@@ -1,4 +1,10 @@
-import { FaHome, FaClipboardList, FaUser, FaTrophy } from 'react-icons/fa';
+import {
+    FaHome,
+    FaClipboardList,
+    FaUser,
+    FaTrophy,
+    FaCarAlt,
+} from 'react-icons/fa';
 import { NavItemProps } from '~/interfaces/components/layout/nav.interface';
 
 const navData: NavItemProps[] = [
@@ -16,6 +22,12 @@ const navData: NavItemProps[] = [
         label: 'Meilleurs scores',
     },
     { path: '/Profil', icon: FaUser, name: 'Profil', label: 'Profile' },
+    {
+        path: '/Vehicle',
+        icon: FaCarAlt,
+        name: 'Vehicle',
+        label: 'Vehicle',
+    },
 ];
 
 export default navData;
