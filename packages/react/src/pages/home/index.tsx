@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import './style.css';
 import VideoFeed from '~/assets/images/placeholders/video_feed.png';
+import FreenoveVehicle from '~/assets/images/placeholders/freenove_vehicle.jpg';
 import InfoCard from '~/components/common/info_card';
 import MovementHistory from '~/components/common/movement_history';
 import { useSelector } from 'react-redux';
@@ -30,16 +31,16 @@ export default function Home() {
         fetchRaces();
     }, [token]);
 
-    const getAverageRaceDuration = (): string => {
-        const getDurationInMilliseconds = (
-            startTime: string,
-            endTime: string
-        ): number => {
-            const start = new Date(startTime).getTime();
-            const end = new Date(endTime).getTime();
-            return end - start;
-        };
+    const getDurationInMilliseconds = (
+        startTime: string,
+        endTime: string
+    ): number => {
+        const start = new Date(startTime).getTime();
+        const end = new Date(endTime).getTime();
+        return end - start;
+    };
 
+    const getAverageRaceDuration = (): string => {
         const totalDuration = races
             .filter((race) => race.end_time !== null)
             .reduce((accumulator: number, race: RaceInterface) => {
@@ -73,15 +74,6 @@ export default function Home() {
     };
 
     const getTotalRacesDuration = (): string => {
-        const getDurationInMilliseconds = (
-            startTime: string,
-            endTime: string
-        ): number => {
-            const start = new Date(startTime).getTime();
-            const end = new Date(endTime).getTime();
-            return end - start;
-        };
-
         const totalDuration = races.reduce(
             (accumulator: number, race: RaceInterface) => {
                 return (
@@ -205,7 +197,10 @@ export default function Home() {
                         <span>Vitesse maximale et moyenne</span>
                     </div>
                     <div className="dashboard-vehicle-image">
-                        <span>Image du véhicule</span>
+                        <img
+                            src={FreenoveVehicle}
+                            alt="freenove esp32 vehicle image"
+                        />
                     </div>
                 </div>
             </div>
