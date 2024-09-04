@@ -16,7 +16,6 @@ export async function api({
         const data = await response.json();
 
         return { data, error: data.error || null, isLoading: false };
-
     } catch (err) {
         console.error('[@shared.api.utils.tsx] API error:', err);
 

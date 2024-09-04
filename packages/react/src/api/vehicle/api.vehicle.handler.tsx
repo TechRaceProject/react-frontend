@@ -1,30 +1,9 @@
 import { ApiReturn } from '@shared/interfaces/utils/api.interface';
-import ApiVehicle from '@shared/api/race/race.api';
+import ApiVehicle from '@shared/api/vehicle/vehicle.api';
 import store from '~/store/store';
 
 class ApiVehicleHandler {
-    static async getHistoryRace(): Promise<ApiReturn> {
-        const state = store.getState();
-        const token = state.auth.token;
-        const userId = state.user.id;
-
-        if (!token || !userId) {
-            return {
-                data: null,
-                error: 'Token or User ID is missing.',
-                isLoading: false,
-            };
-        }
-
-        const { data, error, isLoading } = await ApiVehicle.getHistoryRace(
-            userId,
-            token
-        );
-
-        return { data, error, isLoading };
-    }
-
-    static async getLeaderboardRace(): Promise<ApiReturn> {
+    static async getVehicles(): Promise<ApiReturn> {
         const state = store.getState();
         const token = state.auth.token;
 
@@ -36,13 +15,11 @@ class ApiVehicleHandler {
             };
         }
 
-        const { data, error, isLoading } =
-            await ApiVehicle.getLeaderboardRace(token);
-
+        const { data, error, isLoading } = await ApiVehicle.getVehicles(token);
         return { data, error, isLoading };
     }
 
-    static async deleteRace(raceId: number): Promise<ApiReturn> {
+    static async getVehicleState(vehicleId: number): Promise<ApiReturn> {
         const state = store.getState();
         const token = state.auth.token;
 
@@ -54,11 +31,33 @@ class ApiVehicleHandler {
             };
         }
 
-        const { data, error, isLoading } = await ApiVehicle.deleteRace(
-            raceId,
+        const { data, error, isLoading } = await ApiVehicle.getVehicleState(
+            vehicleId,
             token
         );
+        return { data, error, isLoading };
+    }
 
+    static async updateVehicleState(
+        vehicleId: number,
+        body: object
+    ): Promise<ApiReturn> {
+        const state = store.getState();
+        const token = state.auth.token;
+
+        if (!token) {
+            return {
+                data: null,
+                error: 'Token is missing.',
+                isLoading: false,
+            };
+        }
+
+        const { data, error, isLoading } = await ApiVehicle.updateVehicleState(
+            vehicleId,
+            token,
+            body
+        );
         return { data, error, isLoading };
     }
 }
