@@ -9,6 +9,7 @@ import Auth from '~/pages/auth';
 import Home from '~/pages/home';
 import Temp from '~/pages/temp';
 import History from '~/pages/history';
+import Vehicle from '~/pages/vehicle';
 import Err from '~/pages/err';
 import './App.css';
 import Graph from './pages/graph';
@@ -28,6 +29,7 @@ function MainRoutes() {
             <Route path="/History" element={<History />} />
             <Route path="/Top" element={<Temp />} />
             <Route path="/Profil" element={<Temp />} />
+            <Route path="/Vehicle" element={<Vehicle />} />
 
             <Route path="/Graph" element={<Graph />} />
 
