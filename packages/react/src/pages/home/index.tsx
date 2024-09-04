@@ -13,9 +13,11 @@ import Chart, {
     PieChartProps,
     SimpleColumnChartProps,
 } from '~/components/charts';
+import Alert from '~/components/feedback/alert';
 
 export default function Home() {
     const [races, setRaces] = useState<RaceInterface[]>([]);
+    const [error, setError] = useState<string | null>(null);
     const token = useSelector((state: RootState) => state.auth.token);
     const userId = useContext(AuthContext).user.id;
 
@@ -24,7 +26,12 @@ export default function Home() {
             return;
         }
 
-        const { data } = await ApiRace.getAllUserRaces(userId, token);
+        const { data, error } = await ApiRace.getAllUserRaces(userId, token);
+
+        if (error) {
+            setError(error);
+            return;
+        }
 
         if (data) {
             setRaces(data.data);
@@ -212,6 +219,9 @@ export default function Home() {
     return (
         <div className="dashboard-container">
             <div className="dashboard">
+                {error && (
+                    <Alert type="error" message={error} duration={5000} />
+                )}
                 <div className="dashboard-top-section">
                     <div className="dashboard-video-feed">
                         <img src={VideoFeed} alt="video feed placeholder" />
