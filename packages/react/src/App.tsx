@@ -11,7 +11,6 @@ import Temp from '~/pages/temp';
 import History from '~/pages/history';
 import Err from '~/pages/err';
 import './App.css';
-import Graph from './pages/graph';
 
 function AuthRoutes() {
     return (
@@ -28,8 +27,6 @@ function MainRoutes() {
             <Route path="/History" element={<History />} />
             <Route path="/Top" element={<Temp />} />
             <Route path="/Profil" element={<Temp />} />
-
-            <Route path="/Graph" element={<Graph />} />
 
             <Route path="*" element={<Err />} />
         </Routes>

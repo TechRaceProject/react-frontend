@@ -67,24 +67,38 @@
 .dashboard-charts-section {
     display: flex;
     gap: 20px;
+
+    span {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
 }
 
 .dashboard-chart {
     flex: 1;
-    height: 200px;
-    background-color: #c3e0ff;
+    background-color: white;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
+    padding: 5px;
 }
 
 .dashboard-vehicle-image {
     flex: 1;
-    height: 200px;
+    height: auto;
     background-color: #a0cfff;
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
 }
 
 .dashboard-video-feed,
@@ -115,5 +129,9 @@
         flex: none;
         width: 100%;
         min-width: 400px;
+    }
+
+    .dashboard-chart {
+        height: 500px;
     }
 }

@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import './style.css';
 import VideoFeed from '~/assets/images/placeholders/video_feed.png';
+import FreenoveVehicle from '~/assets/images/placeholders/freenove_vehicle.jpg';
 import InfoCard from '~/components/common/info_card';
 import MovementHistory from '~/components/common/movement_history';
 import { useSelector } from 'react-redux';
@@ -8,6 +9,10 @@ import { RootState } from '~/store/store';
 import { RaceInterface } from '@shared/interfaces/other/race.interface';
 import ApiRace from '@shared/api/race/race.api';
 import { AuthContext } from '~/context/auth.context';
+import Chart, {
+    PieChartProps,
+    SimpleColumnChartProps,
+} from '~/components/charts';
 
 export default function Home() {
     const [races, setRaces] = useState<RaceInterface[]>([]);
@@ -30,16 +35,16 @@ export default function Home() {
         fetchRaces();
     }, [token]);
 
-    const getAverageRaceDuration = (): string => {
-        const getDurationInMilliseconds = (
-            startTime: string,
-            endTime: string
-        ): number => {
-            const start = new Date(startTime).getTime();
-            const end = new Date(endTime).getTime();
-            return end - start;
-        };
+    const getDurationInMilliseconds = (
+        startTime: string,
+        endTime: string
+    ): number => {
+        const start = new Date(startTime).getTime();
+        const end = new Date(endTime).getTime();
+        return end - start;
+    };
 
+    const getAverageRaceDuration = (): string => {
         const totalDuration = races
             .filter((race) => race.end_time !== null)
             .reduce((accumulator: number, race: RaceInterface) => {
@@ -73,15 +78,6 @@ export default function Home() {
     };
 
     const getTotalRacesDuration = (): string => {
-        const getDurationInMilliseconds = (
-            startTime: string,
-            endTime: string
-        ): number => {
-            const start = new Date(startTime).getTime();
-            const end = new Date(endTime).getTime();
-            return end - start;
-        };
-
         const totalDuration = races.reduce(
             (accumulator: number, race: RaceInterface) => {
                 return (
@@ -112,7 +108,7 @@ export default function Home() {
         return `${seconds} sec${seconds > 1 ? 's' : ''}`;
     };
 
-    const getTotalCoveredDistance = () => {
+    const getTotalCoveredDistance = (): string => {
         const totalDistance = races.reduce((sum, race) => {
             return sum + race.distance_covered;
         }, 0);
@@ -146,6 +142,72 @@ export default function Home() {
 
         return `${seconds} sec${seconds > 1 ? 's' : ''}`;
     };
+
+    const getRaceTypePieChartOptions = (): PieChartProps => {
+        const autoModeRaceY =
+            (races.filter((race: RaceInterface) => race.type === 'auto')
+                .length /
+                races.length) *
+            100;
+        const manualModeRaceY =
+            (races.filter((race: RaceInterface) => race.type === 'manual')
+                .length /
+                races.length) *
+            100;
+
+        const raceTypePieChartOptions: PieChartProps = {
+            options: {
+                animationEnabled: true,
+                exportEnabled: false,
+                theme: 'light1',
+                data: [
+                    {
+                        type: 'pie',
+                        indexLabel: '{label}: {y}%',
+                        startAngle: -90,
+                        dataPoints: [
+                            {
+                                y: Number(autoModeRaceY.toFixed(2)),
+                                label: 'Auto',
+                            },
+                            {
+                                y: Number(manualModeRaceY.toFixed(2)),
+                                label: 'Manuel',
+                            },
+                        ],
+                    },
+                ],
+            },
+        };
+
+        return raceTypePieChartOptions;
+    };
+
+    const getLastRacesAverageSpeedSimpleLineChartOptions =
+        (): SimpleColumnChartProps => {
+            const lastRaces = races.slice(-5);
+
+            const dataPoints = lastRaces.map((race: RaceInterface) => {
+                return {
+                    label: new Date(race.start_time).toLocaleDateString(),
+                    y: race.average_speed,
+                };
+            });
+
+            const simpleColumnOption: SimpleColumnChartProps = {
+                options: {
+                    data: [
+                        {
+                            type: 'column',
+                            indexLabel: '{y}',
+                            dataPoints: dataPoints,
+                        },
+                    ],
+                },
+            };
+
+            return simpleColumnOption;
+        };
 
     return (
         <div className="dashboard-container">
@@ -199,13 +261,26 @@ export default function Home() {
 
                 <div className="dashboard-charts-section">
                     <div className="dashboard-chart">
-                        <span>Suivie de la ligne</span>
+                        <span>Répartition des types de courses</span>
+                        <Chart
+                            options={getRaceTypePieChartOptions()}
+                            width="80%"
+                            height="80%"
+                        />
                     </div>
+
                     <div className="dashboard-chart">
-                        <span>Vitesse maximale et moyenne</span>
+                        <span>Vitesse moyenne sur vos dernières courses</span>
+                        <Chart
+                            options={getLastRacesAverageSpeedSimpleLineChartOptions()}
+                        />
                     </div>
+
                     <div className="dashboard-vehicle-image">
-                        <span>Image du véhicule</span>
+                        <img
+                            src={FreenoveVehicle}
+                            alt="freenove esp32 vehicle image"
+                        />
                     </div>
                 </div>
             </div>
