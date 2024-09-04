@@ -1,8 +1,8 @@
 import { ApiReturn } from '@shared/interfaces/utils/api.interface';
-import ApiVehicle from '@shared/api/race/race.api';
+import ApiRace from '@shared/api/race/race.api';
 import store from '~/store/store';
 
-class ApiVehicleHandler {
+class ApiRaceHandler {
     static async getHistoryRace(): Promise<ApiReturn> {
         const state = store.getState();
         const token = state.auth.token;
@@ -16,10 +16,7 @@ class ApiVehicleHandler {
             };
         }
 
-        const { data, error, isLoading } = await ApiVehicle.getHistoryRace(
-            userId,
-            token
-        );
+        const {data, error, isLoading } = await ApiVehicle.getHistoryRace(userId, token);
 
         return { data, error, isLoading };
     }
@@ -36,8 +33,7 @@ class ApiVehicleHandler {
             };
         }
 
-        const { data, error, isLoading } =
-            await ApiVehicle.getLeaderboardRace(token);
+        const { data, error, isLoading } = await ApiVehicle.getLeaderboardRace(token);
 
         return { data, error, isLoading };
     }
@@ -54,13 +50,10 @@ class ApiVehicleHandler {
             };
         }
 
-        const { data, error, isLoading } = await ApiVehicle.deleteRace(
-            raceId,
-            token
-        );
-
-        return { data, error, isLoading };
+        const { data, error, isLoading } = await ApiVehicle.deleteRace(raceId, token);
+        
+        return { data, error, isLoading }
     }
 }
 
-export default ApiVehicleHandler;
+export default ApiRaceHandler;

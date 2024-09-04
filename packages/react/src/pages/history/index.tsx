@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '~/store/store';
-import { HistoryRaceListProps } from '~/interfaces/other/race.interface';
-import ApiVehicleHandler from '~/api/race/api.race.handler';
+import ApiRaceHandler from '~/api/race/api.race.handler';
 import HistoryRaceTable from '~/components/ui/historyRaceTable';
 import SearchBar from '~/components/common/searchBar';
 import DatePicker from '~/components/common/datePicker';
@@ -11,6 +10,7 @@ import Loader from '~/components/feedback/loader';
 import Button from '~/components/common/button';
 import { FaSync } from 'react-icons/fa';
 import './style.css';
+import { HistoryRaceListProps } from '~/interfaces/other/race.interface';
 
 function History() {
     const [races, setRaces] = useState<HistoryRaceListProps[]>([]);
@@ -27,7 +27,7 @@ function History() {
     const loadRaces = async () => {
         setStatus('loading');
         setError(null);
-        const { data, error } = await ApiVehicleHandler.getHistoryRace();
+        const { data, error } = await ApiRaceHandler.getHistoryRace();
 
         if (error) {
             setError(error);

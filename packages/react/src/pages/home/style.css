@@ -1,0 +1,137 @@
+.dashboard-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0 auto;
+}
+
+.dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    max-width: 1400px;
+    width: 100%;
+}
+
+.dashboard-top-section {
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+
+    .dashboard-video-feed {
+        flex: 3;
+        height: 400px;
+        background-color: #d9e4ff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+
+    .dashboard-movement-history-and-covered-distance {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        height: 400px;
+
+        .dashboard-movement-history,
+        .dashboard-covered-distance {
+            width: 100%;
+            padding: 10px;
+            background-color: white;
+        }
+
+        .dashboard-movement-history {
+            flex: 4;
+            padding: 10px;
+            background-color: white;
+        }
+    }
+}
+
+.dashboard-info-cards {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.dashboard-charts-section {
+    display: flex;
+    gap: 20px;
+
+    span {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+}
+
+.dashboard-chart {
+    flex: 1;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 5px;
+}
+
+.dashboard-vehicle-image {
+    flex: 1;
+    height: auto;
+    background-color: #a0cfff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.dashboard-video-feed,
+.dashboard-movement-history,
+.dashboard-covered-distance,
+.dashboard-chart,
+.dashboard-vehicle-image {
+    border-radius: 5px;
+}
+
+@media (max-width: 1024px) {
+    .dashboard {
+        gap: 10px;
+        max-height: 100vh;
+        overflow-y: auto;
+        padding: 20px;
+    }
+
+    .dashboard-top-section,
+    .dashboard-charts-section {
+        flex-direction: column;
+    }
+
+    .dashboard-video-feed,
+    .dashboard-movement-history-and-covered-distance,
+    .dashboard-chart,
+    .dashboard-vehicle-image {
+        flex: none;
+        width: 100%;
+        min-width: 400px;
+    }
+
+    .dashboard-chart {
+        height: 500px;
+    }
+}

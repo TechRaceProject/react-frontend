@@ -12,7 +12,6 @@ import History from '~/pages/history';
 import Vehicle from '~/pages/vehicle';
 import Err from '~/pages/err';
 import './App.css';
-import Graph from './pages/graph';
 
 function AuthRoutes() {
     return (
@@ -30,8 +29,6 @@ function MainRoutes() {
             <Route path="/Top" element={<Temp />} />
             <Route path="/Profil" element={<Temp />} />
             <Route path="/Vehicle" element={<Vehicle />} />
-
-            <Route path="/Graph" element={<Graph />} />
 
             <Route path="*" element={<Err />} />
         </Routes>

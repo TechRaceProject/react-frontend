@@ -23,12 +23,6 @@ const navData: NavItemProps[] = [
     },
     { path: '/Profil', icon: FaUser, name: 'Profil', label: 'Profile' },
     {
-        path: '/Graph',
-        icon: FaTrophy,
-        name: 'Graph',
-        label: 'Graph',
-    },
-    {
         path: '/Vehicle',
         icon: FaCarAlt,
         name: 'Vehicle',
