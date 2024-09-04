@@ -280,7 +280,7 @@ export default function Home() {
                     </div>
 
                     <div className="dashboard-chart">
-                        <span>Vitesse moyenne sur vos dernières courses</span>
+                        <span>Vitesse moyenne sur vos dernières courses (m/s)</span>
                         <Chart
                             options={getLastRacesAverageSpeedSimpleLineChartOptions()}
                         />
