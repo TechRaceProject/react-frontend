@@ -5,11 +5,12 @@ import CanvasJSReact from '@canvasjs/react-charts';
 
 export type SimpleColumnChartProps = {
     options: {
-        title: {
+        title?: {
             text: string;
         };
         data: {
             type: 'column';
+            indexLabel?: string;
             dataPoints: {
                 label: string;
                 y: number;

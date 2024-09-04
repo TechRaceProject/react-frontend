@@ -9,7 +9,10 @@ import { RootState } from '~/store/store';
 import { RaceInterface } from '@shared/interfaces/other/race.interface';
 import ApiRace from '@shared/api/race/race.api';
 import { AuthContext } from '~/context/auth.context';
-import Chart, { PieChartProps } from '~/components/charts';
+import Chart, {
+    PieChartProps,
+    SimpleColumnChartProps,
+} from '~/components/charts';
 
 export default function Home() {
     const [races, setRaces] = useState<RaceInterface[]>([]);
@@ -105,7 +108,7 @@ export default function Home() {
         return `${seconds} sec${seconds > 1 ? 's' : ''}`;
     };
 
-    const getTotalCoveredDistance = () => {
+    const getTotalCoveredDistance = (): string => {
         const totalDistance = races.reduce((sum, race) => {
             return sum + race.distance_covered;
         }, 0);
@@ -165,7 +168,7 @@ export default function Home() {
                         dataPoints: [
                             {
                                 y: Number(autoModeRaceY.toFixed(2)),
-                                label: 'Automatique',
+                                label: 'Auto',
                             },
                             {
                                 y: Number(manualModeRaceY.toFixed(2)),
@@ -179,6 +182,32 @@ export default function Home() {
 
         return raceTypePieChartOptions;
     };
+
+    const getLastRacesAverageSpeedSimpleLineChartOptions =
+        (): SimpleColumnChartProps => {
+            const lastRaces = races.slice(-5);
+
+            const dataPoints = lastRaces.map((race: RaceInterface) => {
+                return {
+                    label: new Date(race.start_time).toLocaleDateString(),
+                    y: race.average_speed,
+                };
+            });
+
+            const simpleColumnOption: SimpleColumnChartProps = {
+                options: {
+                    data: [
+                        {
+                            type: 'column',
+                            indexLabel: '{y}',
+                            dataPoints: dataPoints,
+                        },
+                    ],
+                },
+            };
+
+            return simpleColumnOption;
+        };
 
     return (
         <div className="dashboard-container">
@@ -241,7 +270,10 @@ export default function Home() {
                     </div>
 
                     <div className="dashboard-chart">
-                        <span>Vitesse maximale et moyenne</span>
+                        <span>Vitesse moyenne sur vos dernières courses</span>
+                        <Chart
+                            options={getLastRacesAverageSpeedSimpleLineChartOptions()}
+                        />
                     </div>
 
                     <div className="dashboard-vehicle-image">
