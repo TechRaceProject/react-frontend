@@ -16,13 +16,6 @@ const navData: NavItemProps[] = [
         label: 'Meilleurs scores',
     },
     { path: '/Profil', icon: FaUser, name: 'Profil', label: 'Profile' },
-
-    {
-        path: '/Graph',
-        icon: FaTrophy,
-        name: 'Graph',
-        label: 'Graph',
-    },
 ];
 
 export default navData;
