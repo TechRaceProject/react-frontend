@@ -14,13 +14,13 @@ import authReducer from './slices/auth.slice';
 import userReducer from './slices/user.slice';
 import navReducer from './slices/nav.slice';
 import sectionReducer from './slices/section.slice';
-import vehicleReducer from './slices/vehicle.slice';
+import vehicleStateReducer from './slices/vehicle_state.slice';
 
 const rootReducer = combineReducers({
     auth: authReducer,
     user: userReducer,
     nav: navReducer,
-    vehicle: vehicleReducer,
+    vehicle_state: vehicleStateReducer,
     section: sectionReducer,
 });
 
