@@ -15,49 +15,8 @@ class ApiVehicleHandler {
             };
         }
 
-        const { data, error, isLoading } = await ApiVehicle.getVehicles(token);
-        return { data, error, isLoading };
-    }
-
-    static async getVehicleState(vehicleId: number): Promise<ApiReturn> {
-        const state = store.getState();
-        const token = state.auth.token;
-
-        if (!token) {
-            return {
-                data: null,
-                error: 'Token is missing.',
-                isLoading: false,
-            };
-        }
-
-        const { data, error, isLoading } = await ApiVehicle.getVehicleState(
-            vehicleId,
-            token
-        );
-        return { data, error, isLoading };
-    }
-
-    static async updateVehicleState(
-        vehicleId: number,
-        body: object
-    ): Promise<ApiReturn> {
-        const state = store.getState();
-        const token = state.auth.token;
-
-        if (!token) {
-            return {
-                data: null,
-                error: 'Token is missing.',
-                isLoading: false,
-            };
-        }
-
-        const { data, error, isLoading } = await ApiVehicle.updateVehicleState(
-            vehicleId,
-            token,
-            body
-        );
+        const { data, error, isLoading } =
+            await ApiVehicle.getAllVehicles(token);
         return { data, error, isLoading };
     }
 }

@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Button from '~/components/common/button';
 import Select from '~/components/common/select';
-import useVehicleStateUpdater from '~/hooks/useVehicleStateUpdater';
+import { closeModal } from '~/store/slices/section.slice';
+import { setVehicleState } from '~/store/slices/vehicle_state.slice';
 import { RootState } from '~/store/store';
 
 const faceOptions = [
@@ -18,13 +19,12 @@ const faceOptions = [
 ];
 
 function FaceControl() {
-    const face = useSelector(
-        (state: RootState) => state.vehicle.vehicleState?.face
-    );
+    const dispatch = useDispatch();
+    const vehicleState = useSelector((state: RootState) => state.vehicle_state);
+    const face = useSelector((state: RootState) => state.vehicle_state.face);
     const [selectedFace, setSelectedFace] = useState<string>(
         face?.toString() || '0'
     );
-    const updateVehicleState = useVehicleStateUpdater();
 
     useEffect(() => {
         if (face !== undefined) setSelectedFace(face.toString());
@@ -34,13 +34,14 @@ function FaceControl() {
         setSelectedFace(e.target.value);
     };
 
-    const handleSave = async () => {
-        try {
-            const payload = { face: Number(selectedFace) };
-            await updateVehicleState(payload);
-        } catch (error) {
-            console.error('Erreur lors de la mise à jour de Face:', error);
-        }
+    const validate = () => {
+        const payload = {
+            ...vehicleState,
+            face: Number(selectedFace),
+        };
+
+        dispatch(setVehicleState(payload));
+        dispatch(closeModal());
     };
 
     return (
@@ -48,12 +49,12 @@ function FaceControl() {
             <Select
                 id="face-selection"
                 name="face"
-                label="Sélection Visage"
+                label="Selectionnez le visage qui sera affiché sur le robot"
                 options={faceOptions}
                 value={selectedFace}
                 onChange={handleChange}
             />
-            <Button text="Sauvegarder" onClick={handleSave} outline />
+            <Button text="Enregistrer" onClick={validate} outline />
         </>
     );
 }
