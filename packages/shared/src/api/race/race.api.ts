@@ -3,7 +3,7 @@ import { ApiProps, ApiReturn } from '../../interfaces/utils/api.interface';
 import BaseApi from '../base.api';
 
 class ApiRace extends BaseApi {
-    static async getAllUserRaces(
+    static async getHistoryRace(
         userId: number,
         token: string
     ): Promise<ApiReturn> {
