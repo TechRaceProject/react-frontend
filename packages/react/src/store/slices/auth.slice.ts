@@ -1,9 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
-interface AuthState {
-    isLoggedIn: boolean;
-    token: string | null;
-}
+import { AuthState } from '~/interfaces/store/auth.interface';
 
 const initialState: AuthState = {
     isLoggedIn: false,

@@ -36,8 +36,7 @@ class ApiRaceHandler {
             };
         }
 
-        const { data, error, isLoading } =
-            await ApiRace.getLeaderboardRace(token);
+        const { data, error, isLoading } = await ApiRace.getAllRaces(token);
 
         return { data, error, isLoading };
     }

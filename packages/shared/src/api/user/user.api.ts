@@ -1,17 +1,15 @@
-import { ApiProps, ApiReturn } from "../../interfaces/utils/api.interface";
-import { api } from "../../utils/api.utils";
-import BaseApi from "../base.api";
+import { ApiProps, ApiReturn } from '../../interfaces/utils/api.interface';
+import { api } from '../../utils/api.utils';
+import BaseApi from '../base.api';
 
-
-// extends Api
-class UserApi extends BaseApi {
+class ApiUser extends BaseApi {
     static async getUsers(): Promise<ApiReturn> {
         const apiProps: ApiProps = {
             url: 'http://127.0.0.1:8090/api/users',
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${UserApi.getToken}`,
+                Authorization: `Bearer ${ApiUser.getToken}`,
             },
         };
 
@@ -24,7 +22,7 @@ class UserApi extends BaseApi {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${UserApi.getToken}`,
+                Authorization: `Bearer ${ApiUser.getToken}`,
             },
         };
 
@@ -37,7 +35,7 @@ class UserApi extends BaseApi {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${UserApi.getToken}`,
+                Authorization: `Bearer ${ApiUser.getToken}`,
             },
         };
 
@@ -50,7 +48,7 @@ class UserApi extends BaseApi {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${UserApi.getToken}`,
+                Authorization: `Bearer ${ApiUser.getToken}`,
             },
             body: userData,
         };
@@ -64,7 +62,7 @@ class UserApi extends BaseApi {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${UserApi.getToken}`,
+                Authorization: `Bearer ${ApiUser.getToken}`,
             },
         };
 
@@ -72,4 +70,4 @@ class UserApi extends BaseApi {
     }
 }
 
-export default UserApi;
+export default ApiUser;
