@@ -26,7 +26,7 @@ const navData: NavItemProps[] = [
         path: '/Vehicle',
         icon: FaCarAlt,
         name: 'Vehicle',
-        label: 'Vehicle',
+        label: 'Véhicule',
     },
 ];
 
