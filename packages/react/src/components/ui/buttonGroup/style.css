@@ -1,0 +1,11 @@
+.group-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.group-buttons button {
+    width: auto !important;
+}

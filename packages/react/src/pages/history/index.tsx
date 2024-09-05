@@ -35,10 +35,6 @@ function History() {
         } else {
             const racesArray = data?.data || [];
             setRaces(racesArray);
-            console.log(
-                'Races state after setting (inside loadRaces):',
-                racesArray
-            );
             setStatus('succeeded');
         }
     };

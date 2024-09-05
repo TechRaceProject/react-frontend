@@ -1,5 +1,5 @@
-import { ApiReturn } from '@shared/interfaces/utils/api.interface';
 import ApiRace from '@shared/api/race/race.api';
+import { ApiReturn } from '@shared/interfaces/utils/api.interface';
 import store from '~/store/store';
 
 class ApiRaceHandler {
@@ -36,8 +36,7 @@ class ApiRaceHandler {
             };
         }
 
-        const { data, error, isLoading } =
-            await ApiRace.getLeaderboardRace(token);
+        const { data, error, isLoading } = await ApiRace.getAllRaces(token);
 
         return { data, error, isLoading };
     }

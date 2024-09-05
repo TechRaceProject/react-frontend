@@ -2,7 +2,7 @@ export type InputProps = {
     id: string;
     label?: string;
     name: string;
-    value: string;
+    value: string | number;
     type?: string;
     placeholder?: string;
     error?: string;
