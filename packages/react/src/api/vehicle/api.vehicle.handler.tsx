@@ -17,6 +17,7 @@ class ApiVehicleHandler {
 
         const { data, error, isLoading } =
             await ApiVehicle.getAllVehicles(token);
+
         return { data, error, isLoading };
     }
 }

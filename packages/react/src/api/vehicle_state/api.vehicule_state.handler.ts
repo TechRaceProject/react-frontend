@@ -35,6 +35,7 @@ class ApiVehiculeStateHandler {
 
         const { data, error, isLoading } =
             await ApiVehicleState.getAllVehicleStatesOfAUser(userId, token);
+
         return { data, error, isLoading };
     }
 
@@ -57,15 +58,6 @@ class ApiVehiculeStateHandler {
                 token,
                 vehicleState
             );
-
-        if (data && !error) {
-            if (data.errors) {
-                const mapErrors = data.errors.map(
-                    (error: { message: string }) => error.message
-                );
-                return { data, error: mapErrors.join(', '), isLoading };
-            }
-        }
 
         return { data, error, isLoading };
     }
