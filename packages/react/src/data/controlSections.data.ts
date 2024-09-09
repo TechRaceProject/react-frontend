@@ -9,5 +9,4 @@ export const controlSectionsData: SectionData[] = [
     { name: 'ledAnimation', label: 'Animation des LED' },
     { name: 'lcdPrimary', label: 'Couleur Principale des LED' },
     { name: 'buzzerAlarm', label: 'Buzzer' },
-    { name: 'videoActivation', label: 'Flux vidéo' },
 ];
