@@ -23,7 +23,7 @@ class ApiRace extends BaseApi {
 
     static async getLeaderboardRace(token: string): Promise<ApiReturn> {
         const apiProps: ApiProps = {
-            url: 'http://localhost:8000/api/races',
+            url: 'http://localhost:8000/api/races/',
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
