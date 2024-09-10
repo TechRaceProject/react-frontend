@@ -1,11 +1,14 @@
 import { ApiProps, ApiReturn } from '../../interfaces/utils/api.interface';
 import { api } from '../../utils/api.utils';
 import BaseApi from '../base.api';
+import { getHostUrl } from '../../../index';
 
 class ApiVehicleState extends BaseApi {
     static async getAllVehicleStatesOfAUser(userId: number, token: string): Promise<ApiReturn> {
+        const baseUrl = getHostUrl();
+
         const apiProps: ApiProps = {
-            url: `http://localhost:8000/api/users/${userId}/vehicle-states`,
+            url: `http://${baseUrl}/api/users/${userId}/vehicle-states`,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -22,8 +25,10 @@ class ApiVehicleState extends BaseApi {
         vehicleStateId: number,
         token: string
     ): Promise<ApiReturn> {
+        const baseUrl = getHostUrl();
+
         const apiProps: ApiProps = {
-            url: `http://localhost:8000/api/vehicle-states/${vehicleStateId}`,
+            url: `http://${baseUrl}/api/vehicle-states/${vehicleStateId}`,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -40,8 +45,10 @@ class ApiVehicleState extends BaseApi {
         token: string,
         body: object
     ): Promise<ApiReturn> {
+        const baseUrl = getHostUrl();
+
         const apiProps: ApiProps = {
-            url: `http://localhost:8000/api/vehicle-states/${vehicleStateId}`,
+            url: `http://${baseUrl}/api/vehicle-states/${vehicleStateId}`,
             method: 'PATCH',
             headers: {
                 Authorization: `Bearer ${token}`,

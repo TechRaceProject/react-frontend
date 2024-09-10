@@ -1,4 +1,8 @@
 import { MessageEvent } from 'react-native-sse';
+import { SendBuzzerCommand } from '../commands/SendBuzzerCommand';
+import { SendHeadRotationCommand } from '../commands/SendHeadRotationCommand';
+import { SendLedAnimationCommand } from '../commands/SendLedAnimationCommand';
+import { SendPrimaryLedColorCommand } from '../commands/SendPrimaryLedColorCommand';
 
 export const handleSSEMessage = (event: MessageEvent) => {
     try {
@@ -78,17 +82,7 @@ const handleVehicleStateMessage = (data: VehicleStateFromSSE) => {
             "['handleVehicleStateMessage'] buzzer_alarm : ",
             attributes.buzzer_alarm
         );
-    }
-
-    if (attributes.face !== undefined) {
-        console.log("['handleVehicleStateMessage'] face : ", attributes.face);
-    }
-
-    if (attributes.video_activated !== undefined) {
-        console.log(
-            "['handleVehicleStateMessage'] video_activated : ",
-            attributes.video_activated
-        );
+        SendBuzzerCommand(attributes.buzzer_alarm)
     }
 
     if (attributes.led_animation !== undefined) {
@@ -96,13 +90,17 @@ const handleVehicleStateMessage = (data: VehicleStateFromSSE) => {
             "['handleVehicleStateMessage'] led_animation : ",
             attributes.led_animation
         );
+
+        SendLedAnimationCommand(attributes.led_animation);
     }
 
     if (attributes.head_angle !== undefined) {
         console.log(
             "['handleVehicleStateMessage'] head_angle : ",
-            attributes.head_angle
+            Object.values(attributes.head_angle)
         );
+
+        SendHeadRotationCommand(Object.values(attributes.head_angle))
     }
 
     if (attributes.buzzer_variable !== undefined) {
@@ -118,6 +116,8 @@ const handleVehicleStateMessage = (data: VehicleStateFromSSE) => {
                 "['handleVehicleStateMessage'] primary_led_colors : ",
                 primaryLedColor
             );
+
+            SendPrimaryLedColorCommand(Object.values(primaryLedColor))
         }
     }
 };

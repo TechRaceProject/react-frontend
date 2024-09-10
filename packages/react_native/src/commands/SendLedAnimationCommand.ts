@@ -8,8 +8,9 @@ export const SendLedAnimationCommand = (ledAnimation: number) => {
             CommandCar.LedAnimation,
             ledAnimation
         );
-
-        socket.send(JSON.stringify(command));
+        if (socket.readyState === WebSocket.OPEN) {
+            socket.send(JSON.stringify(command));
+        }
     } catch (error) {
         console.error(error);
     }

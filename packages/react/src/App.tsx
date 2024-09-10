@@ -12,6 +12,7 @@ import History from '~/pages/history';
 import Vehicle from '~/pages/vehicle';
 import Err from '~/pages/err';
 import './App.css';
+import { setHostUrl } from '../../shared/index';
 
 function AuthRoutes() {
     return (
@@ -50,6 +51,7 @@ function AppContent() {
 }
 
 function App() {
+    setHostUrl('localhost:8000');
     return (
         <AuthProvider>
             <NavProvider>

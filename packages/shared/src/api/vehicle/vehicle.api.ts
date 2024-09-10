@@ -1,10 +1,13 @@
 import { ApiProps, ApiReturn } from '../../interfaces/utils/api.interface';
 import { api } from '../../utils/api.utils';
+import { getHostUrl } from '../../../index';
 
 class ApiVehicle {
     static async getAllVehicles(token: string): Promise<ApiReturn> {
+        const baseUrl = getHostUrl();
+
         const apiProps: ApiProps = {
-            url: 'http://localhost:8000/api/vehicles/',
+            url: `http://${baseUrl}/api/vehicles/`,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

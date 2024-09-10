@@ -53,6 +53,8 @@ const TechRaceScreen: React.FC = () => {
     const [raceStartedOnce, setRaceStartedOnce] = useState(false);
     const [showHistoryPopup, setShowHistoryPopup] = useState(false);
 
+    const navigation = useNavigation();
+
     useEffect(() => {
         const fetchVehicleState = async () => {
             const vehicleStates = await getUserVehicleState(1); // @TODO : fix user ID and token
@@ -299,7 +301,7 @@ const TechRaceScreen: React.FC = () => {
                         labelTop="MODE"
                         labelBottom="CAMERA"
                         iconSource={require('../assets/images/Camera-mode.png')}
-                        onPress={() => console.log('Mode caméra pressé')}
+                        onPress={() => navigation.navigate('CarVideoControl')}
                         textStyle={[styles.buttonText, styles.fontFamily]}
                     />
                     <IconCustomButton
