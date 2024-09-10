@@ -16,18 +16,18 @@ const navData: NavItemProps[] = [
         label: 'Historique',
     },
     {
-        path: '/Top',
+        path: '/Leaderboard',
         icon: FaTrophy,
-        name: 'Top',
+        name: 'Leaderboard',
         label: 'Meilleurs scores',
     },
-    { path: '/Profil', icon: FaUser, name: 'Profil', label: 'Profile' },
     {
         path: '/Vehicle',
         icon: FaCarAlt,
         name: 'Vehicle',
         label: 'Véhicule',
     },
+    { path: '/Profil', icon: FaUser, name: 'Profil', label: 'Profile' },
 ];
 
 export default navData;
