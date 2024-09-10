@@ -15,8 +15,14 @@ export async function api({
 
         const data = await response.json();
 
-        return { data, error: data.error || null, isLoading: false };
+        if (data && data.errors) {
+            const mapErrors = data.errors.map(
+                (error: { message: string }) => error.message
+            );
+            return { data, error: mapErrors.join(', '), isLoading: false };
+        }
 
+        return { data, error: data.error || null, isLoading: false };
     } catch (err) {
         console.error('[@shared.api.utils.tsx] API error:', err);
 
