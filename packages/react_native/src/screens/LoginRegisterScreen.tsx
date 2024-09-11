@@ -218,7 +218,7 @@ const styles = StyleSheet.create({
     position: 'absolute',
     width: '100%',
     height: '100%',
-    opacity: 0.4,
+    opacity: 0.7,
     backgroundColor: 'rgb(0,0,0)',
   },
   error: {
