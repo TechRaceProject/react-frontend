@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 
 import CarControlScreen from './src/screens/CarControlScreen';
 import {
@@ -11,6 +11,8 @@ import {
 } from 'react-native-sse';
 import useSSE from './src/hooks/useServerSentEvent';
 import { handleSSEMessage } from './src/utils/handleSSEMessage';
+
+import CarControlScreen from './src/screens/CarControlScreen';
 
 function App(): React.JSX.Element {
     /**
@@ -46,8 +48,6 @@ function App(): React.JSX.Element {
 const styles = StyleSheet.create({
     appContainer: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
     },
 });
 
