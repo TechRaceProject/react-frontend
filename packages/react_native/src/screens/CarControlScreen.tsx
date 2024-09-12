@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import socket from '../socket.config';
 import { CommandCar } from '../enums/CarCommandEnum';
-import { createCarCommand } from '../validators/CarCommandValidator';
+import { createCarCommandValidator } from '../validators/CarCommandValidator';
 
 const CarControlScreen = () => {
     const [wheel1, setWheel1] = useState<string>('');
@@ -36,7 +36,7 @@ const CarControlScreen = () => {
 
     const sendLedAnimationCommand = () => {
         try {
-            const command = createCarCommand(
+            const command = createCarCommandValidator(
                 CommandCar.LedAnimation,
                 parseInt(ledAnimation, 10) || 0
             );

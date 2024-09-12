@@ -5,7 +5,7 @@ export interface CarCommand {
     data: number | number[];
 }
 
-export function createCarCommand(
+export function createCarCommandValidator(
     command: CommandCar,
     data: number | number[]
 ): CarCommand {
