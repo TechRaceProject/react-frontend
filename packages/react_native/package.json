@@ -13,11 +13,8 @@
         "format:fix": "prettier --write . --config ../../.prettierrc"
     },
     "dependencies": {
-        "js-yaml": "^4.1.0",
         "react": "18.2.0",
         "react-native": "0.74.2",
-        "react-native-webview": "^13.10.5",
-        "socket.io-client": "^4.7.5",
         "react-native-sse": "^1.2.1"
     },
     "devDependencies": {
