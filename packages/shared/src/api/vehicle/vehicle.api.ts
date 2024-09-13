@@ -4,7 +4,7 @@ import { api } from '../../utils/api.utils';
 class ApiVehicle {
     static async getAllVehicles(token: string): Promise<ApiReturn> {
         const apiProps: ApiProps = {
-            url: 'http://localhost:8000/api/vehicles/',
+            url: `http://${BaseApi.baseUrl}/api/vehicles/`,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

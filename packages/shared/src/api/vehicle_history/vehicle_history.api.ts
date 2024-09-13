@@ -8,7 +8,7 @@ class ApiVehicleHistory extends BaseApi {
         token: string
     ): Promise<ApiReturn> {
         const apiProps: ApiProps = {
-            url: "http://localhost:8000/api/vehicle-histories/",
+            url: `http://${BaseApi.baseUrl}/api/vehicle-histories/`,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
