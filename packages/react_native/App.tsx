@@ -16,9 +16,7 @@ import {
 import useSSE from './src/hooks/useServerSentEvent';
 import { handleSSEMessage } from './src/utils/handleSSEMessage';
 
-import LoginRegisterScreen from './src/screens/LoginRegisterScreen';
 import TechRaceScreen from './src/screens/TechRaceScreen';
-import BottomNavigationBar from './src/components/BottomNavigationBar';
 import CarControlScreen from './src/screens/CarControlScreen';
 
 import { setHostUrl } from '../shared/index';
@@ -72,23 +70,16 @@ function App(): React.JSX.Element {
         <SafeAreaView style={[styles.appContainer]}>
             <NavigationContainer>
                 <Stack.Navigator initialRouteName="LoginRegister">
-                    {/*<Stack.Screen*/}
-                    {/*    name="LoginRegister"*/}
-                    {/*    component={LoginRegisterScreen}*/}
-                    {/*    options={{*/}
-                    {/*        headerShown: false,*/}
-                    {/*    }}*/}
-                    {/*/>*/}
-                    {/*<Stack.Screen*/}
-                    {/*    name="TechRace"*/}
-                    {/*    component={TechRaceScreen}*/}
-                    {/*    options={{*/}
-                    {/*        headerShown: false,*/}
-                    {/*    }}*/}
-                    {/*/>*/}
                     <Stack.Screen
                         name="CarVideoControl"
                         component={CarControlScreen}
+                        options={{
+                            headerShown: false,
+                        }}
+                    />
+                    <Stack.Screen
+                        name="TechRace"
+                        component={TechRaceScreen}
                         options={{
                             headerShown: false,
                         }}
