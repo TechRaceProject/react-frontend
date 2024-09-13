@@ -5,7 +5,7 @@ import BaseApi from '../base.api';
 class ApiVehicleState extends BaseApi {
     static async getAllVehicleStatesOfAUser(userId: number, token: string): Promise<ApiReturn> {
         const apiProps: ApiProps = {
-            url: `http://localhost:8000/api/users/${userId}/vehicle-states`,
+            url: `http://${BaseApi.baseUrl}api/users/${userId}/vehicle-states`,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -23,7 +23,7 @@ class ApiVehicleState extends BaseApi {
         token: string
     ): Promise<ApiReturn> {
         const apiProps: ApiProps = {
-            url: `http://localhost:8000/api/vehicle-states/${vehicleStateId}`,
+            url: `http://${BaseApi.baseUrl}/api/vehicle-states/${vehicleStateId}`,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -41,7 +41,7 @@ class ApiVehicleState extends BaseApi {
         body: object
     ): Promise<ApiReturn> {
         const apiProps: ApiProps = {
-            url: `http://localhost:8000/api/vehicle-states/${vehicleStateId}`,
+            url: `http://${BaseApi.baseUrl}/api/vehicle-states/${vehicleStateId}`,
             method: 'PATCH',
             headers: {
                 Authorization: `Bearer ${token}`,

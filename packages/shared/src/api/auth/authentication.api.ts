@@ -6,7 +6,7 @@ import BaseApi from '../base.api';
 class ApiAuth extends BaseApi {
     static async register(registerData: authFormPropsApi): Promise<ApiReturn> {
         const apiProps: ApiProps = {
-            url: 'http://localhost:8000/api/signup',
+            url: `http://${BaseApi.baseUrl}/api/signup`,
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -20,8 +20,9 @@ class ApiAuth extends BaseApi {
     }
 
     static async login(loginData: authFormPropsApi): Promise<ApiReturn> {
+        console.log('baseUrl', baseUrl);
         const apiProps: ApiProps = {
-            url: 'http://localhost:8000/api/login',
+            url: `http://${BaseApi.baseUrl}/api/login`,
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

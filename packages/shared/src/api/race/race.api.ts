@@ -8,7 +8,7 @@ class ApiRace extends BaseApi {
         token: string
     ): Promise<ApiReturn> {
         const apiProps: ApiProps = {
-            url: `http://localhost:8000/api/users/${userId}/races`,
+            url: `http://${BaseApi.baseUrl}/api/users/${userId}/races`,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -22,7 +22,7 @@ class ApiRace extends BaseApi {
     }
     static async getAllRaces(token: string): Promise<ApiReturn> {
         const apiProps: ApiProps = {
-            url: 'http://localhost:8000/api/races',
+            url: `http://${BaseApi.baseUrl}/api/races`,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -38,7 +38,7 @@ class ApiRace extends BaseApi {
     // New method to delete a race by ID
     static async deleteRace(raceId: number, token: string): Promise<ApiReturn> {
         const apiProps: ApiProps = {
-            url: `http://localhost:8000/api/races/${raceId}`,
+            url: `http://${BaseApi.baseUrl}/api/races/${raceId}`,
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
