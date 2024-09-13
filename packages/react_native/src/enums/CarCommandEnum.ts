@@ -8,4 +8,6 @@ export enum CommandCar {
     BuzzerAlarm = 7,
     BuzzerAlarmFrequency = 8,
     VideoCaptor = 9,
+    VehiculeMode=10,
+    RaceMode=12,
 }
