@@ -2,11 +2,11 @@ import { CommandCar } from '../enums/CarCommandEnum';
 import { createCarCommandValidator } from '../validators/CarCommandValidator';
 import socket from '../socket.config';
 
-export const SendLedAnimationCommand = (ledAnimation: number) => {
+export const SendHeadRotationCommand = (HeadRotation: number[]) => {
     try {
         const command = createCarCommandValidator(
-            CommandCar.LedAnimation,
-            ledAnimation
+            CommandCar.HeadRotation,
+            HeadRotation
         );
 
         socket.send(JSON.stringify(command));
