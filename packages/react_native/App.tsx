@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
-
+import { SafeAreaView, StyleSheet, View } from 'react-native';
+import TechRaceScreen from './src/screens/TechRaceScreen';
+import BottomNavigationBar from './src/components/BottomNavigationBar';
 import CarControlScreen from './src/screens/CarControlScreen';
 import {
     ErrorEvent,
@@ -12,8 +13,6 @@ import {
 import useSSE from './src/hooks/useServerSentEvent';
 import { handleSSEMessage } from './src/utils/handleSSEMessage';
 
-import CarControlScreen from './src/screens/CarControlScreen';
-
 function App(): React.JSX.Element {
     /**
      * on utilise l'ip : 'http://10.0.2.2:8000' pour se connecter à l'api car
@@ -21,7 +20,6 @@ function App(): React.JSX.Element {
      */
     const apiUrl = 'http://10.0.2.2:8000/api';
 
-    const [joystickPosition, setJoystickPosition] = useState({ x: 0, y: 0 });
 
     useSSE(
         apiUrl + '/sse',
@@ -36,19 +34,27 @@ function App(): React.JSX.Element {
         }
     );
 
-    console.log('joystickPosition', joystickPosition);
 
     return (
-        <SafeAreaView style={styles.appContainer}>
-            <CarControlScreen/>
-        </SafeAreaView>
+      <SafeAreaView style={styles.container}>
+      <TechRaceScreen/>
+      <View style={styles.bottomBar}>
+        <BottomNavigationBar />
+      </View>
+    </SafeAreaView>
     );
 };
 
 const styles = StyleSheet.create({
-    appContainer: {
-        flex: 1,
-    },
+  container: {
+    flex: 1,
+  },
+  bottomBar: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
 });
 
 export default App;
