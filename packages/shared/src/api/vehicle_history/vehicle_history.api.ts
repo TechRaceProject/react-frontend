@@ -26,3 +26,4 @@ class ApiVehicleHistory extends BaseApi {
 }
 
 export default ApiVehicleHistory;
+
