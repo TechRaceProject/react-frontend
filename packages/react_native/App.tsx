@@ -67,6 +67,9 @@ function App(): React.JSX.Element {
                     <Stack.Screen
                         name="LoginRegister"
                         component={LoginRegisterScreen}
+                        options={{
+                            headerShown: false,
+                        }}
                     />
                 </Stack.Navigator>
             </NavigationContainer>

@@ -3,7 +3,6 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-nativ
 import Video from 'react-native-video';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {getHostUrl, setHostUrl } from '../../../shared/index';
 import ApiAuth from '../../../shared/src/api/auth/authentication.api';
 
 interface LoginErrors {
@@ -15,8 +14,8 @@ interface LoginErrors {
 const LoginRegisterScreen = ({ navigation })  => {
   const [isLoginPage, setIsLoginPage] = useState(true);
   const [username, setUsername] = useState<string>('');
-  const [email, setEmail] = useState<string>('test@test.com');
-  const [password, setPassword] = useState<string>('password');
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const [errors, setErrors] = useState<object>({});
   const [isFormValid, setIsFormValid] = useState<boolean>(false);
 
@@ -75,6 +74,7 @@ const LoginRegisterScreen = ({ navigation })  => {
 
       if (!error) {
         await AsyncStorage.setItem('authToken', data.data.token);
+        await AsyncStorage.setItem('user:id', data.data.user.id);
         navigation.navigate('TechRace')
       } else {
         console.error('error !!', error);
@@ -83,16 +83,8 @@ const LoginRegisterScreen = ({ navigation })  => {
     }
   };
 
-  useEffect(() => {
-    console.log('isLoginPage:', isLoginPage);
-    console.log('email:', email);
-  }, [isLoginPage, email]);
-
   return (
     <>
-    <View>
-
-    </View>
     <Video
       source={require('../assets/images/video.mp4')}
       style={styles.video}
