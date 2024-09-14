@@ -14,6 +14,7 @@ function Form({
     dataArr,
     setDataArr,
     label,
+    outline,
 }: FormProps) {
     const linkedInput = (name: string, value: string | boolean) => {
         setDataArr((prevFormData: any) => ({
@@ -79,7 +80,7 @@ function Form({
                     )}
                 </Fragment>
             ))}
-            <Button text={label} submit />
+            <Button text={label} outline={outline} submit />
         </form>
     );
 }

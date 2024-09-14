@@ -1,5 +1,5 @@
 import { Question } from '~/interfaces/other/question.interface';
-import { FaEnvelope, FaLock, FaUser } from 'react-icons/fa';
+import { FaEnvelope, FaLock, FaUser, FaCheck } from 'react-icons/fa';
 
 export const loginFormQuestions: Question[] = [
     {
@@ -19,6 +19,14 @@ export const loginFormQuestions: Question[] = [
         placeholder: 'Entrez votre mot de passe',
         required: true,
         icon: FaLock,
+    },
+    {
+        id: 'rememberMe',
+        label: 'Se souvenir de moi',
+        name: 'rememberMe',
+        type: 'switch',
+        required: false,
+        icon: FaCheck,
     },
 ];
 
@@ -58,5 +66,13 @@ export const registrationFormQuestions: Question[] = [
         placeholder: 'Confirmez votre mot de passe',
         required: true,
         icon: FaLock,
+    },
+    {
+        id: 'rememberMe',
+        label: 'Se souvenir de moi',
+        name: 'rememberMe',
+        type: 'switch',
+        required: false,
+        icon: FaCheck,
     },
 ];

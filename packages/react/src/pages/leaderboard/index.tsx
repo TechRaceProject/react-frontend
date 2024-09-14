@@ -83,7 +83,7 @@ function Leaderboard() {
     return (
         <div className={`leaderboard-page ${containerClass}`}>
             {error && <Alert type="error" message={error} />}
-            <div className="filters">
+            <div className="leaderboard-filter">
                 <Select
                     id="vehicle-filter"
                     name="vehicle-filter"

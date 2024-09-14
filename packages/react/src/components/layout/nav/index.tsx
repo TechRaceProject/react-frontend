@@ -1,4 +1,3 @@
-import { FaTimes } from 'react-icons/fa';
 import Logo from '~/assets/images/logo.png';
 import NavItem from '~/components/layout/navItem';
 import navData from '~/data/nav.data';
@@ -16,8 +15,8 @@ function Navbar() {
         : 'NavBar-Overlay-Close';
 
     return (
-        <div className={navbarOverlayClass}>
-            <div className={navbarClass}>
+        <div className={navbarOverlayClass} onClick={setisOpen}>
+            <div className={navbarClass} onClick={(e) => e.stopPropagation()}>
                 <div className="NavLogo">
                     <img src={Logo} alt="Logo" />
                 </div>
@@ -33,11 +32,6 @@ function Navbar() {
                     ))}
                 </div>
             </div>
-            {isOpen && (
-                <button type="button" className="NavButton" onClick={setisOpen}>
-                    <FaTimes />
-                </button>
-            )}
         </div>
     );
 }
