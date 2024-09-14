@@ -85,7 +85,7 @@ export function createCarCommandValidator(
             }
         case CommandCar.RaceMode:
             if (Array.isArray(data) && data.length === 2) {
-                 return { cmd: command, data: data };
+                return { cmd: command, data: data };
             } else {
                 throw new Error(
                     'Invalid data for RaceMode. Expected an array of 2 numbers.'

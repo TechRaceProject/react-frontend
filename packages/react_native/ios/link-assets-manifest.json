@@ -1,21 +1,21 @@
 {
-  "migIndex": 1,
-  "data": [
-    {
-      "path": "src/assets/fonts/Orbitron-Black.ttf",
-      "sha1": "d9ae5af36d6cc21c1b2b32c81aba7662275b5a7b"
-    },
-    {
-      "path": "src/assets/fonts/Orbitron-Bold.ttf",
-      "sha1": "3926215281d9ddeed380af0454481228b868062c"
-    },
-    {
-      "path": "src/assets/fonts/Orbitron-Medium.ttf",
-      "sha1": "171d09406c90d780c384e8f2d2b9943d4428929c"
-    },
-    {
-      "path": "src/assets/fonts/Orbitron-Regular.ttf",
-      "sha1": "9b3fc913ee57ed9e9b560c69da15c051314f2a5b"
-    }
-  ]
+    "migIndex": 1,
+    "data": [
+        {
+            "path": "src/assets/fonts/Orbitron-Black.ttf",
+            "sha1": "d9ae5af36d6cc21c1b2b32c81aba7662275b5a7b"
+        },
+        {
+            "path": "src/assets/fonts/Orbitron-Bold.ttf",
+            "sha1": "3926215281d9ddeed380af0454481228b868062c"
+        },
+        {
+            "path": "src/assets/fonts/Orbitron-Medium.ttf",
+            "sha1": "171d09406c90d780c384e8f2d2b9943d4428929c"
+        },
+        {
+            "path": "src/assets/fonts/Orbitron-Regular.ttf",
+            "sha1": "9b3fc913ee57ed9e9b560c69da15c051314f2a5b"
+        }
+    ]
 }
