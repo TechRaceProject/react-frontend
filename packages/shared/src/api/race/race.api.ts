@@ -27,7 +27,7 @@ class ApiRace extends BaseApi {
         const baseUrl = getHostUrl();
 
         const apiProps: ApiProps = {
-            url: `http://${baseUrl}/api/races`,
+            url: `http://${baseUrl}/api/races/`,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',

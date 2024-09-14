@@ -7,10 +7,9 @@ import { getHostUrl } from '../../../index';
 class ApiAuth extends BaseApi {
     static async register(registerData: authFormPropsApi): Promise<ApiReturn> {
         const baseUrl = getHostUrl();
-        console.log('baseUrl', `http:${baseUrl}/api/signup`);
 
         const apiProps: ApiProps = {
-            url: `http:${baseUrl}/api/signup`,
+            url: `http://${baseUrl}/api/signup`,
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -25,10 +24,9 @@ class ApiAuth extends BaseApi {
 
     static async login(loginData: authFormPropsApi): Promise<ApiReturn> {
         const baseUrl = getHostUrl();
-        console.log('baseUrl', `http:${baseUrl}/api/signup`);
 
         const apiProps: ApiProps = {
-            url: `http:${baseUrl}/api/login`,
+            url: `http://${baseUrl}/api/login`,
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

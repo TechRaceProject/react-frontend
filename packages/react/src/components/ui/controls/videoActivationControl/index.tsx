@@ -1,18 +1,20 @@
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Switch from '~/components/common/switch';
-import useVehicleStateUpdater from '~/hooks/useVehicleStateUpdater';
 import { RootState } from '~/store/store';
 import Button from '~/components/common/button';
+import { setVehicleState } from '~/store/slices/vehicle_state.slice';
+import { closeModal } from '~/store/slices/section.slice';
 
 function VideoActivationControl() {
+    const dispatch = useDispatch();
+    const vehicleState = useSelector((state: RootState) => state.vehicle_state);
     const videoActivation = useSelector(
-        (state: RootState) => state.vehicle.vehicleState?.video_activated
+        (state: RootState) => state.vehicle_state.video_activated
     );
     const [isVideoActive, setIsVideoActive] = useState<number>(
         videoActivation || 0
     );
-    const updateVehicleState = useVehicleStateUpdater();
 
     useEffect(() => {
         if (videoActivation !== undefined) setIsVideoActive(videoActivation);
@@ -22,16 +24,15 @@ function VideoActivationControl() {
         setIsVideoActive(isVideoActive === 0 ? 1 : 0);
     };
 
-    const handleSave = async () => {
-        try {
-            const payload = { video_activated: isVideoActive };
-            await updateVehicleState(payload);
-        } catch (error) {
-            console.error(
-                "Erreur lors de la mise à jour de l'activation vidéo:",
-                error
-            );
-        }
+    const validate = () => {
+        console.log('validate : ', isVideoActive);
+        const payload = {
+            ...vehicleState,
+            video_activated: isVideoActive,
+        };
+
+        dispatch(setVehicleState(payload));
+        dispatch(closeModal());
     };
 
     return (
@@ -41,7 +42,7 @@ function VideoActivationControl() {
                 isChecked={isVideoActive === 1}
                 onChange={handleSwitchChange}
             />
-            <Button text="Sauvegarder" onClick={handleSave} outline />
+            <Button text="Enregistrer" onClick={validate} outline />
         </>
     );
 }

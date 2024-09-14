@@ -26,7 +26,7 @@ export default function Home() {
             return;
         }
 
-        const { data, error } = await ApiRace.getAllUserRaces(userId, token);
+        const { data, error } = await ApiRace.getHistoryRace(userId, token);
 
         if (error) {
             setError(error);

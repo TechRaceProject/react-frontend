@@ -10,11 +10,9 @@ import { VehicleStateData } from '~/interfaces/store/vehicle.interface';
 
 function useVehicleStateUpdater() {
     const dispatch = useDispatch();
-    const vehicleId = useSelector(
-        (state: RootState) => state.vehicle.selectedVehicle
-    );
+    const vehicleId = useSelector((state: RootState) => state.vehicle_state.id);
     const currentVehicleState = useSelector(
-        (state: RootState) => state.vehicle.vehicleState
+        (state: RootState) => state.vehicle_state
     );
 
     const cleanData = (data: VehicleStateData): VehicleStateData => {

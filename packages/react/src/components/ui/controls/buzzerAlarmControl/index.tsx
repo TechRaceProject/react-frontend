@@ -1,20 +1,21 @@
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Switch from '~/components/common/switch';
 import Input from '~/components/common/input';
-import useVehicleStateUpdater from '~/hooks/useVehicleStateUpdater';
 import { RootState } from '~/store/store';
 import Button from '~/components/common/button';
+import { setVehicleStateBuzzerVariable } from '~/store/slices/vehicle_state.slice';
+import { closeModal } from '~/store/slices/section.slice';
 
 function BuzzerAlarmControl() {
+    const dispatch = useDispatch();
     const buzzerVariable = useSelector(
-        (state: RootState) => state.vehicle.vehicleState?.buzzer_variable
+        (state: RootState) => state.vehicle_state.buzzer_variable
     );
     const [buzzerState, setBuzzerState] = useState<number[]>([
         buzzerVariable?.activated || 0,
         buzzerVariable?.frequency || 0,
     ]);
-    const updateVehicleState = useVehicleStateUpdater();
 
     useEffect(() => {
         if (buzzerVariable) {
@@ -34,21 +35,14 @@ function BuzzerAlarmControl() {
         setBuzzerState([buzzerState[0], Number(e.target.value)]);
     };
 
-    const handleSave = async () => {
-        try {
-            const payload = {
-                buzzer_variable: {
-                    activated: buzzerState[0],
-                    frequency: buzzerState[1],
-                },
-            };
-            await updateVehicleState(payload);
-        } catch (error) {
-            console.error(
-                'Erreur lors de la mise à jour de la variable de buzzer:',
-                error
-            );
-        }
+    const validate = () => {
+        const payload = {
+            activated: buzzerState[0],
+            frequency: buzzerState[1],
+        };
+
+        dispatch(setVehicleStateBuzzerVariable(payload));
+        dispatch(closeModal());
     };
 
     return (
@@ -68,7 +62,7 @@ function BuzzerAlarmControl() {
                 value={buzzerState[1]}
                 onChange={handleFrequencyChange}
             />
-            <Button text="Sauvegarder" onClick={handleSave} outline />
+            <Button text="Enregistrer" onClick={validate} outline />
         </>
     );
 }

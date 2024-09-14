@@ -1,24 +1,24 @@
 import { useState, useEffect } from 'react';
-import { useSelector, shallowEqual } from 'react-redux';
+import { useSelector, shallowEqual, useDispatch } from 'react-redux';
 import Input from '~/components/common/input';
 import Select from '~/components/common/select';
-import useVehicleStateUpdater from '~/hooks/useVehicleStateUpdater';
 import { RootState } from '~/store/store';
-import { LedColor } from '~/interfaces/store/vehicle.interface';
 import Button from '~/components/common/button';
 import { rgbToHex, hexToRgb } from '~/utils/color.utils';
+import { setVehicleStatePrimaryLedColors } from '~/store/slices/vehicle_state.slice';
+import { closeModal } from '~/store/slices/section.slice';
+import { PrimaryLedColorInterface } from '~/interfaces/store/primary_led_color.interface';
 
 function PrimaryLedColorControl() {
+    const dispatch = useDispatch();
     const primaryLedColors = useSelector(
-        (state: RootState) =>
-            state.vehicle.vehicleState?.primary_led_colors || [],
+        (state: RootState) => state.vehicle_state.primary_led_colors || [],
         shallowEqual
     );
 
     const [localColors, setLocalColors] =
-        useState<LedColor[]>(primaryLedColors);
+        useState<PrimaryLedColorInterface[]>(primaryLedColors);
     const [selectedLed, setSelectedLed] = useState<string>('all');
-    const updateVehicleState = useVehicleStateUpdater();
 
     useEffect(() => {
         if (primaryLedColors !== localColors) {
@@ -37,15 +37,16 @@ function PrimaryLedColorControl() {
         setLocalColors(updatedColors);
     };
 
-    const handleSave = async () => {
-        try {
-            await updateVehicleState({ primary_led_colors: localColors });
-        } catch (error) {
-            console.error(
-                'Erreur lors de la mise à jour des couleurs LED primaires:',
-                error
-            );
-        }
+    const validate = () => {
+        const payload = localColors.map((color: PrimaryLedColorInterface) => ({
+            led_identifier: color.led_identifier,
+            red: color.red,
+            green: color.green,
+            blue: color.blue,
+        }));
+
+        dispatch(setVehicleStatePrimaryLedColors(payload));
+        dispatch(closeModal());
     };
 
     const currentColor =
@@ -66,7 +67,7 @@ function PrimaryLedColorControl() {
             <Select
                 id="led-select"
                 name="ledSelect"
-                label="Sélectionner une LED"
+                label="Sélectionner une ou plusieurs LED"
                 options={[
                     { value: 'all', label: 'Toutes les LEDs' },
                     ...localColors.map((_, index) => ({
@@ -85,7 +86,7 @@ function PrimaryLedColorControl() {
                 value={currentColor}
                 onChange={(e) => handleColorChange(e.target.value)}
             />
-            <Button text="Sauvegarder" onClick={handleSave} outline />
+            <Button text="Enregistrer" onClick={validate} outline />
         </>
     );
 }

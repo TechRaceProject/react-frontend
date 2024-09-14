@@ -1,9 +1,10 @@
 import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Select from '~/components/common/select';
-import useVehicleStateUpdater from '~/hooks/useVehicleStateUpdater';
 import { RootState } from '~/store/store';
 import Button from '~/components/common/button';
+import { setVehicleState } from '~/store/slices/vehicle_state.slice';
+import { closeModal } from '~/store/slices/section.slice';
 
 const animationOptions = [
     { value: '0', label: 'Animation 0' },
@@ -15,13 +16,14 @@ const animationOptions = [
 ];
 
 function LedAnimationControl() {
+    const dispatch = useDispatch();
+    const vehicleState = useSelector((state: RootState) => state.vehicle_state);
     const ledAnimation = useSelector(
-        (state: RootState) => state.vehicle.vehicleState?.led_animation
+        (state: RootState) => state.vehicle_state.led_animation
     );
     const [selectedAnimation, setSelectedAnimation] = useState<string>(
         ledAnimation?.toString() || '0'
     );
-    const updateVehicleState = useVehicleStateUpdater();
 
     useEffect(() => {
         if (ledAnimation !== undefined)
@@ -32,16 +34,14 @@ function LedAnimationControl() {
         setSelectedAnimation(e.target.value);
     };
 
-    const handleSave = async () => {
-        try {
-            const payload = { led_animation: Number(selectedAnimation) };
-            await updateVehicleState(payload);
-        } catch (error) {
-            console.error(
-                "Erreur lors de la mise à jour de l'animation LED:",
-                error
-            );
-        }
+    const validate = () => {
+        const payload = {
+            ...vehicleState,
+            led_animation: Number(selectedAnimation),
+        };
+
+        dispatch(setVehicleState(payload));
+        dispatch(closeModal());
     };
 
     return (
@@ -54,7 +54,7 @@ function LedAnimationControl() {
                 value={selectedAnimation}
                 onChange={handleChange}
             />
-            <Button text="Sauvegarder" onClick={handleSave} outline />
+            <Button text="Enregistrer" onClick={validate} outline />
         </>
     );
 }

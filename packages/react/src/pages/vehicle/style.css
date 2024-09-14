@@ -38,10 +38,11 @@
     margin-top: 10px;
 }
 
-.vehicle-select-refresh {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-    width: 100%;
+.vehicle-filter {
+    display: grid;
+    grid-template-columns: 1fr 50px 50px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 20px;
+    align-items: flex-end;
 }

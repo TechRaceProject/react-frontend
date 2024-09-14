@@ -40,93 +40,58 @@ function VehicleController() {
     const [vehicles, setVehicles] = useState<VehicleInterface[]>([]);
     const [selectedVehicle, setSelectedVehicle] =
         useState<VehicleInterface | null>(null);
-    const [error, setError] = useState<string | null>(null);
-    const [success, setSuccess] = useState<string | null>(null);
+    const [notification, setNotification] = useState<{
+        type: 'success' | 'error';
+        message: string;
+    } | null>(null);
+
+    useEffect(() => {
+        fetchVehicles();
+    }, []);
 
     const fetchVehicles = async () => {
-        dispatch(resetVehicleState());
-        setError(null);
+        try {
+            dispatch(resetVehicleState());
+            const { data, error } = await ApiVehicleHandler.getVehicles();
 
-        const { data, error } = await ApiVehicleHandler.getVehicles();
+            if (error) throw new Error(error);
 
-        if (error) {
-            setError(error);
-            return;
-        }
-
-        if (data) {
-            setVehicles(data.data as VehicleInterface[]);
-
+            setVehicles(data.data || []);
             if (data.data.length > 0) {
                 setSelectedVehicle(data.data[0]);
-
-                handleVehicleChange({
+                await handleVehicleChange({
                     target: { value: data.data[0].id.toString() },
                 } as React.ChangeEvent<HTMLSelectElement>);
-
-                await getVehicleVehicleState(data.data[0].id);
+                await getVehicleState(data.data[0].id);
+            } else {
+                setNotification({
+                    type: 'error',
+                    message: 'Aucun véhicule trouvé.',
+                });
             }
+        } catch {
+            setNotification({
+                type: 'error',
+                message: 'Erreur lors du chargement des véhicules.',
+            });
         }
     };
 
-    const updateVehicleState = async () => {
-        const { data, error } =
-            await ApiVehiculeStateHandler.updateVehicleState();
+    const getVehicleState = async (vehicleId: number) => {
+        try {
+            const { data, error } =
+                await ApiVehiculeStateHandler.getAllUserVehiculeState();
+            if (error) throw new Error(error);
 
-        if (error) {
-            setError(error);
-            return;
-        }
-
-        if (data) {
-            setVehicleState(data.data);
-        }
-
-        setSuccess('Les modifications ont été enregistrées avec succès');
-
-        setTimeout(() => {
-            setSuccess(null);
-        }, 3000);
-    };
-
-    const handleVehicleChange = async (
-        e: React.ChangeEvent<HTMLSelectElement>
-    ) => {
-        dispatch(resetVehicleState());
-        const vehicleId = Number(e.target.value);
-        const vehicle = vehicles.find((vehicle) => vehicle.id === vehicleId);
-
-        if (!vehicle) {
-            return;
-        }
-
-        setSelectedVehicle(vehicle);
-
-        await getVehicleVehicleState(vehicleId);
-    };
-
-    const getVehicleVehicleState = async (vehicleId: number) => {
-        const { data, error } =
-            await ApiVehiculeStateHandler.getAllUserVehiculeState();
-
-        if (error) {
-            setError(error);
-            return;
-        }
-
-        if (data) {
             const vehicleState = data.data.find(
-                (vehicleState: VehicleStateInterface) =>
-                    vehicleState.vehicle_id === vehicleId
+                (state: VehicleStateInterface) => state.vehicle_id === vehicleId
             );
-
             if (vehicleState) {
                 dispatch(setVehicleState(vehicleState));
                 dispatch(
                     setVehicleStateBuzzerVariable(vehicleState.buzzer_variable)
                 );
                 dispatch(setVehicleStateHeadAngle(vehicleState.head_angle));
-
                 if (vehicleState.primary_led_colors.length > 0) {
                     dispatch(
                         setVehicleStatePrimaryLedColors(
@@ -135,6 +100,37 @@ function VehicleController() {
                     );
                 }
             }
+        } catch {
+            setNotification({ type: 'error', message: ' ' });
+        }
+    };
+
+    const handleVehicleChange = async (
+        e: React.ChangeEvent<HTMLSelectElement>
+    ) => {
+        const vehicleId = Number(e.target.value);
+        const vehicle = vehicles.find((v) => v.id === vehicleId);
+
+        if (!vehicle) return;
+
+        setSelectedVehicle(vehicle);
+        await getVehicleState(vehicleId);
+    };
+
+    const updateVehicleState = async () => {
+        try {
+            const { data, error } =
+                await ApiVehiculeStateHandler.updateVehicleState();
+            if (error) throw new Error(error);
+
+            dispatch(setVehicleState(data.data));
+            setNotification({
+                type: 'success',
+                message: 'Les modifications ont été enregistrées avec succès',
+            });
+            setTimeout(() => setNotification(null), 3000);
+        } catch {
+            setNotification({ type: 'error', message: ' ' });
         }
     };
 
@@ -143,13 +139,7 @@ function VehicleController() {
         dispatch(openModal());
     };
 
-    const handleCloseModal = () => {
-        dispatch(closeModal());
-    };
-
-    useEffect(() => {
-        fetchVehicles();
-    }, []);
+    const handleCloseModal = () => dispatch(closeModal());
 
     const containerClass = isNavBarOpen
         ? 'content-page'
@@ -157,56 +147,55 @@ function VehicleController() {
 
     return (
         <div className={`vehicle-page ${containerClass}`}>
-            {error && <Alert type="error" message={error} duration={5000} />}
-            {success && (
-                <Alert type="success" message={success} duration={3000} />
+            {notification && (
+                <Alert
+                    type={notification.type}
+                    message={notification.message}
+                    duration={5000}
+                />
             )}
 
             <div className="vehicle-content">
-                <div className="vehicle-select-refresh">
-                    <div className="vehicle-select">
-                        <Select
-                            id="vehicle-select"
-                            name="vehicle"
-                            label="Choisir un véhicule"
-                            options={vehicles.map(
-                                (vehicle: VehicleInterface) => ({
-                                    value: vehicle.id.toString(),
-                                    label: vehicle.name,
-                                })
-                            )}
-                            value={selectedVehicle?.id.toString() || ''}
-                            onChange={handleVehicleChange}
-                        />
-                    </div>
-
-                    <div className="vehicle-buttons">
-                        <Button
-                            icon={FaSync}
-                            onClick={fetchVehicles}
-                            variant="primary"
-                            outline={true}
-                            className="refresh-button"
-                        />
-                        <Button
-                            text="Sauvegarder"
-                            onClick={updateVehicleState}
-                            icon={FaSave}
-                            variant="success"
-                            outline={true}
-                            className="save-button"
-                        />
-                    </div>
+                <div className="vehicle-filter">
+                    <Select
+                        id="vehicle-select"
+                        name="vehicle"
+                        label="Choisir un véhicule"
+                        options={vehicles.map((v) => ({
+                            value: v.id.toString(),
+                            label: v.name,
+                        }))}
+                        value={selectedVehicle?.id.toString() || ''}
+                        onChange={handleVehicleChange}
+                    />
+                    <Button
+                        icon={FaSync}
+                        onClick={fetchVehicles}
+                        variant="primary"
+                        outline={true}
+                        className="refresh-button"
+                    />
+                    <Button
+                        icon={FaSave}
+                        onClick={updateVehicleState}
+                        variant="success"
+                        outline={true}
+                        className="save-button"
+                    />
                 </div>
-
-                <ButtonGroup
-                    sections={controlSectionsData}
-                    onSectionClick={handleSectionClick}
-                />
 
                 <div className="vehicle-image">
                     <img src={ImgCar} alt="Vehicle" />
                 </div>
+
+                {vehicles.length > 0 ? (
+                    <ButtonGroup
+                        sections={controlSectionsData}
+                        onSectionClick={handleSectionClick}
+                    />
+                ) : (
+                    <p className="no-data-message">Aucun véhicule disponible</p>
+                )}
             </div>
 
             <Modal
@@ -215,7 +204,7 @@ function VehicleController() {
                 title={
                     controlSectionsData.find(
                         (section) => section.name === activeSection
-                    )?.label || ''
+                    )?.label || 'Section non disponible'
                 }
                 position="center"
             >
