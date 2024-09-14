@@ -1,7 +1,7 @@
 import { api } from '../../utils/api.utils';
 import { ApiProps, ApiReturn } from '../../interfaces/utils/api.interface';
 import BaseApi from '../base.api';
-import {getHostUrl} from '../../../index'
+import { getHostUrl } from '../../../index';
 
 class ApiRace extends BaseApi {
     static async getAllUserRaces(

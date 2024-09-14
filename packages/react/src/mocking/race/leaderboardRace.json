@@ -1,0 +1,48 @@
+{
+    "leaderboardRace": [
+        {
+            "position": 1,
+            "name": "John Doe",
+            "profilePhoto": "https://mui.com/static/images/avatar/1.jpg",
+            "time": "1h20m32s"
+        },
+        {
+            "position": 2,
+            "name": "Jane Smith",
+            "profilePhoto": "https://mui.com/static/images/avatar/2.jpg",
+            "time": "1h21m15s"
+        },
+        {
+            "position": 3,
+            "name": "Alex Johnson",
+            "profilePhoto": "https://mui.com/static/images/avatar/3.jpg",
+            "time": "1h22m10s"
+        },
+        {
+            "position": 4,
+            "name": "Chris Lee",
+            "profilePhoto": "https://mui.com/static/images/avatar/4.jpg",
+            "time": "1h23m08s"
+        },
+        {
+            "position": 5,
+            "name": "Patricia Williams",
+            "team": "Team Echo",
+            "country": "Australia",
+            "profilePhoto": "https://mui.com/static/images/avatar/5.jpg",
+            "time": "1h23m45s"
+        },
+        {
+            "position": 6,
+            "name": "Michael Brown",
+            "profilePhoto": "https://mui.com/static/images/avatar/6.jpg",
+            "time": "1h24m32s"
+        },
+        {
+            "position": 7,
+            "name": "Emily Davis",
+            "profilePhoto": "https://mui.com/static/images/avatar/7.jpg",
+            "time": "1h25m20s"
+        }
+    ]
+}
