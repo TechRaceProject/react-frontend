@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 import TechRaceScreen from './src/screens/TechRaceScreen';
 import BottomNavigationBar from './src/components/BottomNavigationBar';
-import CarControlScreen from './src/screens/CarControlScreen';
 import {
     ErrorEvent,
     ExceptionEvent,
@@ -19,7 +18,7 @@ function App(): React.JSX.Element {
      * l'émulateur android ne peut pas se connecter à l'api en localhost
      */
     const apiUrl = 'http://10.0.2.2:8000/api';
-
+    // @TODO : fix Url (Pas sure)
 
     useSSE(
         apiUrl + '/sse',
@@ -34,27 +33,26 @@ function App(): React.JSX.Element {
         }
     );
 
-
     return (
-      <SafeAreaView style={styles.container}>
-      <TechRaceScreen/>
-      <View style={styles.bottomBar}>
-        <BottomNavigationBar />
-      </View>
-    </SafeAreaView>
+        <SafeAreaView style={styles.container}>
+            <TechRaceScreen />
+            <View style={styles.bottomBar}>
+                <BottomNavigationBar />
+            </View>
+        </SafeAreaView>
     );
-};
+}
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  bottomBar: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    bottom: 0,
-  },
+    container: {
+        flex: 1,
+    },
+    bottomBar: {
+        position: 'absolute',
+        left: 0,
+        right: 0,
+        bottom: 0,
+    },
 });
 
 export default App;

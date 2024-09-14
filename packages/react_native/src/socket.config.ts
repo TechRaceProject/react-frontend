@@ -17,10 +17,8 @@ socket.onclose = (event: Event) => {
 };
 
 
-socket.onerror = (error) => {
+socket.onerror = (error: Event) => {
   console.error('Une erreur WebSocket est survenue :', error);
 };
-
-
 
 export default socket;
