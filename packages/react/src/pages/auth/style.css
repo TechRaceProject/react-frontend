@@ -46,6 +46,7 @@
     box-shadow: var(--BoxShadow);
     border-radius: 6px;
     background-color: var(--color-white);
+    max-width: 500px;
 }
 
 .sous-auth-container-form h4 {
@@ -69,6 +70,7 @@
     }
 
     .sous-auth-container-form {
+        min-width: 450px;
         padding: 30px;
     }
 }
@@ -92,6 +94,11 @@
     .AuthImg {
         display: none;
     }
+
+    .sous-auth-container-form {
+        min-width: 400px;
+        padding: 30px;
+    }
 }
 
 @media (max-width: 720px) {
@@ -107,6 +114,7 @@
     }
 
     .sous-auth-container-form {
+        min-width: 350px;
         padding: 20px;
         gap: 20px;
     }

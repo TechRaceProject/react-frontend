@@ -1,8 +1,4 @@
-.NavBar-Overlay {
-    grid-row: 1/4;
-    transition: all 0.3s ease;
-}
-
+.NavBar-Overlay,
 .NavBar-Overlay-Close {
     grid-row: 1/4;
     transition: all 0.3s ease;
@@ -50,10 +46,6 @@
     gap: 10px;
 }
 
-.NavButton {
-    display: none;
-}
-
 @media screen and (max-width: 720px) {
     .NavBar-Overlay-Close,
     .NavBar-Overlay {
@@ -66,6 +58,7 @@
         background-color: rgba(0, 0, 0, 0.5);
         backdrop-filter: blur(5px);
         transition: all 0.3s ease;
+        cursor: pointer;
     }
 
     .NavBar-Overlay {
@@ -82,27 +75,6 @@
         backdrop-filter: blur(5px);
         box-shadow: var(--BoxShadow);
         transition: all 0.3s ease;
-    }
-
-    .NavButton {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        position: absolute;
-        top: 0;
-        right: 0;
-        background: var(--color-white);
-        height: 50px;
-        width: 50px;
-        border: none;
-        cursor: pointer;
-        border-radius: 5px;
-        margin: 12.5px;
-    }
-
-    .NavButton svg {
-        color: var(--color-blue);
-        width: 25px;
-        height: 25px;
+        cursor: auto;
     }
 }

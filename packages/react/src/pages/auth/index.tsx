@@ -25,16 +25,14 @@ function Auth() {
         <div>
             <p>Si vous n&apos;avez pas de compte,</p>
             <p>
-                {' '}
-                vous devez vous{' '}
+                vous devez vous
                 <span
                     className="swap-auth"
                     role="button"
                     tabIndex={0}
                     onClick={toggleAuthMode}
                 >
-                    {' '}
-                    inscrire.{' '}
+                    inscrire.
                 </span>
             </p>
         </div>
@@ -42,15 +40,14 @@ function Auth() {
         <div>
             <p>Si vous avez déjà un compte,</p>
             <p>
-                vous pouvez vous{' '}
+                vous pouvez vous
                 <span
                     className="swap-auth"
                     role="button"
                     tabIndex={0}
                     onClick={toggleAuthMode}
                 >
-                    {' '}
-                    connecter.{' '}
+                    connecter.
                 </span>
             </p>
         </div>

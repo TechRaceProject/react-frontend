@@ -4,7 +4,10 @@ import BaseApi from '../base.api';
 import { getHostUrl } from '../../../index';
 
 class ApiVehicleState extends BaseApi {
-    static async getAllVehicleStatesOfAUser(userId: number, token: string): Promise<ApiReturn> {
+    static async getAllVehicleStatesOfAUser(
+        userId: number,
+        token: string
+    ): Promise<ApiReturn> {
         const baseUrl = getHostUrl();
 
         const apiProps: ApiProps = {

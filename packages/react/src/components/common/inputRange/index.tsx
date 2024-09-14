@@ -1,4 +1,3 @@
-// InputRange.tsx
 import './style.css';
 
 interface InputRangeProps {
