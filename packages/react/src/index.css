@@ -280,13 +280,34 @@ input[type='checkbox'] {
     font-size: var(--font-checkbox);
 }
 
-label {
-    font-size: var(--font-label);
-}
-
 input::placeholder {
     font-size: var(--font-placeholder);
     cursor: pointer;
+}
+
+select {
+    font-size: var(--font-select);
+    padding: 5px 0;
+    border: none;
+    background: none;
+    color: var(--color-black);
+    width: 100%;
+    transition: all 0.3s ease;
+    outline: none;
+}
+
+select::focus {
+    background-color: none;
+    border: none;
+}
+
+select::placeholder {
+    font-size: var(--font-placeholder);
+    cursor: pointer;
+}
+
+label {
+    font-size: var(--font-label);
 }
 
 button {
@@ -317,10 +338,6 @@ textarea::placeholder {
 
 textarea {
     font-size: var(--font-textarea);
-}
-
-select {
-    font-size: var(--font-select);
 }
 
 small {

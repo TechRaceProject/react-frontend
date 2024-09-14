@@ -1,22 +1,22 @@
 import HistoryRaceItem from '~/components/ui/historyRaceList';
-import { HistoryRaceTableProps } from '~/interfaces/other/race.interface';
-import ApiVehicleHandler from '~/api/race/api.race.handler';
+import ApiRaceHandler from '~/api/race/api.race.handler';
 import './style.css';
+import { HistoryRaceTableProps } from '~/interfaces/other/race.interface';
 
 const headersList = [
-    { field: 'name', label: 'Name' },
+    { field: 'name', label: 'Nom' },
     { field: 'date', label: 'Date' },
     { field: 'distance', label: 'Distance' },
     { field: 'duration', label: 'Durée' },
-    { field: 'error', label: 'Erreur' },
+    { field: 'error', label: 'Hors parcours' },
     { field: 'collision_duration', label: 'Collision' },
-    { field: 'average_speed', label: 'Vitesse moyenne' },
+    { field: 'average_speed', label: 'V. moyenne' },
     { field: 'status', label: 'Statut' },
 ];
 
 function HistoryRaceTable({ races, onRaceDeleted }: HistoryRaceTableProps) {
     const handleDeleteRace = async (raceId: number) => {
-        await ApiVehicleHandler.deleteRace(raceId);
+        await ApiRaceHandler.deleteRace(raceId);
         onRaceDeleted();
     };
 

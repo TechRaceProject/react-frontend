@@ -9,9 +9,9 @@ import {
 import HistoryRaceField from '~/components/ui/historyRaceField';
 
 const statusMap: Record<StatusType, { className: string; text: string }> = {
-    not_started: { className: 'status-default', text: 'Pas lancer' },
-    in_progress: { className: 'status-in-progress', text: 'En Cours' },
-    completed: { className: 'status-success', text: 'Fini' },
+    not_started: { className: 'status-default', text: 'à venir' },
+    in_progress: { className: 'status-in-progress', text: 'en cours' },
+    completed: { className: 'status-success', text: 'terminé' },
 };
 
 function HistoryRaceItem({
@@ -33,10 +33,10 @@ function HistoryRaceItem({
         { value: name || 'Not available' },
         {
             value: start_time
-                ? new Date(start_time).toLocaleDateString()
+                ? new Date(start_time).toLocaleDateString('fr-FR')
                 : 'Not available',
         },
-        { value: distance_covered, unit: 'km' },
+        { value: distance_covered, unit: 'm' },
         {
             value:
                 start_time && end_time
@@ -45,7 +45,7 @@ function HistoryRaceItem({
         },
         { value: out_of_parcours, unit: 's' },
         { value: collision_duration, unit: 's' },
-        { value: average_speed, unit: 'm/h' },
+        { value: average_speed, unit: 'm/s' },
     ];
 
     return (

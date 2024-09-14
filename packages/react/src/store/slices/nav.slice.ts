@@ -1,8 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-
-interface NavState {
-    isOpen: boolean;
-}
+import { NavState } from '~/interfaces/store/nav.interface';
 
 const initialState: NavState = {
     isOpen: true,
@@ -12,7 +9,7 @@ const navSlice = createSlice({
     name: 'nav',
     initialState,
     reducers: {
-        toggleNavState: (state) => {
+        toggleNavState: (state: NavState) => {
             state.isOpen = !state.isOpen;
         },
     },

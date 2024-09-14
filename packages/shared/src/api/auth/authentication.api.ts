@@ -2,11 +2,14 @@ import { api } from '../../utils/api.utils';
 import { ApiProps, ApiReturn } from '../../interfaces/utils/api.interface';
 import { authFormPropsApi } from '../../interfaces/other/auth.interface';
 import BaseApi from '../base.api';
+import {getHostUrl} from '../../../index'
 
 class ApiAuth extends BaseApi {
     static async register(registerData: authFormPropsApi): Promise<ApiReturn> {
+        const baseUrl = getHostUrl();
+
         const apiProps: ApiProps = {
-            url: 'http://localhost:8000/api/signup',
+            url: `http://${baseUrl}/api/signup`,
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -20,8 +23,10 @@ class ApiAuth extends BaseApi {
     }
 
     static async login(loginData: authFormPropsApi): Promise<ApiReturn> {
+        const baseUrl = getHostUrl();
+
         const apiProps: ApiProps = {
-            url: 'http://localhost:8000/api/login',
+            url: `http://${baseUrl}/api/login`,
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

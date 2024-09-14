@@ -1,5 +1,4 @@
 import './style.css';
-import { useEffect, useState } from 'react';
 import { DatePickerProps } from '~/interfaces/components/common/datePicker.interface';
 
 function DatePicker({
@@ -8,17 +7,10 @@ function DatePicker({
     onStartDateChange,
     onEndDateChange,
 }: DatePickerProps) {
-    const [today, setToday] = useState<string>('');
-
-    useEffect(() => {
-        const todayDate = new Date().toISOString().split('T')[0];
-        setToday(todayDate);
-    }, []);
-
     return (
         <div className="date-picker">
             <div className="date-picker-container">
-                <label htmlFor="start-date">Start Date</label>
+                <label htmlFor="start-date">Date de début</label>
                 <div>
                     <input
                         id="start-date"
@@ -26,13 +18,12 @@ function DatePicker({
                         value={startDate}
                         onChange={(e) => onStartDateChange(e.target.value)}
                         className="date-input"
-                        max={endDate ? endDate : today}
                         required
                     />
                 </div>
             </div>
             <div className="date-picker-container">
-                <label htmlFor="end-date">End Date</label>
+                <label htmlFor="end-date">Date de fin</label>
                 <div>
                     <input
                         id="end-date"
@@ -40,8 +31,6 @@ function DatePicker({
                         value={endDate}
                         onChange={(e) => onEndDateChange(e.target.value)}
                         className="date-input"
-                        min={startDate ? startDate : ''}
-                        max={today}
                         required
                     />
                 </div>

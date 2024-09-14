@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { SafeAreaView, StyleSheet, View } from 'react-native';
 
-import Joystick from './src/components/Joystick';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import {
     ErrorEvent,
     ExceptionEvent,
@@ -12,17 +16,26 @@ import {
 import useSSE from './src/hooks/useServerSentEvent';
 import { handleSSEMessage } from './src/utils/handleSSEMessage';
 
+import BottomNavigationBar from './src/components/BottomNavigationBar';
+import LoginRegisterScreen from './src/screens/LoginRegisterScreen';
+
+import { setHostUrl } from '../shared/index';
+
+const Stack = createNativeStackNavigator();
+
 function App(): React.JSX.Element {
+    const [isAuthenticated, setIsAuthenticated] = useState(false);
+
     /**
      * on utilise l'ip : 'http://10.0.2.2:8000' pour se connecter à l'api car
      * l'émulateur android ne peut pas se connecter à l'api en localhost
      */
-    const apiUrl = 'http://10.0.2.2:8000/api';
+    const apiUrl = '10.0.2.2:8000';
 
-    const [joystickPosition, setJoystickPosition] = useState({ x: 0, y: 0 });
+    setHostUrl(apiUrl);
 
     useSSE(
-        apiUrl + '/sse',
+        'http://' + apiUrl + '/api/sse',
         (event: OpenEvent) => {
             console.log('Connexion SSE ouverte:', event);
         },
@@ -34,48 +47,44 @@ function App(): React.JSX.Element {
         }
     );
 
-    console.log('joystickPosition', joystickPosition);
+    useEffect(() => {
+        const checkAuth = async () => {
+            try {
+                const token = await AsyncStorage.getItem('authToken');
+                if (token) {
+                    setIsAuthenticated(true);
+                } else {
+                    setIsAuthenticated(false);
+                }
+            } catch (e) {
+                console.error(e);
+                setIsAuthenticated(false);
+            }
+        };
+
+        checkAuth();
+    }, []);
 
     return (
-        <SafeAreaView style={[styles.safeArea]}>
-            <View style={styles.appContainer}>
-                <Joystick
-                    dimension={{ width: 300, height: 300 }}
-                    size={100}
-                    styles={{ ...styles }}
-                    state={{ joystickPosition, setJoystickPosition }}
-                    uriJoystick={require('./src/assets/joystick.png')}
-                    uriJoystickArrow={require('./src/assets/joystick_arrow.png')}
-                />
-            </View>
+        <SafeAreaView style={[styles.appContainer]}>
+            <NavigationContainer>
+                <Stack.Navigator initialRouteName="LoginRegister">
+                    <Stack.Screen
+                        name="LoginRegister"
+                        component={LoginRegisterScreen}
+                        options={{
+                            headerShown: false,
+                        }}
+                    />
+                </Stack.Navigator>
+            </NavigationContainer>
         </SafeAreaView>
     );
-}
+};
 
 const styles = StyleSheet.create({
-    safeArea: {
-        flex: 1,
-    },
     appContainer: {
         flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    sectionContainer: {
-        marginTop: 32,
-        paddingHorizontal: 24,
-    },
-    container: {
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    containerJoystick: {
-        position: 'relative',
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    joystick: {
-        position: 'absolute',
     },
 });
 

@@ -1,17 +1,18 @@
-import { ApiProps, ApiReturn } from "../../interfaces/utils/api.interface";
-import { api } from "../../utils/api.utils";
-import BaseApi from "../base.api";
+import { ApiProps, ApiReturn } from '../../interfaces/utils/api.interface';
+import { api } from '../../utils/api.utils';
+import BaseApi from '../base.api';
+import { getHostUrl } from '../../../index';
 
-
-// extends Api
-class UserApi extends BaseApi {
+class ApiUser extends BaseApi {
     static async getUsers(): Promise<ApiReturn> {
+        const baseUrl = getHostUrl();
+
         const apiProps: ApiProps = {
-            url: 'http://127.0.0.1:8090/api/users',
+            url: `http://${baseUrl}/api/users`,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${UserApi.getToken}`,
+                Authorization: `Bearer ${ApiUser.getToken}`,
             },
         };
 
@@ -19,12 +20,14 @@ class UserApi extends BaseApi {
     }
 
     static async getCurrentUsers(): Promise<ApiReturn> {
+        const baseUrl = getHostUrl();
+
         const apiProps: ApiProps = {
-            url: 'http://127.0.0.1:8090/api/users/current',
+            url: `http://${baseUrl}/api/users/current`,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${UserApi.getToken}`,
+                Authorization: `Bearer ${ApiUser.getToken}`,
             },
         };
 
@@ -32,12 +35,14 @@ class UserApi extends BaseApi {
     }
 
     static async getUserById(userId: number): Promise<ApiReturn> {
+        const baseUrl = getHostUrl();
+
         const apiProps: ApiProps = {
-            url: `http://127.0.0.1:8090/api/users/${userId}`,
+            url: `http://${baseUrl}/api/users/${userId}`,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${UserApi.getToken}`,
+                Authorization: `Bearer ${ApiUser.getToken}`,
             },
         };
 
@@ -45,12 +50,14 @@ class UserApi extends BaseApi {
     }
 
     static async updateUser(userData: any): Promise<ApiReturn> {
+        const baseUrl = getHostUrl();
+
         const apiProps: ApiProps = {
-            url: `http://127.0.0.1:8090/api/users/update`,
+            url: `http://${baseUrl}/api/users/update`,
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${UserApi.getToken}`,
+                Authorization: `Bearer ${ApiUser.getToken}`,
             },
             body: userData,
         };
@@ -59,12 +66,14 @@ class UserApi extends BaseApi {
     }
 
     static async deleteUser(userId: number): Promise<ApiReturn> {
+        const baseUrl = getHostUrl();
+
         const apiProps: ApiProps = {
-            url: `http://127.0.0.1:8090/api/users/${userId}`,
+            url: `http://${baseUrl}/api/users/${userId}`,
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
-                Authorization: `Bearer ${UserApi.getToken}`,
+                Authorization: `Bearer ${ApiUser.getToken}`,
             },
         };
 
@@ -72,4 +81,4 @@ class UserApi extends BaseApi {
     }
 }
 
-export default UserApi;
+export default ApiUser;

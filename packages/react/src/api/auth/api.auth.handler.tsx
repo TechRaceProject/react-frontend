@@ -13,18 +13,12 @@ class ApiAuthHandler {
         const { data, error, isLoading } = await handleApiResponse(response);
 
         if (data && !error) {
-            if (!data.errors) {
-                return await ApiAuthHandler.login({
-                    email: registerData.email,
-                    password: registerData.password,
-                });
-            }
-
-            const mapErrors = data.errors.map(
-                (error: { message: string }) => error.message
-            );
-            return { data, error: mapErrors.join(', '), isLoading };
+            return await ApiAuthHandler.login({
+                email: registerData.email,
+                password: registerData.password,
+            });
         }
+
         return { data, error, isLoading };
     }
 
@@ -33,14 +27,6 @@ class ApiAuthHandler {
         const { data, error, isLoading } = await handleApiResponse(response);
 
         if (data && !error) {
-            if (data.errors) {
-                const mapErrors = data.errors.map(
-                    (error: { message: string }) => error.message
-                );
-
-                return { data, error: mapErrors.join(', '), isLoading };
-            }
-
             store.dispatch(
                 setAuthState({
                     isLoggedIn: true,

@@ -1,0 +1,62 @@
+.vehicle-page {
+    overflow: auto;
+    position: relative;
+}
+
+.vehicle-content {
+    display: grid;
+    grid-template-rows: 66px 1fr auto;
+    align-items: start;
+    padding: 10px;
+    background-color: var(--color-white);
+    border-radius: 5px;
+    box-shadow: var(--BoxShadow);
+    height: calc(100vh - 170px);
+    gap: 10px;
+}
+
+.vehicle-content > .vehicle-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    height: 100%;
+}
+
+.vehicle-image img {
+    max-width: 100%;
+    max-height: 100%;
+    transform: rotate(90deg);
+}
+
+.vehicle-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+.vehicle-select-refresh {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.save-button {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: #dff7ec;
+    border: 1px solid #81c784;
+    color: #2e7d32;
+    padding: 8px 16px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+    background-color: #c8e6c9;
+}

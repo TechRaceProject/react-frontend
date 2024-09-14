@@ -35,10 +35,6 @@ function History() {
         } else {
             const racesArray = data?.data || [];
             setRaces(racesArray);
-            console.log(
-                'Races state after setting (inside loadRaces):',
-                racesArray
-            );
             setStatus('succeeded');
         }
     };
@@ -53,9 +49,21 @@ function History() {
 
     const filteredRaces = races.filter((race) => {
         const raceDate = new Date(race.start_time);
+
+        const startDateEndOfDay = startDate ? new Date(startDate) : null;
+        const endDateEndOfDay = endDate ? new Date(endDate) : null;
+
+        if (startDateEndOfDay) {
+            startDateEndOfDay.setHours(0, 0, 0, 0);
+        }
+
+        if (endDateEndOfDay) {
+            endDateEndOfDay.setHours(23, 59, 59, 999);
+        }
+
         const isWithinDateRange =
-            (!startDate || raceDate >= new Date(startDate)) &&
-            (!endDate || raceDate <= new Date(endDate));
+            (!startDateEndOfDay || raceDate >= startDateEndOfDay) &&
+            (!endDateEndOfDay || raceDate <= endDateEndOfDay);
 
         const matchesSearchTerm = race.name
             ? race.name.toLowerCase().includes(searchTerm.toLowerCase())
