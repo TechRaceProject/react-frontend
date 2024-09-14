@@ -1,4 +1,4 @@
-let hostUrl = '';
+let hostUrl = 'localhost:8000';
 
 export const setHostUrl = (url: string) => {
     hostUrl = url;
