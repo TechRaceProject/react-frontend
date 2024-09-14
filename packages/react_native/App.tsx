@@ -16,7 +16,10 @@ import {
 import useSSE from './src/hooks/useServerSentEvent';
 import { handleSSEMessage } from './src/utils/handleSSEMessage';
 
+import BottomNavigationBar from './src/components/BottomNavigationBar';
 import LoginRegisterScreen from './src/screens/LoginRegisterScreen';
+
+import { setHostUrl } from '../shared/index';
 
 const Stack = createNativeStackNavigator();
 
@@ -27,10 +30,12 @@ function App(): React.JSX.Element {
      * on utilise l'ip : 'http://10.0.2.2:8000' pour se connecter à l'api car
      * l'émulateur android ne peut pas se connecter à l'api en localhost
      */
-    const apiUrl = 'http://10.0.2.2:8000/api';
+    const apiUrl = '10.0.2.2:8000';
+
+    setHostUrl(apiUrl);
 
     useSSE(
-        apiUrl + '/sse',
+        'http://' + apiUrl + '/api/sse',
         (event: OpenEvent) => {
             console.log('Connexion SSE ouverte:', event);
         },
@@ -75,7 +80,7 @@ function App(): React.JSX.Element {
             </NavigationContainer>
         </SafeAreaView>
     );
-}
+};
 
 const styles = StyleSheet.create({
     appContainer: {

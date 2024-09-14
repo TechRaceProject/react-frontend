@@ -17,7 +17,6 @@ const LoginRegisterScreen = ({ navigation })  => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [errors, setErrors] = useState<object>({});
-  const [isFormValid, setIsFormValid] = useState<boolean>(false);
 
   const loginRegisterButtonText = isLoginPage
       ? 'LOGIN'
@@ -59,11 +58,11 @@ const LoginRegisterScreen = ({ navigation })  => {
     }
 
     setErrors(errors);
-    setIsFormValid(Object.keys(errors).length === 0);
+    return Object.values(errors).every(value => value === '');
   };
 
   const handleSubmit = async () => {
-    validateForm();
+    const isFormValid = validateForm();
 
     if (isFormValid) {
       const {data, error, isLoading} = await ApiAuth[isLoginPage ? 'login' : 'register'](
@@ -73,9 +72,9 @@ const LoginRegisterScreen = ({ navigation })  => {
       );
 
       if (!error) {
-        await AsyncStorage.setItem('authToken', data.data.token);
-        await AsyncStorage.setItem('user:id', data.data.user.id);
-        navigation.navigate('TechRace')
+        await AsyncStorage.setItem('authToken', data.token);
+        await AsyncStorage.setItem('user:id', data.user.id.toString());
+        navigation.navigate('TechRace');
       } else {
         console.error('error !!', error);
         setErrors({ error });
