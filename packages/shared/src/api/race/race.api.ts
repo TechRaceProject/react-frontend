@@ -1,14 +1,33 @@
 import { api } from '../../utils/api.utils';
 import { ApiProps, ApiReturn } from '../../interfaces/utils/api.interface';
 import BaseApi from '../base.api';
+import { getHostUrl } from '../../../index';
 
 class ApiRace extends BaseApi {
     static async getHistoryRace(
         userId: number,
         token: string
     ): Promise<ApiReturn> {
+        const baseUrl = getHostUrl();
+
         const apiProps: ApiProps = {
-            url: `http://localhost:8000/api/users/${userId}/races`,
+            url: `http://${baseUrl}/api/users/${userId}/races`,
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json',
+                Authorization: `Bearer ${token}`,
+            },
+        };
+
+        const { data, error, isLoading } = await api(apiProps);
+
+        return { data, error, isLoading };
+    }
+    static async getAllRaces(token: string): Promise<ApiReturn> {
+        const baseUrl = getHostUrl();
+
+        const apiProps: ApiProps = {
+            url: `http://${baseUrl}/api/races`,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -36,10 +55,11 @@ class ApiRace extends BaseApi {
         return { data, error, isLoading };
     }
 
-    // New method to delete a race by ID
     static async deleteRace(raceId: number, token: string): Promise<ApiReturn> {
+        const baseUrl = getHostUrl();
+
         const apiProps: ApiProps = {
-            url: `http://localhost:8000/api/races/${raceId}`,
+            url: `http://${baseUrl}/api/races/${raceId}`,
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',

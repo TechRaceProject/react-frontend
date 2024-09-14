@@ -1,3 +1,5 @@
+import { getHostUrl } from '../../index';
+
 class BaseApi {
     private static token: string | null = null;
 

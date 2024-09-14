@@ -28,6 +28,12 @@ const navData: NavItemProps[] = [
         label: 'Vehicule',
     },
     { path: '/Profil', icon: FaUser, name: 'Profil', label: 'Profile' },
+    {
+        path: '/Vehicle',
+        icon: FaCarAlt,
+        name: 'Vehicle',
+        label: 'Véhicule',
+    },
 ];
 
 export default navData;
