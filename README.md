@@ -18,3 +18,15 @@ Les commandes suivantes sont à exécuter dans le repertoire principal du projet
 - `yarn lint:format` : formatage du code et prévention des erreurs
 
 - `yarn lint` : vérification des erreurs
+
+### Configuration pour lancer l'application mobile
+
+- Dans le fichier `App.ts` du dossier `react-native`, vous devez définir la variable `apiUrl`.
+- Dans le fichier `socket.config.ts`, situé dans `react_native/src`, vous devez définir l'adresse IP pour la configuration du socket.
+
+Si votre application tourne sur un **appareil Android physique** (par exemple, avec l'adresse IP locale `192.168.1.50` et le port `8000`, indiquer le port uniquement pour le `apiUrl`), vous devez indiquer l'IP du réseau local dans ces fichiers.
+
+Si vous utilisez un **émulateur Android virtuel**, alors configurez l'IP comme suit :
+  - `apiUrl` : utilisez l'IP `10.0.0.2` avec le port `8000`.
+  - `socket` : utilisez uniquement l'IP `10.0.0.2` sans spécifier de port.
+
