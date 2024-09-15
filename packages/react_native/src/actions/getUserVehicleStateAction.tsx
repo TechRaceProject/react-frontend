@@ -1,15 +1,22 @@
 import { Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-export const getUserVehicleState = async (userId: number) => {
+import { getHostUrl } from '../../../shared/index';
+
+export const getUserVehicleState = async () => {
     try {
-        // @TODO : fix Url
+        const userId = await AsyncStorage.getItem('user:id');
+        const token = await AsyncStorage.getItem('authToken');
+
+        const hostUrl = getHostUrl();
+
         const response = await fetch(
-            `http://10.0.2.2:8000/api/users/1/vehicle-states`,
+            `http://${hostUrl}/api/users/${userId}/vehicle-states`,
             {
                 method: 'GET',
                 headers: {
                     'Content-Type': 'application/json',
-                    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJleHAiOjE3MjYyODA0NjJ9.n_XYVw6MCDvFwysy7JtvBWU7ShHYp_nX92vSzYMRCNQ`,
+                    Authorization: `Bearer ${token}`,
                 },
             }
         );
@@ -22,13 +29,13 @@ export const getUserVehicleState = async (userId: number) => {
                 'Erreur',
                 'Impossible de récupérer les états du véhicule.'
             );
-            return null; 
+            return null;
         }
     } catch (error) {
         Alert.alert(
             'Erreur',
             'Une erreur est survenue lors de la récupération des états du véhicule.'
         );
-        return null; 
+        return null;
     }
 };

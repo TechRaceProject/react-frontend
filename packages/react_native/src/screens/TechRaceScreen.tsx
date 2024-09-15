@@ -30,6 +30,7 @@ import { CarModePowerEnum } from '../enums/CarModePowerEnum';
 
 import socket from '../socket.config';
 import { checkAndStartRace, stopRace } from '../actions/CreateRaceAction';
+import { useNavigation } from '@react-navigation/native';
 
 const { width } = Dimensions.get('window');
 
@@ -53,9 +54,11 @@ const TechRaceScreen: React.FC = () => {
     const [raceStartedOnce, setRaceStartedOnce] = useState(false);
     const [showHistoryPopup, setShowHistoryPopup] = useState(false);
 
+    const navigation = useNavigation();
+
     useEffect(() => {
         const fetchVehicleState = async () => {
-            const vehicleStates = await getUserVehicleState(1); // @TODO : fix user ID and token
+            const vehicleStates = await getUserVehicleState();
             if (vehicleStates && vehicleStates.length > 0) {
                 setVehicleState(vehicleStates[0]);
             } else {
@@ -143,7 +146,7 @@ const TechRaceScreen: React.FC = () => {
 
     const toggleBuzzer = async () => {
         if (vehicleState?.id) {
-            const updatedVehicleState = await getUserVehicleState(1); // @TODO : fix user ID and token
+            const updatedVehicleState = await getUserVehicleState();
 
             if (updatedVehicleState && updatedVehicleState.length > 0) {
                 toggleBuzzerAction(
@@ -165,7 +168,7 @@ const TechRaceScreen: React.FC = () => {
 
     const toggleLed = async () => {
         if (vehicleState?.id) {
-            const updatedVehicleState = await getUserVehicleState(1); // @TODO : fix user ID and token
+            const updatedVehicleState = await getUserVehicleState(1);
 
             if (updatedVehicleState && updatedVehicleState.length > 0) {
                 toggleLedAction(
@@ -299,7 +302,7 @@ const TechRaceScreen: React.FC = () => {
                         labelTop="MODE"
                         labelBottom="CAMERA"
                         iconSource={require('../assets/images/Camera-mode.png')}
-                        onPress={() => console.log('Mode caméra pressé')}
+                        onPress={() => navigation.navigate('CarVideoControl')}
                         textStyle={[styles.buttonText, styles.fontFamily]}
                     />
                     <IconCustomButton
