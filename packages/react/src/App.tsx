@@ -8,6 +8,7 @@ import Footer from '~/components/layout/footer';
 import Auth from '~/pages/auth';
 import Home from '~/pages/home';
 import Temp from '~/pages/temp';
+import Leaderboard from '~/pages/leaderboard';
 import History from '~/pages/history';
 import Vehicle from '~/pages/vehicle';
 import Err from '~/pages/err';
@@ -26,7 +27,7 @@ function MainRoutes() {
         <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/History" element={<History />} />
-            <Route path="/Top" element={<Temp />} />
+            <Route path="/Leaderboard" element={<Leaderboard />} />
             <Route path="/Profil" element={<Temp />} />
             <Route path="/Vehicle" element={<Vehicle />} />
 

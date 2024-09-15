@@ -23,7 +23,7 @@ class ApiRace extends BaseApi {
     }
     static async getAllRaces(        apiUrl: string, token: string): Promise<ApiReturn> {
         const apiProps: ApiProps = {
-            url: `${apiUrl}/api/races`,
+            url: `${apiUrl}/api/races/`,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
