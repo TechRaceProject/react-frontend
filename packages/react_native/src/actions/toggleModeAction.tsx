@@ -1,6 +1,6 @@
 import { Alert } from 'react-native';
 import socket from '../socket.config';
-import { SendVehiculeModeCommand } from '../commands/SendVehiculeModeCommand';
+import { SendAutoModeCommand } from '../commands/SendAutoModeCommand';
 
 export const toggleModeAction = (
     isManualMode: boolean,
@@ -8,7 +8,7 @@ export const toggleModeAction = (
 ) => {
     if (socket && socket.readyState === WebSocket.OPEN) {
         try {
-            SendVehiculeModeCommand(isManualMode ? 1 : 0);
+            SendAutoModeCommand(isManualMode ? 1 : 0);
 
             socket.onmessage = (e) => {
                 if (e.data === 'ok') {
