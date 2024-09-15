@@ -67,7 +67,7 @@ function Leaderboard() {
     }, [ranking, vehicleFilter, startDate, endDate]);
 
     const vehicleOptions = [
-        { value: 'all', label: 'All Vehicles' },
+        { value: 'all', label: 'Tous' },
         ...Array.from(new Set(ranking.map((race) => race.vehicle))).map(
             (vehicle) => ({
                 value: vehicle,
