@@ -7,4 +7,5 @@ export interface FormProps {
     setDataArr: any;
     label: string;
     className?: string;
+    outline?: boolean;
 }

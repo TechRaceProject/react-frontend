@@ -46,3 +46,13 @@
     overflow: auto;
     position: relative;
 }
+
+@media screen and (max-width: 720px) {
+    .content-page {
+        width: 100vw;
+    }
+
+    .content-page-navBar-closed {
+        width: 100vw;
+    }
+}

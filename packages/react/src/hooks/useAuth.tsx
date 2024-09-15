@@ -14,6 +14,7 @@ export function useAuth() {
         username: '',
         password: '',
         confirmPassword: '',
+        rememberMe: false,
     });
     const [isLoading, setIsLoading] = useState(false);
     const [alert, setAlert] = useState<ExtendedAlertProps>({
@@ -29,6 +30,7 @@ export function useAuth() {
             username: '',
             password: '',
             confirmPassword: '',
+            rememberMe: false,
         });
         setAlert({ type: '', message: '', key: Date.now() });
     };
@@ -54,6 +56,11 @@ export function useAuth() {
                 handleAuthFeedback(response.error);
             } else {
                 handleAuthFeedback('Connexion réussie!', false);
+                if (formData.rememberMe) {
+                    localStorage.setItem('authToken', response.data.token);
+                } else {
+                    sessionStorage.setItem('authToken', response.data.token);
+                }
             }
         } catch (error) {
             handleAuthFeedback(
@@ -70,11 +77,16 @@ export function useAuth() {
         event.preventDefault();
 
         const authData = isLogin
-            ? { email: formData.email, password: formData.password }
+            ? {
+                  email: formData.email,
+                  password: formData.password,
+                  rememberMe: formData.rememberMe,
+              }
             : {
                   email: formData.email,
                   username: formData.username,
                   password: formData.password,
+                  rememberMe: formData.rememberMe,
               };
 
         if (!isLogin && formData.password !== formData.confirmPassword) {

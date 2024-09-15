@@ -1,7 +1,6 @@
 import {
     FaHome,
     FaClipboardList,
-    FaUser,
     FaTrophy,
     FaCarAlt,
 } from 'react-icons/fa';
@@ -27,7 +26,6 @@ const navData: NavItemProps[] = [
         name: 'Vehicle',
         label: 'Véhicule',
     },
-    { path: '/Profil', icon: FaUser, name: 'Profil', label: 'Profile' },
 ];
 
 export default navData;

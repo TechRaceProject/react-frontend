@@ -13,7 +13,6 @@
     align-items: center;
     border-bottom: 1px solid var(--color-gray);
     padding: 5px 0;
-    min-width: 400px;
     width: 100%;
     transition: border-color 0.3s ease;
 }
@@ -31,16 +30,4 @@
     margin-right: 10px;
     color: var(--color-blue);
     transition: color 0.3s ease;
-}
-
-@media (max-width: 1440px) {
-    .input-container div {
-        min-width: 350px;
-    }
-}
-
-@media (max-width: 1024px) {
-    .input-container div {
-        min-width: 300px;
-    }
 }
