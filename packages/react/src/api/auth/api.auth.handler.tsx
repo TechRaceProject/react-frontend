@@ -5,10 +5,14 @@ import { setUserState, resetUserState } from '~/store/slices/user.slice';
 import { authFormPropsApi } from '@shared/interfaces/other/auth.interface';
 import ApiAuth from '@shared/api/auth/authentication.api';
 import ProfileDefault from '~/assets/images/profile-default.svg';
+import { apiUrl } from '~/config/apiUrl';
 
 class ApiAuthHandler {
     static async register(registerData: authFormPropsApi): Promise<ApiReturn> {
-        const { data, error, isLoading } = await ApiAuth.register(registerData);
+        const { data, error, isLoading } = await ApiAuth.register(
+            apiUrl,
+            registerData
+        );
 
         if (data && !error) {
             return await ApiAuthHandler.login({
@@ -21,7 +25,10 @@ class ApiAuthHandler {
     }
 
     static async login(loginData: authFormPropsApi): Promise<ApiReturn> {
-        const { data, error, isLoading } = await ApiAuth.login(loginData);
+        const { data, error, isLoading } = await ApiAuth.login(
+            apiUrl,
+            loginData
+        );
 
         if (data && !error) {
             store.dispatch(

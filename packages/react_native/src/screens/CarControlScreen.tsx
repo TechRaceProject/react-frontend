@@ -1,11 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {
-    ScrollView,
-    Text,
-    TextInput,
-    Button,
-    StyleSheet,
-} from 'react-native';
+import { ScrollView, Text, TextInput, Button, StyleSheet } from 'react-native';
 import socket from '../socket.config';
 import { CommandCar } from '../enums/CarCommandEnum';
 import { createCarCommandValidator } from '../validators/CarCommandValidator';
@@ -92,10 +86,7 @@ const CarControlScreen = () => {
                 value={wheel4}
                 onChangeText={setWheel4}
             />
-            <Button
-                title="Submit WheelSpeed"
-                onPress={sendWheelSpeedCommand}
-            />
+            <Button title="Submit WheelSpeed" onPress={sendWheelSpeedCommand} />
 
             <Text>Led Animation:</Text>
             <TextInput

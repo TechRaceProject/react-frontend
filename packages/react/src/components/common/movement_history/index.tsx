@@ -5,6 +5,7 @@ import { VehicleHistoryInterface } from '@shared/interfaces/other/vehicle_histor
 import { useSelector } from 'react-redux';
 import { RootState } from '~/store/store';
 import ApiVehicleHistory from '@shared/api/vehicle_history/vehicle_history.api';
+import { apiUrl } from '~/config/apiUrl';
 
 export default function MovementHistory() {
     const [vehicleHistory, setVehicleHistory] = useState<
@@ -17,7 +18,10 @@ export default function MovementHistory() {
             return;
         }
 
-        const { data } = await ApiVehicleHistory.getAllVehicleHistories(token);
+        const { data } = await ApiVehicleHistory.getAllVehicleHistories(
+            apiUrl,
+            token
+        );
 
         if (data) {
             const vehicleHistory = data.data.reverse();

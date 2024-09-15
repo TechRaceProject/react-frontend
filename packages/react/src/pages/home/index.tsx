@@ -14,6 +14,7 @@ import Chart, {
     SimpleColumnChartProps,
 } from '~/components/charts';
 import Alert from '~/components/feedback/alert';
+import { apiUrl } from '~/config/apiUrl';
 
 export default function Home() {
     const [races, setRaces] = useState<RaceInterface[]>([]);
@@ -26,7 +27,11 @@ export default function Home() {
             return;
         }
 
-        const { data, error } = await ApiRace.getAllUserRaces(userId, token);
+        const { data, error } = await ApiRace.getAllUserRaces(
+            apiUrl,
+            userId,
+            token
+        );
 
         if (error) {
             setError(error);

@@ -1,5 +1,6 @@
 import ApiRace from '@shared/api/race/race.api';
 import { ApiReturn } from '@shared/interfaces/utils/api.interface';
+import { apiUrl } from '~/config/apiUrl';
 import store from '~/store/store';
 
 class ApiRaceHandler {
@@ -17,6 +18,7 @@ class ApiRaceHandler {
         }
 
         const { data, error, isLoading } = await ApiRace.getAllUserRaces(
+            apiUrl,
             userId,
             token
         );
@@ -36,7 +38,10 @@ class ApiRaceHandler {
             };
         }
 
-        const { data, error, isLoading } = await ApiRace.getAllRaces(token);
+        const { data, error, isLoading } = await ApiRace.getAllRaces(
+            apiUrl,
+            token
+        );
 
         return { data, error, isLoading };
     }
@@ -54,6 +59,7 @@ class ApiRaceHandler {
         }
 
         const { data, error, isLoading } = await ApiRace.deleteRace(
+            apiUrl,
             raceId,
             token
         );

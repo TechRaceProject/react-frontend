@@ -1,5 +1,6 @@
 import ApiVehicleState from '@shared/api/vehicle_state/vehicle_state.api';
 import { ApiReturn } from '@shared/interfaces/utils/api.interface';
+import { apiUrl } from '~/config/apiUrl';
 import store from '~/store/store';
 
 class ApiVehiculeStateHandler {
@@ -16,7 +17,7 @@ class ApiVehiculeStateHandler {
         }
 
         const { data, error, isLoading } =
-            await ApiVehicleState.getAVehiculeState(vehicleId, token);
+            await ApiVehicleState.getAVehiculeState(apiUrl, vehicleId, token);
         return { data, error, isLoading };
     }
 
@@ -34,7 +35,11 @@ class ApiVehiculeStateHandler {
         }
 
         const { data, error, isLoading } =
-            await ApiVehicleState.getAllVehicleStatesOfAUser(userId, token);
+            await ApiVehicleState.getAllVehicleStatesOfAUser(
+                apiUrl,
+                userId,
+                token
+            );
 
         return { data, error, isLoading };
     }
@@ -54,6 +59,7 @@ class ApiVehiculeStateHandler {
 
         const { data, error, isLoading } =
             await ApiVehicleState.updateVehicleState(
+                apiUrl,
                 vehicleState.id,
                 token,
                 vehicleState

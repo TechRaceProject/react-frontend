@@ -2,14 +2,14 @@ import { api } from '../../utils/api.utils';
 import { ApiProps, ApiReturn } from '../../interfaces/utils/api.interface';
 import { authFormPropsApi } from '../../interfaces/other/auth.interface';
 import BaseApi from '../base.api';
-import {getHostUrl} from '../../../index'
 
 class ApiAuth extends BaseApi {
-    static async register(registerData: authFormPropsApi): Promise<ApiReturn> {
-        const baseUrl = getHostUrl();
-
+    static async register(
+        apiUrl: string,
+        registerData: authFormPropsApi
+    ): Promise<ApiReturn> {
         const apiProps: ApiProps = {
-            url: `http://${baseUrl}/api/signup`,
+            url: `${apiUrl}/api/signup`,
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -22,11 +22,12 @@ class ApiAuth extends BaseApi {
         return { data, error, isLoading };
     }
 
-    static async login(loginData: authFormPropsApi): Promise<ApiReturn> {
-        const baseUrl = getHostUrl();
-
+    static async login(
+        apiUrl: string,
+        loginData: authFormPropsApi
+    ): Promise<ApiReturn> {
         const apiProps: ApiProps = {
-            url: `http://${baseUrl}/api/login`,
+            url: `${apiUrl}/api/login`,
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

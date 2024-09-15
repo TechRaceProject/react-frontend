@@ -1,6 +1,7 @@
 import { ApiReturn } from '@shared/interfaces/utils/api.interface';
 import ApiVehicle from '@shared/api/vehicle/vehicle.api';
 import store from '~/store/store';
+import { apiUrl } from '~/config/apiUrl';
 
 class ApiVehicleHandler {
     static async getVehicles(): Promise<ApiReturn> {
@@ -15,8 +16,10 @@ class ApiVehicleHandler {
             };
         }
 
-        const { data, error, isLoading } =
-            await ApiVehicle.getAllVehicles(token);
+        const { data, error, isLoading } = await ApiVehicle.getAllVehicles(
+            apiUrl,
+            token
+        );
 
         return { data, error, isLoading };
     }

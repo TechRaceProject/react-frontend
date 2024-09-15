@@ -1,12 +1,13 @@
 import { ApiReturn } from '@shared/interfaces/utils/api.interface';
 import store from '~/store/store';
 import UserApi from '@shared/api/user/user.api';
+import { apiUrl } from '~/config/apiUrl';
 
 class UserApiHandler {
     static async getUsers(): Promise<ApiReturn> {
         UserApi.setToken = store.getState().auth.token;
 
-        const response = await UserApi.getUsers();
+        const response = await UserApi.getUsers(apiUrl);
 
         return response;
     }
@@ -14,7 +15,7 @@ class UserApiHandler {
     static async getCurrentUsers(): Promise<ApiReturn> {
         UserApi.setToken = store.getState().auth.token;
 
-        const response = await UserApi.getCurrentUsers();
+        const response = await UserApi.getCurrentUsers(apiUrl);
 
         return response;
     }
@@ -22,7 +23,7 @@ class UserApiHandler {
     static async getUserById(userId: number): Promise<ApiReturn> {
         UserApi.setToken = store.getState().auth.token;
 
-        const response = await UserApi.getUserById(userId);
+        const response = await UserApi.getUserById(apiUrl, userId);
 
         return response;
     }
@@ -30,7 +31,7 @@ class UserApiHandler {
     static async updateUser(userData: any): Promise<ApiReturn> {
         UserApi.setToken = store.getState().auth.token;
 
-        const response = await UserApi.updateUser(userData);
+        const response = await UserApi.updateUser(apiUrl, userData);
 
         return response;
     }
@@ -38,7 +39,7 @@ class UserApiHandler {
     static async deleteUser(userId: number): Promise<ApiReturn> {
         UserApi.setToken = store.getState().auth.token;
 
-        const response = await UserApi.deleteUser(userId);
+        const response = await UserApi.deleteUser(apiUrl, userId);
 
         return response;
     }

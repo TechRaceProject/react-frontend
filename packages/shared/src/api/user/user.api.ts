@@ -1,14 +1,11 @@
 import { ApiProps, ApiReturn } from '../../interfaces/utils/api.interface';
 import { api } from '../../utils/api.utils';
 import BaseApi from '../base.api';
-import { getHostUrl } from '../../../index';
 
 class ApiUser extends BaseApi {
-    static async getUsers(): Promise<ApiReturn> {
-        const baseUrl = getHostUrl();
-
+    static async getUsers(apiUrl: string): Promise<ApiReturn> {
         const apiProps: ApiProps = {
-            url: `http://${baseUrl}/api/users`,
+            url: `${apiUrl}/api/users`,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -19,11 +16,9 @@ class ApiUser extends BaseApi {
         return api(apiProps);
     }
 
-    static async getCurrentUsers(): Promise<ApiReturn> {
-        const baseUrl = getHostUrl();
-
+    static async getCurrentUsers(apiUrl: string): Promise<ApiReturn> {
         const apiProps: ApiProps = {
-            url: `http://${baseUrl}/api/users/current`,
+            url: `${apiUrl}/api/users/current`,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -34,11 +29,9 @@ class ApiUser extends BaseApi {
         return api(apiProps);
     }
 
-    static async getUserById(userId: number): Promise<ApiReturn> {
-        const baseUrl = getHostUrl();
-
+    static async getUserById(apiUrl: string,userId: number): Promise<ApiReturn> {
         const apiProps: ApiProps = {
-            url: `http://${baseUrl}/api/users/${userId}`,
+            url: `${apiUrl}/api/users/${userId}`,
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -49,11 +42,9 @@ class ApiUser extends BaseApi {
         return api(apiProps);
     }
 
-    static async updateUser(userData: any): Promise<ApiReturn> {
-        const baseUrl = getHostUrl();
-
+    static async updateUser(apiUrl: string, userData: any): Promise<ApiReturn> {
         const apiProps: ApiProps = {
-            url: `http://${baseUrl}/api/users/update`,
+            url: `${apiUrl}/api/users/update`,
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -65,11 +56,9 @@ class ApiUser extends BaseApi {
         return api(apiProps);
     }
 
-    static async deleteUser(userId: number): Promise<ApiReturn> {
-        const baseUrl = getHostUrl();
-
+    static async deleteUser(apiUrl: string,userId: number): Promise<ApiReturn> {
         const apiProps: ApiProps = {
-            url: `http://${baseUrl}/api/users/${userId}`,
+            url: `${apiUrl}/api/users/${userId}`,
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
