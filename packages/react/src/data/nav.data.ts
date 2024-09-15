@@ -1,9 +1,4 @@
-import {
-    FaHome,
-    FaClipboardList,
-    FaTrophy,
-    FaCarAlt,
-} from 'react-icons/fa';
+import { FaHome, FaClipboardList, FaTrophy, FaCarAlt } from 'react-icons/fa';
 import { NavItemProps } from '~/interfaces/components/layout/nav.interface';
 
 const navData: NavItemProps[] = [

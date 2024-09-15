@@ -12,6 +12,7 @@
 }
 
 .modal-content {
+    min-width: 500px;
     background: var(--color-white);
     padding: 20px;
     box-shadow: var(--BoxShadow);
@@ -28,4 +29,22 @@
     display: flex;
     flex-direction: column;
     gap: 20px;
+}
+
+@media (max-width: 1440px) {
+    .modal-content {
+        min-width: 450px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .modal-content {
+        min-width: 400px;
+    }
+}
+
+@media (max-width: 720px) {
+    .sous-auth-container-form {
+        min-width: 350px;
+    }
 }

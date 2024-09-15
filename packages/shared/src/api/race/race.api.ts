@@ -21,7 +21,10 @@ class ApiRace extends BaseApi {
 
         return { data, error, isLoading };
     }
-    static async getAllRaces(        apiUrl: string, token: string): Promise<ApiReturn> {
+    static async getAllRaces(
+        apiUrl: string,
+        token: string
+    ): Promise<ApiReturn> {
         const apiProps: ApiProps = {
             url: `${apiUrl}/api/races/`,
             method: 'GET',
@@ -36,8 +39,11 @@ class ApiRace extends BaseApi {
         return { data, error, isLoading };
     }
 
-    static async deleteRace(        apiUrl: string,raceId: number, token: string): Promise<ApiReturn> {
-
+    static async deleteRace(
+        apiUrl: string,
+        raceId: number,
+        token: string
+    ): Promise<ApiReturn> {
         const apiProps: ApiProps = {
             url: `${apiUrl}/api/races/${raceId}`,
             method: 'DELETE',
