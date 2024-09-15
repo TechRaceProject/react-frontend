@@ -69,7 +69,11 @@ function App(): React.JSX.Element {
     return (
         <SafeAreaView style={[styles.appContainer]}>
             <NavigationContainer>
-                <Stack.Navigator initialRouteName={isAuthenticated ? 'TechRace' : 'LoginRegister'}>
+                <Stack.Navigator
+                    initialRouteName={
+                        isAuthenticated ? 'TechRace' : 'LoginRegister'
+                    }
+                >
                     {!isAuthenticated ? (
                         <Stack.Screen
                             name="LoginRegister"
