@@ -12,7 +12,9 @@ export const SendWheelSpeedCommand = (CarWheels: number[]) => {
             command.data = [0];
         }
 
-        socket.send(JSON.stringify(command));
+        if (socket.readyState === WebSocket.OPEN) {
+            socket.send(JSON.stringify(command));
+        }
     } catch (error) {
         console.error(error);
     }
