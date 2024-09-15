@@ -75,6 +75,22 @@ export function createCarCommandValidator(
                     'Invalid data for VideoCaptor. Expected a single number.'
                 );
             }
+        case CommandCar.AutoMode:
+            if (typeof data === 'number') {
+                return { cmd: command, data: data };
+            } else {
+                throw new Error(
+                    'Invalid data for AutoMode. Expected a single number.'
+                );
+            }
+        case CommandCar.RaceMode:
+            if (Array.isArray(data) && data.length === 2) {
+                return { cmd: command, data: data };
+            } else {
+                throw new Error(
+                    'Invalid data for RaceMode. Expected an array of 2 numbers.'
+                );
+            }
         default:
             throw new Error('Unknown command.');
     }

@@ -2,7 +2,6 @@ import { CarLowSpeedDifferentialRatioEnum } from '../enums/CarDifferentialRatio/
 import { CarNormalSpeedDifferentialRatioEnum } from '../enums/CarDifferentialRatio/CarNormalSpeedDifferentialRatioEnum';
 import { CarHighSpeedDifferentialRatioEnum } from '../enums/CarDifferentialRatio/CarHighSpeedDifferentialRatioEnum';
 import { CarJoystickStepPowerEnum } from '../enums/CarJoystickStepPowerEnum';
-import { CarModePowerEnum } from '../enums/CarModePowerEnum';
 
 function OptimalWheelSpeedsGenerator(
     x: number,

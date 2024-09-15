@@ -8,9 +8,9 @@ import {
 } from 'react-native';
 import Video from 'react-native-video';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { NavigationContainer } from '@react-navigation/native';
 
 import ApiAuth from '../../../shared/src/api/auth/authentication.api';
-import { apiUrl } from '../config/apiUrl';
 
 interface LoginErrors {
     username?: string;
@@ -73,7 +73,6 @@ const LoginRegisterScreen = ({ navigation }) => {
             const { data, error, isLoading } = await ApiAuth[
                 isLoginPage ? 'login' : 'register'
             ](
-                apiUrl,
                 isLoginPage
                     ? { email, password }
                     : { email, password, username }

@@ -19,7 +19,7 @@ interface JoystickProps {
         setJoystickPosition: (position: { x: number; y: number }) => void;
     };
     styles: {
-        container: ViewStyle;
+        containerGlobalJoystick: ViewStyle;
         containerJoystick: ViewStyle;
         joystick: ViewStyle;
     };
@@ -63,7 +63,7 @@ function Joystick({
     return (
         <View
             style={[
-                styles.container,
+                styles.containerGlobalJoystick,
                 { width: dimension.width, height: dimension.height },
             ]}
             {...panResponder.panHandlers}

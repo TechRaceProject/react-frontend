@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { SafeAreaView, StyleSheet, View } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -16,9 +16,11 @@ import {
 import useSSE from './src/hooks/useServerSentEvent';
 import { handleSSEMessage } from './src/utils/handleSSEMessage';
 
-import BottomNavigationBar from './src/components/BottomNavigationBar';
 import LoginRegisterScreen from './src/screens/LoginRegisterScreen';
-import { apiUrl } from './src/config/apiUrl';
+import TechRaceScreen from './src/screens/TechRaceScreen';
+import CarVideoControlScreen from './src/screens/CarVideoControlScreen';
+
+import { setHostUrl } from '../shared/index';
 
 const Stack = createNativeStackNavigator();
 
@@ -29,9 +31,12 @@ function App(): React.JSX.Element {
      * on utilise l'ip : 'http://10.0.2.2:8000' pour se connecter à l'api car
      * l'émulateur android ne peut pas se connecter à l'api en localhost
      */
+    const apiUrl = '192.168.1.88:8000';
+
+    setHostUrl(apiUrl);
 
     useSSE(
-        apiUrl + '/api/sse',
+        'http://' + apiUrl + '/api/sse',
         (event: OpenEvent) => {
             console.log('Connexion SSE ouverte:', event);
         },
@@ -64,14 +69,33 @@ function App(): React.JSX.Element {
     return (
         <SafeAreaView style={[styles.appContainer]}>
             <NavigationContainer>
-                <Stack.Navigator initialRouteName="LoginRegister">
-                    <Stack.Screen
-                        name="LoginRegister"
-                        component={LoginRegisterScreen}
-                        options={{
-                            headerShown: false,
-                        }}
-                    />
+                <Stack.Navigator initialRouteName={isAuthenticated ? 'TechRace' : 'LoginRegister'}>
+                    {!isAuthenticated ? (
+                        <Stack.Screen
+                            name="LoginRegister"
+                            component={LoginRegisterScreen}
+                            options={{
+                                headerShown: false,
+                            }}
+                        />
+                    ) : (
+                        <>
+                            <Stack.Screen
+                                name="TechRace"
+                                component={TechRaceScreen}
+                                options={{
+                                    headerShown: false,
+                                }}
+                            />
+                            <Stack.Screen
+                                name="CarVideoControl"
+                                component={CarVideoControlScreen}
+                                options={{
+                                    headerShown: false,
+                                }}
+                            />
+                        </>
+                    )}
                 </Stack.Navigator>
             </NavigationContainer>
         </SafeAreaView>
