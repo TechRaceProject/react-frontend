@@ -3,6 +3,7 @@ import Input from '../input';
 import Button from '../button';
 import Select from '../select';
 import Switch from '../switch';
+import FileInput from '../inputFile';
 import { FormProps } from '~/interfaces/components/common/form.interface';
 import { Question } from '~/interfaces/other/question.interface';
 import './style.css';
@@ -16,7 +17,10 @@ function Form({
     label,
     outline,
 }: FormProps) {
-    const linkedInput = (name: string, value: string | boolean) => {
+    const linkedInput = (
+        name: string,
+        value: string | boolean | File | null
+    ) => {
         setDataArr((prevFormData: any) => ({
             ...prevFormData,
             [name]: value,
@@ -68,14 +72,29 @@ function Form({
                             id={question.name}
                             name={question.name}
                             label={question.label}
-                            value={String(
-                                (dataArr as any)[question.name] || ''
-                            )}
+                            value={String(dataArr[question.name] || '')}
                             options={question.options || []}
                             onChange={(
                                 e: React.ChangeEvent<HTMLSelectElement>
                             ) => linkedInput(question.name, e.target.value)}
                             icon={question.icon}
+                        />
+                    )}
+                    {question.type === 'file' && (
+                        <FileInput
+                            id={question.name}
+                            name={question.name}
+                            label={question.label}
+                            icon={question.icon}
+                            accept={question.accept}
+                            onChange={(
+                                e: React.ChangeEvent<HTMLInputElement>
+                            ) =>
+                                linkedInput(
+                                    question.name,
+                                    e.target.files ? e.target.files[0] : null
+                                )
+                            }
                         />
                     )}
                 </Fragment>

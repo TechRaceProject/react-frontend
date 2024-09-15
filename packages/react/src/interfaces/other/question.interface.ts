@@ -13,9 +13,11 @@ export interface Question {
         | 'month'
         | 'range'
         | 'switch'
-        | 'select';
+        | 'select'
+        | 'file';
     placeholder?: string;
     required?: boolean;
     icon?: React.ComponentType<{ className?: string }>;
     options?: Array<{ label: string; value: string }>;
+    accept?: string;
 }
