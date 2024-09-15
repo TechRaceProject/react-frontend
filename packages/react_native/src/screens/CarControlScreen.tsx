@@ -31,6 +31,7 @@ const CarControlScreen = () => {
     const [showPopup, setShowPopup] = useState(false);
     const [raceStarted, setRaceStarted] = useState(false);
     const [raceId, setRaceId] = useState<number | null>(null);
+    const [raceStartedOnce, setRaceStartedOnce] = useState(false);
     const [message, setMessage] = useState<string>('');
 
     const dimension = {width: 210, height: 210};
