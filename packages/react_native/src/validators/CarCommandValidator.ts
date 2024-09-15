@@ -75,12 +75,12 @@ export function createCarCommandValidator(
                     'Invalid data for VideoCaptor. Expected a single number.'
                 );
             }
-        case CommandCar.VehiculeMode:
+        case CommandCar.AutoMode:
             if (typeof data === 'number') {
                 return { cmd: command, data: data };
             } else {
                 throw new Error(
-                    'Invalid data for VehiculeMode. Expected a single number.'
+                    'Invalid data for AutoMode. Expected a single number.'
                 );
             }
         case CommandCar.RaceMode:

@@ -2,14 +2,15 @@ import { CommandCar } from '../enums/CarCommandEnum';
 import { createCarCommandValidator } from '../validators/CarCommandValidator';
 import socket from '../socket.config';
 
-export const SendVehiculeModeCommand = (mode: number) => {
+export const SendAutoModeCommand = (CarAutoMode: number) => {
     try {
         const command = createCarCommandValidator(
-            CommandCar.VehiculeMode,
-            mode
+            CommandCar.AutoMode,
+            CarAutoMode
         );
-
-        socket.send(JSON.stringify(command));
+        if (socket.readyState === WebSocket.OPEN) {
+            socket.send(JSON.stringify(command));
+        }
     } catch (error) {
         console.error(error);
     }
