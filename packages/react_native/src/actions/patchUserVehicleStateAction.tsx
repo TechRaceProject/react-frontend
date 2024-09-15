@@ -1,17 +1,22 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { getHostUrl } from '../../../shared/index';
+
 export const patchUserVehicleState = async (
     vehicleStateId: number,
     patchData: any
 ): Promise<any> => {
     try {
-        // @TODO : fix Url
+        const token = await AsyncStorage.getItem('authToken');
+
+        const hostUrl = getHostUrl();
+
         const response = await fetch(
-            `http://10.0.2.2:8000/api/vehicle-states/${vehicleStateId}`,
+            `http://${hostUrl}/api/vehicle-states/${vehicleStateId}`,
             {
                 method: 'PATCH',
                 headers: {
                     'Content-Type': 'application/json',
-                    // @TODO : fix Authorization token
-                    Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJleHAiOjE3MjYyODA0NjJ9.n_XYVw6MCDvFwysy7JtvBWU7ShHYp_nX92vSzYMRCNQ`,
+                    Authorization: `Bearer ${token}`,
                 },
                 body: JSON.stringify(patchData),
             }

@@ -8,6 +8,9 @@ import {
     StyleSheet,
     Alert,
 } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+import { getHostUrl } from '../../../shared/index';
 
 interface CreateRacePopupProps {
     visible: boolean;
@@ -31,15 +34,17 @@ const CreateRacePopup: React.FC<CreateRacePopupProps> = ({
         };
 
         try {
-            // @TODO : fix Url
+            const userId = await AsyncStorage.getItem('user:id');
+            const token = await AsyncStorage.getItem('authToken');
+
+            const hostUrl = getHostUrl();
+
             const response = await fetch(
-                'http://10.0.2.2:8000/api/users/1/races',
+                `http://${hostUrl}/api/users/${userId}/races`,
                 {
                     method: 'POST',
                     headers: {
-                        // @TODO : fix token
-                        Authorization:
-                            'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJleHAiOjE3MjYxOTkxNzJ9.efdris3dzTMPXr-4aDjjyxa_kuSQ_f9yzxIKXnVDpMk',
+                        Authorization: `Bearer ${token}`,
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify(payload),
