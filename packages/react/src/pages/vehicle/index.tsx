@@ -163,7 +163,7 @@ function VehicleController() {
             )}
 
             <div className="vehicle-content">
-                <div className="vehicle-select-refresh">
+                <div className="vehicle-filter">
                     <div className="vehicle-select">
                         <Select
                             id="vehicle-select"
@@ -189,24 +189,26 @@ function VehicleController() {
                             className="refresh-button"
                         />
                         <Button
-                            text="Sauvegarder"
                             onClick={updateVehicleState}
                             icon={FaSave}
                             variant="success"
                             outline={true}
-                            className="save-button"
                         />
                     </div>
                 </div>
 
-                <ButtonGroup
-                    sections={controlSectionsData}
-                    onSectionClick={handleSectionClick}
-                />
-
                 <div className="vehicle-image">
                     <img src={ImgCar} alt="Vehicle" />
                 </div>
+
+                {vehicles.length > 0 ? (
+                    <ButtonGroup
+                        sections={controlSectionsData}
+                        onSectionClick={handleSectionClick}
+                    />
+                ) : (
+                    <p className="no-data-message">Aucun véhicule disponible</p>
+                )}
             </div>
 
             <Modal
@@ -215,7 +217,7 @@ function VehicleController() {
                 title={
                     controlSectionsData.find(
                         (section) => section.name === activeSection
-                    )?.label || ''
+                    )?.label || 'Section non disponible'
                 }
                 position="center"
             >

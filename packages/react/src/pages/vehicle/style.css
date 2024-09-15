@@ -38,27 +38,11 @@
     margin-top: 10px;
 }
 
-.vehicle-select-refresh {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 10px;
-}
-
-.save-button {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    background-color: #dff7ec;
-    border: 1px solid #81c784;
-    color: #2e7d32;
-    padding: 8px 16px;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.save-button:hover {
-    background-color: #c8e6c9;
+.vehicle-filter {
+    display: grid;
+    grid-template-columns: 1fr 50px 50px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+    gap: 20px;
+    align-items: flex-end;
 }

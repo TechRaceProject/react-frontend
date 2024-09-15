@@ -1,6 +1,6 @@
 import Title from '~/components/common/title';
-import './style.css';
 import { ModalProps } from '~/interfaces/components/feedback/modal.interface';
+import './style.css';
 
 function Modal({
     title,
